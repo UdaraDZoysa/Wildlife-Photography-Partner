@@ -73,7 +73,7 @@ public class Add_imageController implements Initializable {
     private Label uName;
     
     public void setUser(User user){
-        if(user!=null){
+        if(user!= null){
             uName.setText("Hello,"+user.getUserName()+"!");
             Image image =new Image(new File(user.getProfilePic()).toURI().toString());
             profilePicView.setImage(image);
