@@ -420,7 +420,7 @@ public class Select_imageController implements Initializable {
                 
             }
         }
-        if(images==null || images.isEmpty()){
+        if(images == null || images.isEmpty()){
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Image Not Found");
             alert.setHeaderText(null);
