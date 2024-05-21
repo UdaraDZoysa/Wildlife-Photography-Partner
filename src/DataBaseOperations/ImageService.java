@@ -27,23 +27,18 @@ public class ImageService {
         
     }
     
-    public List<Images> searchImageUsingExactDate(int userID,Date date,String location,String category){
+    public void searchImageUsingExactDate(int userID,Date date,String location,String category){
         
         images = imageRepository.SearchImagesUsingExactDate(userID, date, location, category);
-        
-        return images;
     }
     
-    public List<Images> searchImageUsingDateRange(int userID,Date startDate,Date endDate,String location,String category){
+    public void searchImageUsingDateRange(int userID,Date startDate,Date endDate,String location,String category){
         images = imageRepository.SearchImagesUsingDateRange(userID, startDate, endDate, location, category);
-        return images;
     }
     
-    public List<Images> searchImageWithoutDate(int userID,String location,String category){
+    public void searchImageWithoutDate(int userID,String location,String category){
         
         images = imageRepository.SearchImagesWithoutDate(userID, location, category);
-        
-        return images;
     }
 
 }

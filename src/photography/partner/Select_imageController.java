@@ -44,7 +44,7 @@ import javafx.scene.layout.VBox;
 public class Select_imageController implements Initializable {
     
     private User u;
-    List<Images> images = new ArrayList<>();
+    //List<Images> images = new ArrayList<>();
     
     static String locationText;
     static String categoryText;
@@ -391,7 +391,7 @@ public class Select_imageController implements Initializable {
                     
                     Date date = Date.valueOf(exactPicker.getValue());
              
-                    images = imageService.searchImageUsingExactDate(userID, date, location, category);
+                    imageService.searchImageUsingExactDate(userID, date, location, category);
                     loadImageDynamically();
                     clearFieldValues();
                     
@@ -406,7 +406,7 @@ public class Select_imageController implements Initializable {
                     Date startDate = Date.valueOf(fromPicker.getValue());
                     Date endDate = Date.valueOf(toPicker.getValue());
             
-                    images = imageService.searchImageUsingDateRange(userID, startDate, endDate, location, category);
+                    imageService.searchImageUsingDateRange(userID, startDate, endDate, location, category);
                     loadImageDynamically();
                     clearFieldValues();
                 }else{
@@ -414,13 +414,13 @@ public class Select_imageController implements Initializable {
                 }
             }else{
                 //user not selected date
-                images = imageService.searchImageWithoutDate(userID, location, category);
+                imageService.searchImageWithoutDate(userID, location, category);
                 loadImageDynamically();
                 clearFieldValues();
                 
             }
         }
-        if(images == null || images.isEmpty()){
+        if(ImageService.images == null || ImageService.images.isEmpty()){
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Image Not Found");
             alert.setHeaderText(null);
