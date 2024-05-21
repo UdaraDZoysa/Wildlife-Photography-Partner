@@ -281,7 +281,6 @@ public class Add_imageController implements Initializable {
     @FXML
     public void handlePublicToggleBtnAction(ActionEvent event){
         toggle = !toggle; // Toggle the boolean value when it click
-        toggle = true;
     }
     
     @Override

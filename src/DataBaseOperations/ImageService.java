@@ -27,6 +27,16 @@ public class ImageService {
         
     }
     
+    public Images UpdateImage(String location, String category, String otherDetails, String techDetails,boolean vilibleAll,int imgID){
+       
+        return imageRepository.UpdateImage(location, category, otherDetails, techDetails,vilibleAll,imgID);
+        
+    }
+    
+    public boolean AddToFavourite(int imgID,boolean favourite){
+        return imageRepository.SetAddFavouriteStatus(imgID, favourite);
+    }
+    
     public void searchImageUsingExactDate(int userID,Date date,String location,String category){
         
         images = imageRepository.SearchImagesUsingExactDate(userID, date, location, category);

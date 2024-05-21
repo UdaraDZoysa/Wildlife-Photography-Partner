@@ -462,6 +462,43 @@ public class Select_imageController implements Initializable {
         }
     }
     
+    //If User Edit Image Details Call That Method
+    @FXML
+    public void loadEditedImageDynamically(int index){
+        
+        for(int i=0;i<ImageService.images.size();i++){
+            if(i == index){
+                continue;
+            }else{
+                try{
+                File file = new File(ImageService.images.get(i).getImgPath());
+                    if(file.exists()){
+                        Image image = new Image(file.toURI().toString());
+                        ImageView imageView = new ImageView(image);
+                        StackPane imageWrapper = new StackPane(imageView);
+                        imageWrapper.setPrefSize(250, 250);
+                    
+                        imageView.setFitWidth(250);
+                        imageView.setFitHeight(250);
+                        imageView.setPreserveRatio(true);
+                        imageView.getStyleClass().add("Tileimage-view");
+                    
+                        VBox card = new VBox(10);
+                        card.getStyleClass().add("image-card");
+                        card.setPadding(new Insets(10));
+                    
+                        card.getChildren().addAll(imageWrapper,createImageCard(i));
+                        setupInterationsOfImages(card);
+                    
+                        imgTilePane.getChildren().add(card);   
+                    }
+                }catch(Exception e){
+                System.out.println("Error loading image:"+e.getMessage());
+                }
+            }  
+        }
+    }
+    
     private Node createImageCard(int index){
         VBox detailsVbox = new VBox(5);
         detailsVbox.setPadding(new Insets(5,10,5,10));
@@ -517,7 +554,7 @@ public class Select_imageController implements Initializable {
             
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
         
     }

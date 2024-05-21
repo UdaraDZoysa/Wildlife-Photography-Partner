@@ -56,6 +56,103 @@ public class ImageRepository {
         return rtrn;
     }
     
+    public Images UpdateImage(String location, String category, String otherDetails, String techDetails,boolean visibleAll,int imgID){
+        
+        Images rtrn = null;//initial return state
+        
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            conn.setAutoCommit(false);//auto commit off
+            
+            String sql="UPDATE photos SET OtherDetails = ?, TechDetails = ?, categories = ?, Location = ?,Privacy = ? WHERE photo_id = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            
+            stmt.setString(1, otherDetails);
+            stmt.setString(2, techDetails);
+            stmt.setString(3, category);
+            stmt.setString(4, location);
+            stmt.setBoolean(5, visibleAll);
+            stmt.setInt(6, imgID);
+                                   
+            int effectedRowCount=stmt.executeUpdate();//get number of effected rows in DB
+            
+            if(effectedRowCount>0){
+                //if opreation done correctly return set to true
+                conn.commit();//commit result
+                
+                String getSql="SELECT * FROM photos WHERE photo_id = ? ";
+                
+                PreparedStatement statement = conn.prepareStatement(getSql);
+                statement.setInt(1, imgID);
+                
+                ResultSet rs = statement.executeQuery();
+                
+                Images image = new Images();
+                while(rs.next()){
+                    
+                    image.setImgID(rs.getInt("photo_id"));
+                    image.setUserID(rs.getInt("user_id"));
+                    image.setImgPath(rs.getString("photo_url"));
+                    image.setLocation(rs.getString("Location"));
+                    image.setCategory(rs.getString("Categories"));
+                    image.setOtherDetails(rs.getString("OtherDetails"));
+                    image.setTechDetails(rs.getString("TechDetails"));
+                    image.setDate(rs.getDate("timestamp"));
+                    image.setVilibleAll(rs.getBoolean("Privacy"));
+                } 
+                
+                rtrn = image;
+            }
+            else{
+                conn.rollback();
+            }
+        }catch(ClassNotFoundException e){
+            System.out.println("Class Not Found:"+e.getMessage());
+        }catch(SQLException e){
+            System.out.println("SQL Exception:"+e.getMessage());
+        }
+        
+        return rtrn;
+    }
+    
+    public boolean SetAddFavouriteStatus(int imgID,boolean favourite){
+        
+        boolean rtrn = false;
+        
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            conn.setAutoCommit(false);//auto commit off
+            
+            String sql="UPDATE photos SET Favourite = ? WHERE photo_id = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            
+            stmt.setBoolean(1, favourite);
+            stmt.setInt(2, imgID);
+                                   
+            int effectedRowCount=stmt.executeUpdate();//get number of effected rows in DB
+            
+            if(effectedRowCount>0){
+                //if opreation done correctly return set to true
+                conn.commit();//commit result
+                rtrn = true;
+            }
+            else{
+                conn.rollback();
+            }
+        }catch(ClassNotFoundException e){
+            System.out.println("Class Not Found:"+e.getMessage());
+        }catch(SQLException e){
+            System.out.println("SQL Exception:"+e.getMessage());
+        }
+        
+        return rtrn;
+    }
+    
+    
     public List<Images> SearchImagesUsingExactDate(int userID,Date date,String location,String category){
         
         List<Images> images = new ArrayList<>();

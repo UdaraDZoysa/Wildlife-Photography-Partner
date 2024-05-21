@@ -182,7 +182,7 @@
                      </children>
                   </AnchorPane>
                   <Label prefHeight="46.0" prefWidth="218.0" style="-fx-text-fill: white; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Select Image:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0" />
-                  <TextField fx:id="imgPathFiled" layoutX="205.0" layoutY="20.0" prefHeight="27.0" prefWidth="256.0" promptText="Location" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="22.0" />
+                  <TextField fx:id="imgPathFiled" layoutX="205.0" layoutY="20.0" prefHeight="27.0" prefWidth="256.0" promptText="Image Path" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="22.0" />
                   <Label layoutX="205.0" layoutY="78.0" style="-fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2); -fx-font-size: 18;" text="Drag &amp; Drop or" />
                   <Hyperlink fx:id="browsImageHyperLink" layoutX="333.0" layoutY="78.0" onAction="#handleBrowsImageHyperLink" style="-fx-font-size: 15; -fx-text-fill: #21381B;" text="Brows Image:" />
                   <ToggleButton fx:id="publicToggle" layoutX="775.0" layoutY="500.0" mnemonicParsing="false" onAction="#handlePublicToggleBtnAction" stylesheets="@../../Styles/button_Style.css" text="Public Image" AnchorPane.rightAnchor="115.79999999999995" />

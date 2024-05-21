@@ -10,7 +10,6 @@ import DataBaseOperations.User;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,9 +21,11 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -49,9 +50,11 @@ import javafx.stage.Stage;
 public class ViewSearchedImageController implements Initializable {
     
     private User u;
-    private String category;
-    private String location;
-    private int i;
+    boolean toggle;
+    private static String category;
+    private static String location;
+    private static int i;//Use to memorise the image index
+    private ImageService imageService = new ImageService();
     
     @FXML
     private AnchorPane mainPane;
@@ -61,6 +64,7 @@ public class ViewSearchedImageController implements Initializable {
         
         i=index;
         u=user;
+        toggle = ImageService.images.get(index).isFavourite();
         location = ImageService.images.get(index).getLocation();
         category = ImageService.images.get(index).getCategory();
         
@@ -104,6 +108,19 @@ public class ViewSearchedImageController implements Initializable {
         Label categoryLabel = new Label(ImageService.images.get(index).getCategory());
         categoryLabel.getStyleClass().add("detailed-card-label");
         
+        Label privacyStatusTextLabel = new Label("Privacy Status:");
+        privacyStatusTextLabel.getStyleClass().add("detailed-card-Text");
+        
+        String status;
+        if(ImageService.images.get(index).isVilibleAll()){
+            status = "Public Image";
+        }else{
+            status = "Private Image";
+        }
+        
+        Label privacyStatusLabel = new Label(status);
+        privacyStatusLabel.getStyleClass().add("detailed-card-label");
+        
         Label OtherDetailsTextLabel = new Label("Other Details:");
         OtherDetailsTextLabel.getStyleClass().add("detailed-card-Text");
         GridPane.setValignment(OtherDetailsTextLabel, VPos.TOP);
@@ -124,15 +141,25 @@ public class ViewSearchedImageController implements Initializable {
         TextFlow techDetailsTextFlow = new TextFlow(techDetailsText);
         techDetailsTextFlow.setStyle("-fx-padding: 4; -fx-background-color:white; -fx-border-color: #21381B; -fx-border-width: 0 0 3 5; -fx-border-style: solid; -fx-pref-width:450; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0, 10);");
         
+        //Favourite Button
+        ToggleButton addFavouriteBtn = new ToggleButton("Add to Favourite");
+        addFavouriteBtn.setSelected(ImageService.images.get(index).isFavourite());
+        addFavouriteBtn.getStyleClass().add("toggle-button");
+        addFavouriteBtn.setOnAction(event -> handleAddFavouriteBtnAction());
+        GridPane.setValignment(addFavouriteBtn, VPos.TOP);
+        GridPane.setHalignment(addFavouriteBtn, HPos.RIGHT);
+        
+        //Back Button
         Button backBtn = new Button("Back");
         backBtn.getStyleClass().add("card-button");
         backBtn.setOnAction(event -> handleBackBtnAction(event));
         GridPane.setValignment(backBtn, VPos.BOTTOM);
         GridPane.setHalignment(backBtn, HPos.CENTER);
         
+        //Edit Button
         Button editBtn = new Button("Edit Detail");
         editBtn.getStyleClass().add("card-button");
-        editBtn.setOnAction(event->ImageService.images.get(index));
+        editBtn.setOnAction(event->editImage(ImageService.images.get(index),event));
         GridPane.setValignment(editBtn, VPos.BOTTOM);
         GridPane.setHalignment(editBtn, HPos.CENTER);
             
@@ -147,20 +174,22 @@ public class ViewSearchedImageController implements Initializable {
         ColumnConstraints column2 = new ColumnConstraints();
         column2.setPrefWidth(325);
         gridPane.getColumnConstraints().addAll(column1,column2);
-
         
-        gridPane.add(dateTextLabel, 0, 0);
-        gridPane.add(dateLabel, 1, 0);
-        gridPane.add(locationTextLabel, 0, 1);
-        gridPane.add(locationLabel, 1, 1);
-        gridPane.add(categoryTextLabel, 0, 2);
-        gridPane.add(categoryLabel, 1, 2);
-        gridPane.add(OtherDetailsTextLabel, 0, 3);
-        gridPane.add(otherDetailsTextFlow, 1, 3);
-        gridPane.add(techDetailsTextLabel, 0, 4);
-        gridPane.add(techDetailsTextFlow, 1, 4);
-        gridPane.add(backBtn, 0, 6);
-        gridPane.add(editBtn, 1, 6);
+        gridPane.add(addFavouriteBtn, 1, 0);
+        gridPane.add(dateTextLabel, 0, 1);
+        gridPane.add(dateLabel, 1, 1);
+        gridPane.add(privacyStatusTextLabel, 0, 2);
+        gridPane.add(privacyStatusLabel, 1, 2);
+        gridPane.add(locationTextLabel, 0, 3);
+        gridPane.add(locationLabel, 1, 3);
+        gridPane.add(categoryTextLabel, 0, 4);
+        gridPane.add(categoryLabel, 1, 4);
+        gridPane.add(OtherDetailsTextLabel, 0, 5);
+        gridPane.add(otherDetailsTextFlow, 1, 5);
+        gridPane.add(techDetailsTextLabel, 0, 6);
+        gridPane.add(techDetailsTextFlow, 1, 6);
+        gridPane.add(backBtn, 0, 7);
+        gridPane.add(editBtn, 1, 7);
         
         
         TilePane detailedTile = new TilePane();
@@ -186,8 +215,12 @@ public class ViewSearchedImageController implements Initializable {
         mainPane.getChildren().add(detailedView);
     }
     
+    
+    //Once User switch to edit Image UI, call that method
     @FXML
-    public void displayEditedImageWithDetails(Images img){
+    public void displayEditedImageWithDetails(Images img,User user){
+        
+        u = user;
         
         VBox card = new VBox(10);
         
@@ -229,6 +262,19 @@ public class ViewSearchedImageController implements Initializable {
         Label categoryLabel = new Label(img.getCategory());
         categoryLabel.getStyleClass().add("detailed-card-label");
         
+        Label privacyStatusTextLabel = new Label("Privacy Status:");
+        privacyStatusTextLabel.getStyleClass().add("detailed-card-Text");
+        
+        String status;
+        if(img.isVilibleAll()){
+            status = "Public Image";
+        }else{
+            status = "Private Image";
+        }
+        
+        Label privacyStatusLabel = new Label(status);
+        privacyStatusLabel.getStyleClass().add("detailed-card-label");
+        
         Label OtherDetailsTextLabel = new Label("Other Details:");
         OtherDetailsTextLabel.getStyleClass().add("detailed-card-Text");
         GridPane.setValignment(OtherDetailsTextLabel, VPos.TOP);
@@ -249,15 +295,25 @@ public class ViewSearchedImageController implements Initializable {
         TextFlow techDetailsTextFlow = new TextFlow(techDetailsText);
         techDetailsTextFlow.setStyle("-fx-padding: 4; -fx-background-color:white; -fx-border-color: #21381B; -fx-border-width: 0 0 3 5; -fx-border-style: solid; -fx-pref-width:450; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0, 10);");
         
+        //Favourite Button
+        ToggleButton addFavouriteBtn = new ToggleButton("Add to Favourite");
+        addFavouriteBtn.setSelected(img.isFavourite());
+        addFavouriteBtn.getStyleClass().add("toggle-button");
+        addFavouriteBtn.setOnAction(event -> handleAddFavouriteBtnAction());
+        GridPane.setValignment(addFavouriteBtn, VPos.TOP);
+        GridPane.setHalignment(addFavouriteBtn, HPos.RIGHT);
+        
+        //Back Button
         Button backBtn = new Button("Back");
         backBtn.getStyleClass().add("card-button");
         backBtn.setOnAction(event -> handleEditedBackBtnAction(img,event));
         GridPane.setValignment(backBtn, VPos.BOTTOM);
         GridPane.setHalignment(backBtn, HPos.CENTER);
         
+        //Edit Button
         Button editBtn = new Button("Edit Detail");
         editBtn.getStyleClass().add("card-button");
-        editBtn.setOnAction(event->editImage(img));
+        editBtn.setOnAction(event->editImage(img,event));
         GridPane.setValignment(editBtn, VPos.BOTTOM);
         GridPane.setHalignment(editBtn, HPos.CENTER);
             
@@ -273,19 +329,21 @@ public class ViewSearchedImageController implements Initializable {
         column2.setPrefWidth(325);
         gridPane.getColumnConstraints().addAll(column1,column2);
 
-        
-        gridPane.add(dateTextLabel, 0, 0);
-        gridPane.add(dateLabel, 1, 0);
-        gridPane.add(locationTextLabel, 0, 1);
-        gridPane.add(locationLabel, 1, 1);
-        gridPane.add(categoryTextLabel, 0, 2);
-        gridPane.add(categoryLabel, 1, 2);
-        gridPane.add(OtherDetailsTextLabel, 0, 3);
-        gridPane.add(otherDetailsTextFlow, 1, 3);
-        gridPane.add(techDetailsTextLabel, 0, 4);
-        gridPane.add(techDetailsTextFlow, 1, 4);
-        gridPane.add(backBtn, 0, 6);
-        gridPane.add(editBtn, 1, 6);
+        gridPane.add(addFavouriteBtn, 1, 0);
+        gridPane.add(dateTextLabel, 0, 1);
+        gridPane.add(dateLabel, 1, 1);
+        gridPane.add(privacyStatusTextLabel, 0, 2);
+        gridPane.add(privacyStatusLabel, 1, 2);
+        gridPane.add(locationTextLabel, 0, 3);
+        gridPane.add(locationLabel, 1, 3);
+        gridPane.add(categoryTextLabel, 0, 4);
+        gridPane.add(categoryLabel, 1, 4);
+        gridPane.add(OtherDetailsTextLabel, 0, 5);
+        gridPane.add(otherDetailsTextFlow, 1, 5);
+        gridPane.add(techDetailsTextLabel, 0, 6);
+        gridPane.add(techDetailsTextFlow, 1, 6);
+        gridPane.add(backBtn, 0, 7);
+        gridPane.add(editBtn, 1, 7);
         
         
         TilePane detailedTile = new TilePane();
@@ -311,9 +369,32 @@ public class ViewSearchedImageController implements Initializable {
         mainPane.getChildren().add(detailedView);
     }
     
-    public void editImage(Images img){
+    public void editImage(Images img,ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EditDetails.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the u
+            EditDetailsController controller = loader.getController();
+            controller.setImage(img);
+            controller.setUser(u);
+        
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+            //scene.getStylesheets().add(getClass().getResource("/Styles/button_Style.css").toExternalForm());
+            
+            
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            
+            stage.show();
+        }catch(IOException e){
+            System.out.println("Error:"+e.getMessage());
+        }
+        
     }
     
+    //Before Image Edit Call That Back Action
     public void handleBackBtnAction(ActionEvent event){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Select_image.fxml"));
@@ -338,6 +419,7 @@ public class ViewSearchedImageController implements Initializable {
         }
     }
     
+    //After Edit Image Call That Back Action
     public void handleEditedBackBtnAction(Images img,ActionEvent event){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Select_image.fxml"));
@@ -348,6 +430,7 @@ public class ViewSearchedImageController implements Initializable {
             controller.setUser(u);
             
             if(location.equals(img.getLocation()) && category.equals(img.getCategory())){
+                //If Location and Category Not Changed
                 controller.loadImageDynamically(); 
             }else{
                 controller.loadEditedImageDynamically(i);
@@ -365,6 +448,31 @@ public class ViewSearchedImageController implements Initializable {
         }catch(IOException e){
             System.out.println("Error:"+e.getMessage());
         }
+    }
+    
+    public void handleAddFavouriteBtnAction(){
+        toggle = !toggle;
+        
+        ImageService.images.get(i).setFavourite(toggle);
+        
+        boolean success = imageService.AddToFavourite(ImageService.images.get(i).getImgID(), toggle);
+        if(success){
+            if(toggle){
+                Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Added to Favourite");
+                alert.setHeaderText(null);
+                alert.setContentText("Image Added to Favourite Collection Successfully!");
+                alert.showAndWait();
+            }else{
+                Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Removed from Favourite");
+                alert.setHeaderText(null);
+                alert.setContentText("Image Removed from Favourite Collection Successfully!");
+                alert.showAndWait();
+            }
+            
+        }
+        
     }
  
     @Override
