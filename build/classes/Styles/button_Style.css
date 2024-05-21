@@ -1,0 +1,166 @@
+.custom-button {
+    -fx-background-color: linear-gradient(to bottom, #2D4F2B 0%, #21381B 100%);
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-cursor: hand;
+    -fx-border-color: #1A3017;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 2);
+}
+
+.custom-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #3A6640 0%, #2D4F2B 100%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 3);
+}
+
+.custom-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #1A3017 0%, #21381B 100%);
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.5) , 4, 0.0 , 0 , 2 );
+    -fx-padding: 3 1 1 3; /* This might need to be adjusted if it doesn't give the desired visual effect */
+}
+
+.selected-button{
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #2D4F2B, #21381B); /* Same as hover state */
+    -fx-alignment: center-left;
+    -fx-text-fill: white; /* Text color remains the same for consistency */
+    -fx-font-size: 20px; /* Font size remains consistent with the dashboard button */
+    -fx-cursor: hand; /* Cursor style consistent for clickable elements */
+    -fx-border-width: 0 0 4 0; /* Bottom border width remains the same */
+    -fx-border-color: transparent transparent #59a176 transparent; /* The bottom border color is more vivid to indicate the selected state */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.75), 5, 0, 0, 0); /* Shadow effect remains the same for consistency */
+}
+
+.home-btn {
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3));
+    -fx-border-color: white;
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0, 0, 2);
+}
+
+.home-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.5));
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 8, 0, 0, 3);
+}
+
+.home-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 2);
+    -fx-padding: 3 1 1 3; /* Simulate the button being pressed down */
+}
+
+
+.dashBoard-button {
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #21381B, #1A3017);
+    -fx-alignment: center-left;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-cursor: hand;
+    -fx-border-width: 0 0 4 0;
+    -fx-border-color: transparent transparent #1A3017 transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.75), 5, 0, 0, 0);
+}
+
+.dashBoard-button:hover {
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #2D4F2B, #21381B);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.75), 8, 0, 0, 0);
+}
+
+.dashBoard-button:pressed {
+    -fx-background-color: linear-gradient(from 0% 93% to 0% 100%, #1A3017, #21381B);
+    -fx-border-color: #102714;
+    -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 2);
+    -fx-padding: 3 1 1 3; /* This makes the button appear pressed down */
+}
+
+
+.C_upload-button {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+    -fx-border-color: #21381B;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-text-fill: #6E9C78;
+    -fx-font-weight: bold; /* If you want the text to be bold */
+    -fx-padding: 6 12 6 12; /* Adjust the padding to your preference */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 5, 0, 0, 2);
+}
+
+.C_upload-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-effect: dropshadow(three-pass-box, rgba(50, 50, 50, 0.8), 5, 0, 0, 3);
+}
+
+.C_upload-button:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+    -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.8), 5, 0.0, 0, 2);
+    -fx-padding: 5 11 5 13; /* Shrink the padding to simulate the button being pressed down */
+}
+
+.button-transparent {
+    -fx-background-color: transparent; /* Very light white background */
+    -fx-border-color: transparent;
+    -fx-text-fill:transparent; /* White text */
+}
+
+.button-transparent:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Slightly more visible on hover */
+    -fx-cursor: hand; /* Change cursor to indicate it's clickable */
+}
+
+.button-transparent:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.2); /* Even more visible when pressed */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0); /* Optional shadow effect for depth */
+}
+
+.card-button {
+    -fx-background-color: linear-gradient(to bottom, #2D4F2B 0%, #21381B 100%);
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-cursor: hand;
+    -fx-border-color: #1A3017;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 2);
+}
+
+.card-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #3A6640 0%, #2D4F2B 100%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 3);
+}
+
+.card-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #1A3017 0%, #21381B 100%);
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.5) , 2, 0.0 , 0 , 2 );
+    -fx-padding: 3 1 1 3; /* This might need to be adjusted if it doesn't give the desired visual effect */
+}
+
+/* Base styling for ToggleButton */
+.toggle-button {
+    -fx-background-color: linear-gradient(to bottom, rgb(182, 196, 182), rgb(182, 196, 182));
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5;
+    -fx-padding: 5 15 5 15; /* top right bottom left */
+    -fx-text-fill: #21381B; /* Ensure text is always visible */
+    -fx-font-weight: bold;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-opacity:0.6;
+}
+
+/* Styling for when the ToggleButton is selected */
+.toggle-button:selected {
+    -fx-background-color: linear-gradient(to bottom, #21381B, #21381B);
+    -fx-text-fill: white;
+    -fx-opacity:1.0;
+}
+
+/* Hover effect for ToggleButton */
+.toggle-button:hover {
+    -fx-opacity: 0.8;
+}
+

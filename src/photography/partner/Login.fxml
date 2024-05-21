@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photography.partner.LoginController" >
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <AnchorPane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #21381B;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="600.0" fitWidth="400.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@../../image/OME8011.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="181.0" fitWidth="206.0" layoutX="114.0" layoutY="166.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../image/camera.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: rgb(182, 196, 182);" stylesheets="@../../Styles/button_Style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="112.0" layoutY="134.0" opacity="0.8" style="-fx-text-fill: white; -fx-font-size: 40; -fx-font-weight: 100; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Welcome!" />
+                  <ImageView fitHeight="104.0" fitWidth="105.0" layoutX="150.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="450.42774200439453" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="149.79999999999995">
+                     <image>
+                        <Image url="@../../image/user_2.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="LogUname" layoutX="57.0" layoutY="264.0" opacity="0.5" prefHeight="35.0" prefWidth="286.0" promptText="User Name" style="-fx-background-radius: 5; -fx-border-color: #21381B; -fx-border-radius: 5;" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="57.0" />
+                  <Label layoutX="57.0" layoutY="233.0" opacity="0.8" style="-fx-text-fill: White; -fx-font-size: 20; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="User Name:" AnchorPane.leftAnchor="57.0" />
+                  <Label layoutX="57.0" layoutY="322.0" opacity="0.8" style="-fx-text-fill: White; -fx-font-size: 20; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Password:" AnchorPane.leftAnchor="57.0" />
+                  <PasswordField fx:id="LogPwd" layoutX="57.0" layoutY="353.0" opacity="0.5" prefHeight="35.0" prefWidth="286.0" promptText="Password" style="-fx-background-radius: 5; -fx-border-color: #21381B; -fx-border-radius: 5;" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="57.0" />
+                  <Button fx:id="LogBtn" layoutX="100.0" layoutY="417.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="200.0" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Login" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" onAction="#handleLoginButtonAction"/>
+                  <Label layoutX="14.0" layoutY="555.0" opacity="0.8" style="-fx-text-fill: white; -fx-font-size: 20; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Don't have an account?" AnchorPane.bottomAnchor="14.0" />
+                  <Hyperlink fx:id="CreLink" layoutX="221.0" layoutY="551.0" style="-fx-font-size: 19; -fx-text-fill: #21381B;" text="Create account" onAction="#handleCreateAccountHyperlinkAction" />
+                  <Button fx:id="LogBack" layoutX="100.0" layoutY="480.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="200.0" style="-fx-font-size: 20;" styleClass="custom-button" text="Back" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" onAction="#handleBackButtonAction"/>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

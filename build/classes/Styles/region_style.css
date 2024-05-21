@@ -1,0 +1,124 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jan 26, 2024, 1:59:17 AM
+    Author     : Harsha
+*/
+
+/* styles.css */
+.curved-pane {
+    -fx-background-color: #21381B; 
+    -fx-background-radius: 0 100 0 0;
+}
+
+.text-region{
+    -fx-text-fill:#ffffff
+}
+
+#CurrentDate {
+    -fx-font-size: 20px; 
+    -fx-text-fill: #ffffff; 
+    -fx-alignment: center-left; 
+    -fx-font-weight: bold;
+}
+
+.my-custom-scrollpane {
+    -fx-background-color: rgb(182, 196, 182);
+}
+
+/* Style the scroll bar itself to be transparent */
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+.card {
+    -fx-background-color: #FFFFFF; 
+    -fx-border-color: #DDDDDD; 
+    -fx-border-width: 1; 
+    -fx-border-radius: 8; 
+    -fx-background-radius: 8;  
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10); 
+}
+
+.Tileimage-view {
+    -fx-effect: dropshadow(three-pass-box, black, 15, 0, 0, 6);
+    -fx-padding: 5;
+    -fx-cursor: hand;
+}
+
+.image-card {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #21381B;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.26), 10, 0.5, 0, 0);
+}
+
+.card-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #21381B;
+    -fx-padding: 2;
+}
+
+.text-label{
+    -fx-font-size: 14px;              
+    -fx-text-fill: #333;              
+    -fx-font-weight: bold;            
+    -fx-padding: 4;             
+    -fx-background-color: #f3f3f3;    
+    -fx-border-color: #cccccc;        
+    -fx-border-width: 0 0 1 0;        
+    -fx-border-style: solid;          
+}
+
+.hyperLink{
+    -fx-font-size: 14px;
+    -fx-text-fill:  RGB(102, 116, 102);
+    -fx-underline: true;
+    -fx-font-weight:bold;
+    -fx-cursor: hand;
+}
+
+.detailed-image-card{
+    -fx-background-color: #ffffff;
+    -fx-border-color: #21381B;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 20, 0.2, 0, 15); 
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #ffffff, #f0f0f0);
+    -fx-background-insets: 0, 1, 2;
+
+}
+
+.detailed-image-card::inner-shadow {
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 0);
+}
+
+.detailed-card-label{
+    -fx-font-size: 18px;
+    -fx-text-fill: #21381B;
+    -fx-padding: 4;
+    -fx-background-color:white;
+    -fx-border-color: #21381B;
+    -fx-border-width: 0 0 3 5;
+    -fx-border-style: solid;
+    -fx-pref-width:325;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10);
+}
+
+.detailed-card-Text{
+    -fx-font-size: 18px;              
+    -fx-text-fill: white;              
+    -fx-font-weight: bold;            
+    -fx-padding: 4;             
+    -fx-background-color:#21381B;    
+    -fx-border-color: white;        
+    -fx-border-width: 0 0 3 5;        
+    -fx-border-style: solid;
+    -fx-pref-width:200;
+}

@@ -1,0 +1,49 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package DataBaseOperations;
+
+import java.sql.Date;
+import java.util.List;
+
+/**
+ *
+ * @author Harsha
+ */
+public class ImageService {
+    
+    private ImageRepository imageRepository = new ImageRepository();
+    public static List<Images> images;
+    
+    //this method handle Add Image opreration
+    //arguments coming from Add_imageCOntroller class
+    //if image add successfully return true
+    public boolean addImage(int userID,String imgPath, String location, String category, String otherDetails, String techDetails,boolean vilibleAll){
+        
+        Images img = new Images(userID, imgPath, location, category, otherDetails, techDetails,vilibleAll);
+        
+        return imageRepository.AddImage(img);
+        
+    }
+    
+    public List<Images> searchImageUsingExactDate(int userID,Date date,String location,String category){
+        
+        images = imageRepository.SearchImagesUsingExactDate(userID, date, location, category);
+        
+        return images;
+    }
+    
+    public List<Images> searchImageUsingDateRange(int userID,Date startDate,Date endDate,String location,String category){
+        images = imageRepository.SearchImagesUsingDateRange(userID, startDate, endDate, location, category);
+        return images;
+    }
+    
+    public List<Images> searchImageWithoutDate(int userID,String location,String category){
+        
+        images = imageRepository.SearchImagesWithoutDate(userID, location, category);
+        
+        return images;
+    }
+
+}
