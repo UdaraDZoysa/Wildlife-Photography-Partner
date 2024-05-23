@@ -10,6 +10,7 @@ import DataBaseOperations.User;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
@@ -41,6 +43,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import static photography.partner.EditDetailsController.toggle;
 
 /**
  * FXML Controller class
@@ -50,7 +53,7 @@ import javafx.stage.Stage;
 public class ViewSearchedImageController implements Initializable {
     
     private User u;
-    boolean toggle;
+    static boolean toggle;
     private static String category;
     private static String location;
     private static int i;//Use to memorise the image index
@@ -67,6 +70,12 @@ public class ViewSearchedImageController implements Initializable {
         toggle = ImageService.images.get(index).isFavourite();
         location = ImageService.images.get(index).getLocation();
         category = ImageService.images.get(index).getCategory();
+        
+        if(ImageService.images.get(index).isFavourite()){
+            System.out.println("Favourite");
+        }else{
+            System.out.println("Not Favourite");
+        }
         
         VBox card = new VBox(10);
         
@@ -153,15 +162,22 @@ public class ViewSearchedImageController implements Initializable {
         Button backBtn = new Button("Back");
         backBtn.getStyleClass().add("card-button");
         backBtn.setOnAction(event -> handleBackBtnAction(event));
-        GridPane.setValignment(backBtn, VPos.BOTTOM);
-        GridPane.setHalignment(backBtn, HPos.CENTER);
         
         //Edit Button
         Button editBtn = new Button("Edit Detail");
         editBtn.getStyleClass().add("card-button");
         editBtn.setOnAction(event->editImage(ImageService.images.get(index),event));
-        GridPane.setValignment(editBtn, VPos.BOTTOM);
-        GridPane.setHalignment(editBtn, HPos.CENTER);
+        
+        //Delete Button
+        Button deleteBtn = new Button("Delete Image");
+        deleteBtn.getStyleClass().add("card-button");
+        deleteBtn.setOnAction(event -> handleDeleteAction(ImageService.images.get(index).getImgID(),event));
+        
+        HBox buttonBox = new HBox(80);
+        buttonBox.setPadding(new Insets(30));
+        
+        buttonBox.getChildren().addAll(backBtn,editBtn,deleteBtn);
+        GridPane.setColumnSpan(buttonBox, 2);
             
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(5, 10, 5, 10));
@@ -188,8 +204,7 @@ public class ViewSearchedImageController implements Initializable {
         gridPane.add(otherDetailsTextFlow, 1, 5);
         gridPane.add(techDetailsTextLabel, 0, 6);
         gridPane.add(techDetailsTextFlow, 1, 6);
-        gridPane.add(backBtn, 0, 7);
-        gridPane.add(editBtn, 1, 7);
+        gridPane.add(buttonBox, 0, 7);
         
         
         TilePane detailedTile = new TilePane();
@@ -221,7 +236,7 @@ public class ViewSearchedImageController implements Initializable {
     public void displayEditedImageWithDetails(Images img,User user){
         
         u = user;
-        
+        toggle = img.isFavourite();
         VBox card = new VBox(10);
         
         try{
@@ -307,15 +322,22 @@ public class ViewSearchedImageController implements Initializable {
         Button backBtn = new Button("Back");
         backBtn.getStyleClass().add("card-button");
         backBtn.setOnAction(event -> handleEditedBackBtnAction(img,event));
-        GridPane.setValignment(backBtn, VPos.BOTTOM);
-        GridPane.setHalignment(backBtn, HPos.CENTER);
         
         //Edit Button
         Button editBtn = new Button("Edit Detail");
         editBtn.getStyleClass().add("card-button");
         editBtn.setOnAction(event->editImage(img,event));
-        GridPane.setValignment(editBtn, VPos.BOTTOM);
-        GridPane.setHalignment(editBtn, HPos.CENTER);
+        
+        //Delete Button
+        Button deleteBtn = new Button("Delete Image");
+        deleteBtn.getStyleClass().add("card-button");
+        deleteBtn.setOnAction(event -> handleDeleteAction(img.getImgID(),event));
+        
+        HBox buttonBox = new HBox(80);
+        buttonBox.setPadding(new Insets(30));
+        
+        buttonBox.getChildren().addAll(backBtn,editBtn,deleteBtn);
+        GridPane.setColumnSpan(buttonBox, 2);
             
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(5, 10, 5, 10));
@@ -342,8 +364,7 @@ public class ViewSearchedImageController implements Initializable {
         gridPane.add(otherDetailsTextFlow, 1, 5);
         gridPane.add(techDetailsTextLabel, 0, 6);
         gridPane.add(techDetailsTextFlow, 1, 6);
-        gridPane.add(backBtn, 0, 7);
-        gridPane.add(editBtn, 1, 7);
+        gridPane.add(buttonBox, 0, 7);
         
         
         TilePane detailedTile = new TilePane();
@@ -390,6 +411,62 @@ public class ViewSearchedImageController implements Initializable {
             stage.show();
         }catch(IOException e){
             System.out.println("Error:"+e.getMessage());
+        }
+        
+    }
+    
+    // Delete Action
+    public void handleDeleteAction(int imgID,ActionEvent event){
+ 
+        Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Delete");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to Delete the Image?");
+            
+        Optional<ButtonType> result = alert.showAndWait();
+        
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // If user click ok, Update details
+            //Delete Image
+            boolean success = imageService.DeleteImage(imgID);
+            
+            if(success){
+                Alert successAlert=new Alert(Alert.AlertType.CONFIRMATION);
+                successAlert.setTitle("Image Deleted");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Image Deleted Successfully!");
+                successAlert.showAndWait();
+                
+                //If Image deleted load Select Image UI using loadEditedImageDynamically() method. Because that method omit the ecently viewed image
+                try{
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Select_image.fxml"));
+                    Parent root =loader.load();
+            
+                    // Retrieve the controller associated with the FXML file and set the u
+                    Select_imageController controller = loader.getController();
+                    controller.setUser(u);
+                    controller.loadEditedImageDynamically(i);
+            
+                    Scene scene = new Scene(root);
+                    scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+                    scene.getStylesheets().add(getClass().getResource("/Styles/button_Style.css").toExternalForm());
+            
+            
+                    Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+            
+                    stage.show();
+                }catch(IOException e){
+                    System.out.println("Error:"+e.getMessage());
+                }
+                
+            }else{
+                Alert failedAlert=new Alert(Alert.AlertType.ERROR);
+                failedAlert.setTitle("Image not Deleted");
+                failedAlert.setHeaderText(null);
+                failedAlert.setContentText("Something Went Wrong!");
+                failedAlert.showAndWait();  
+            }
         }
         
     }

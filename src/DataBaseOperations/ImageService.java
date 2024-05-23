@@ -37,6 +37,10 @@ public class ImageService {
         return imageRepository.SetAddFavouriteStatus(imgID, favourite);
     }
     
+    public boolean DeleteImage(int imgID){
+        return imageRepository.DeleteImage(imgID);
+    }
+    
     public void searchImageUsingExactDate(int userID,Date date,String location,String category){
         
         images = imageRepository.SearchImagesUsingExactDate(userID, date, location, category);

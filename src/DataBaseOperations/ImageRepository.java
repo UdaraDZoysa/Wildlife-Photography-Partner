@@ -101,6 +101,7 @@ public class ImageRepository {
                     image.setTechDetails(rs.getString("TechDetails"));
                     image.setDate(rs.getDate("timestamp"));
                     image.setVilibleAll(rs.getBoolean("Privacy"));
+                    image.setFavourite(rs.getBoolean("Favourite"));
                 } 
                 
                 rtrn = image;
@@ -152,6 +153,39 @@ public class ImageRepository {
         return rtrn;
     }
     
+    public boolean DeleteImage(int imgID){
+        
+        boolean rtrn = false;
+        
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            conn.setAutoCommit(false);//auto commit off
+            
+            String sql="DELETE FROM photos WHERE photo_id = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+        
+            stmt.setInt(1, imgID);
+                                   
+            int effectedRowCount=stmt.executeUpdate();//get number of effected rows in DB
+            
+            if(effectedRowCount>0){
+                //if opreation done correctly return set to true
+                conn.commit();//commit result
+                rtrn = true;
+            }
+            else{
+                conn.rollback();
+            }
+        }catch(ClassNotFoundException e){
+            System.out.println("Class Not Found:"+e.getMessage());
+        }catch(SQLException e){
+            System.out.println("SQL Exception:"+e.getMessage());
+        }
+        
+        return rtrn;
+    }
     
     public List<Images> SearchImagesUsingExactDate(int userID,Date date,String location,String category){
         
@@ -198,6 +232,7 @@ public class ImageRepository {
                 image.setTechDetails(rs.getString("TechDetails"));
                 image.setDate(rs.getDate("timestamp"));
                 image.setVilibleAll(rs.getBoolean("Privacy"));
+                image.setFavourite(rs.getBoolean("Favourite"));
                 images.add(image);
             }
             
@@ -256,6 +291,7 @@ public class ImageRepository {
                 image.setTechDetails(rs.getString("TechDetails"));
                 image.setDate(rs.getDate("timestamp"));
                 image.setVilibleAll(rs.getBoolean("Privacy"));
+                image.setFavourite(rs.getBoolean("Favourite"));
                 images.add(image);
             }
             
@@ -312,6 +348,7 @@ public class ImageRepository {
                 image.setTechDetails(rs.getString("TechDetails"));
                 image.setDate(rs.getDate("timestamp"));
                 image.setVilibleAll(rs.getBoolean("Privacy"));
+                image.setFavourite(rs.getBoolean("Favourite"));
                 images.add(image);
             }
             
@@ -320,6 +357,8 @@ public class ImageRepository {
         }catch(SQLException e){
             System.out.println("SQL Exception:"+e.getMessage());
         }
+        
+        
         
         return images;
     }
