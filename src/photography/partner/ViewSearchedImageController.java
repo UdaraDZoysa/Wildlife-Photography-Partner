@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -42,8 +43,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-import static photography.partner.EditDetailsController.toggle;
 
 /**
  * FXML Controller class
@@ -57,25 +58,21 @@ public class ViewSearchedImageController implements Initializable {
     private static String category;
     private static String location;
     private static int i;//Use to memorise the image index
+    private static int flag;//Use to indicate this class load from SelectImage(1) class of Memories Class(2)
     private ImageService imageService = new ImageService();
     
     @FXML
     private AnchorPane mainPane;
     
     @FXML
-    public void displayImageWithDetails(int index,User user){
+    public void displayImageWithDetails(int index,User user,int fromFlag){
         
         i=index;
         u=user;
+        flag = fromFlag;
         toggle = ImageService.images.get(index).isFavourite();
         location = ImageService.images.get(index).getLocation();
         category = ImageService.images.get(index).getCategory();
-        
-        if(ImageService.images.get(index).isFavourite()){
-            System.out.println("Favourite");
-        }else{
-            System.out.println("Not Favourite");
-        }
         
         VBox card = new VBox(10);
         
@@ -151,7 +148,7 @@ public class ViewSearchedImageController implements Initializable {
         techDetailsTextFlow.setStyle("-fx-padding: 4; -fx-background-color:white; -fx-border-color: #21381B; -fx-border-width: 0 0 3 5; -fx-border-style: solid; -fx-pref-width:450; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0, 10);");
         
         //Favourite Button
-        ToggleButton addFavouriteBtn = new ToggleButton("Add to Favourite");
+        ToggleButton addFavouriteBtn = new ToggleButton("Favourite Image");
         addFavouriteBtn.setSelected(ImageService.images.get(index).isFavourite());
         addFavouriteBtn.getStyleClass().add("toggle-button");
         addFavouriteBtn.setOnAction(event -> handleAddFavouriteBtnAction());
@@ -161,10 +158,17 @@ public class ViewSearchedImageController implements Initializable {
         //Back Button
         Button backBtn = new Button("Back");
         backBtn.getStyleClass().add("card-button");
-        backBtn.setOnAction(event -> handleBackBtnAction(event));
+        
+        if(flag == 1){
+            //Here I use 1 as flag that indicate select_imageController class
+            backBtn.setOnAction(event -> handleBackToSelectImageBtnAction(event));
+        }else if(flag == 2){
+            //Here I use 2 as flag that indicate memoriesController class
+            backBtn.setOnAction(event -> handleBackToMemoriesBtnAction(event));
+        }
         
         //Edit Button
-        Button editBtn = new Button("Edit Detail");
+        Button editBtn = new Button("Edit Details");
         editBtn.getStyleClass().add("card-button");
         editBtn.setOnAction(event->editImage(ImageService.images.get(index),event));
         
@@ -173,7 +177,7 @@ public class ViewSearchedImageController implements Initializable {
         deleteBtn.getStyleClass().add("card-button");
         deleteBtn.setOnAction(event -> handleDeleteAction(ImageService.images.get(index).getImgID(),event));
         
-        HBox buttonBox = new HBox(80);
+        HBox buttonBox = new HBox(75);
         buttonBox.setPadding(new Insets(30));
         
         buttonBox.getChildren().addAll(backBtn,editBtn,deleteBtn);
@@ -210,7 +214,7 @@ public class ViewSearchedImageController implements Initializable {
         TilePane detailedTile = new TilePane();
         detailedTile.getChildren().add(gridPane);
         detailedTile.setPrefTileWidth(500);
-        detailedTile.setPrefTileHeight(900);
+        detailedTile.setPrefTileHeight(1000);
         detailedTile.getStyleClass().add("my-custom-scrollpane");
         
         ScrollPane detailScrollPane = new ScrollPane(detailedTile);
@@ -311,7 +315,7 @@ public class ViewSearchedImageController implements Initializable {
         techDetailsTextFlow.setStyle("-fx-padding: 4; -fx-background-color:white; -fx-border-color: #21381B; -fx-border-width: 0 0 3 5; -fx-border-style: solid; -fx-pref-width:450; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0, 10);");
         
         //Favourite Button
-        ToggleButton addFavouriteBtn = new ToggleButton("Add to Favourite");
+        ToggleButton addFavouriteBtn = new ToggleButton("Favourite Image");
         addFavouriteBtn.setSelected(img.isFavourite());
         addFavouriteBtn.getStyleClass().add("toggle-button");
         addFavouriteBtn.setOnAction(event -> handleAddFavouriteBtnAction());
@@ -321,10 +325,17 @@ public class ViewSearchedImageController implements Initializable {
         //Back Button
         Button backBtn = new Button("Back");
         backBtn.getStyleClass().add("card-button");
-        backBtn.setOnAction(event -> handleEditedBackBtnAction(img,event));
+        
+        if(flag == 1){
+            //Here I use 1 as flag that indicate select_imageController class
+            backBtn.setOnAction(event -> handleEditedBackBtnAction(img,event));
+        }else if(flag == 2){
+            //Here I use 2 as flag that indicate memoriesController class
+            backBtn.setOnAction(event -> handleBackToMemoriesBtnAction(event));
+        }
         
         //Edit Button
-        Button editBtn = new Button("Edit Detail");
+        Button editBtn = new Button("Edit Details");
         editBtn.getStyleClass().add("card-button");
         editBtn.setOnAction(event->editImage(img,event));
         
@@ -333,7 +344,7 @@ public class ViewSearchedImageController implements Initializable {
         deleteBtn.getStyleClass().add("card-button");
         deleteBtn.setOnAction(event -> handleDeleteAction(img.getImgID(),event));
         
-        HBox buttonBox = new HBox(80);
+        HBox buttonBox = new HBox(75);
         buttonBox.setPadding(new Insets(30));
         
         buttonBox.getChildren().addAll(backBtn,editBtn,deleteBtn);
@@ -408,6 +419,8 @@ public class ViewSearchedImageController implements Initializable {
             Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             
+            repositionWindow(stage);
+            
             stage.show();
         }catch(IOException e){
             System.out.println("Error:"+e.getMessage());
@@ -454,6 +467,8 @@ public class ViewSearchedImageController implements Initializable {
             
                     Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(scene);
+                    
+                    repositionWindow(stage);
             
                     stage.show();
                 }catch(IOException e){
@@ -471,8 +486,8 @@ public class ViewSearchedImageController implements Initializable {
         
     }
     
-    //Before Image Edit Call That Back Action
-    public void handleBackBtnAction(ActionEvent event){
+    //Before Image Edit Call That method to back to SelectImageController class 
+    public void handleBackToSelectImageBtnAction(ActionEvent event){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Select_image.fxml"));
             Parent root =loader.load();
@@ -490,13 +505,15 @@ public class ViewSearchedImageController implements Initializable {
             Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             
+            repositionWindow(stage);
+            
             stage.show();
         }catch(IOException e){
             System.out.println("Error:"+e.getMessage());
         }
     }
     
-    //After Edit Image Call That Back Action
+    //After Image Edit Call That method to back to SelectImageController class
     public void handleEditedBackBtnAction(Images img,ActionEvent event){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Select_image.fxml"));
@@ -520,6 +537,35 @@ public class ViewSearchedImageController implements Initializable {
             
             Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
+            
+            repositionWindow(stage);
+            
+            stage.show();
+        }catch(IOException e){
+            System.out.println("Error:"+e.getMessage());
+        }
+    }
+    
+    //Back to MemoriesController Class
+    public void handleBackToMemoriesBtnAction(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Memories.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the u
+            MemoriesController controller = loader.getController();
+            controller.setUser(u);
+            controller.loadFavouriteImages();
+        
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/Styles/button_Style.css").toExternalForm());
+            
+            
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            
+            repositionWindow(stage);
             
             stage.show();
         }catch(IOException e){
@@ -550,6 +596,12 @@ public class ViewSearchedImageController implements Initializable {
             
         }
         
+    }
+    
+    private void repositionWindow(Stage stage) {
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
     }
  
     @Override

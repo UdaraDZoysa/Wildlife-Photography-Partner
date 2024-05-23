@@ -14,12 +14,15 @@ import javafx.scene.image.ImageView;
 import DataBaseOperations.User;
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -87,7 +90,6 @@ public class DashBoard2Controller implements Initializable {
         }catch(IOException e){
             e.printStackTrace();
         }
-
     }
     
     @FXML
@@ -114,12 +116,17 @@ public class DashBoard2Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Memories.fxml"));
             Parent root =loader.load();
             
-            // Retrieve the controller associated with the FXML file and set the user
+            // Retrieve the controller associated with the FXML file and set the u
             MemoriesController controller = loader.getController();
             controller.setUser(u);
+            controller.loadFavouriteImages();
             
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+                    
             Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
+            
             stage.show();
         }catch(IOException e){
             e.printStackTrace();
@@ -146,27 +153,46 @@ public class DashBoard2Controller implements Initializable {
     
     @FXML
     private void handleLogoutBtnAction(ActionEvent event){
-        u = null;
         
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-            Parent root =loader.load();
-            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+        Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm LogOut");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to LogOut?");
             
-            repositionWindow(stage);
+        Optional<ButtonType> result = alert.showAndWait();
+        
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // If user click ok, LogOut from account
+            u = null;
             
-            stage.show();
-        }catch(IOException e){
-            e.printStackTrace();
+            Alert successAlert=new Alert(Alert.AlertType.CONFIRMATION);
+            successAlert.setTitle("Logged Out");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("You have been logged out Successfully!");
+            successAlert.showAndWait();
+            
+            try{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+                Parent root =loader.load();
+            
+                Scene scene = new Scene(root);        
+                Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                
+                repositionWindow(stage);
+                
+                stage.show();
+            }catch(IOException e){
+                System.out.println("Error:"+e.getMessage());
+            }
         }
     }
     
     private void repositionWindow(Stage stage) {
-    Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-    stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
-    stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
-}
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

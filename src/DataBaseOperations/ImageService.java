@@ -54,5 +54,10 @@ public class ImageService {
         
         images = imageRepository.SearchImagesWithoutDate(userID, location, category);
     }
+    
+    public void displayFavouriteImages(int userID){
+        
+        images = imageRepository.DisplayFavouriteImages(userID);
+    }
 
 }

@@ -358,8 +358,48 @@ public class ImageRepository {
             System.out.println("SQL Exception:"+e.getMessage());
         }
         
+        return images;
+    }
+    
+    public List<Images> DisplayFavouriteImages(int userID){
         
+        List<Images> images = new ArrayList<>();
         
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            
+            String sql="SELECT * FROM photos WHERE user_id = ? AND Favourite = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+           
+            stmt.setInt(1,userID);
+            stmt.setBoolean(2, true);//Only if image favourite is true
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Images image = new Images();
+                
+                image.setImgID(rs.getInt("photo_id"));
+                image.setUserID(rs.getInt("user_id"));
+                image.setImgPath(rs.getString("photo_url"));
+                image.setLocation(rs.getString("Location"));
+                image.setCategory(rs.getString("Categories"));
+                image.setOtherDetails(rs.getString("OtherDetails"));
+                image.setTechDetails(rs.getString("TechDetails"));
+                image.setDate(rs.getDate("timestamp"));
+                image.setVilibleAll(rs.getBoolean("Privacy"));
+                image.setFavourite(rs.getBoolean("Favourite"));
+                images.add(image);
+            }
+            
+        }catch(ClassNotFoundException e){
+            System.out.println("Class Not Found:"+e.getMessage());
+        }catch(SQLException e){
+            System.out.println("SQL Exception:"+e.getMessage());
+        }
+       
         return images;
     }
 }

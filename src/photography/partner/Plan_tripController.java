@@ -62,6 +62,88 @@ public class Plan_tripController implements Initializable {
             e.printStackTrace();
         }
     }
+    
+    @FXML
+    private void handleSelectBtnAction(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Select_image.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the u
+            Select_imageController controller = loader.getController();
+            controller.setUser(u);
+            
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+                    
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            
+            stage.show();
+        }catch(IOException e){
+            System.out.println("Error:"+e.getMessage());
+        }
+    }
+    
+    @FXML
+    private void handleAddBtnAction(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Add_image.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the user
+            Add_imageController controller = loader.getController();
+            controller.setUser(u);
+            
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    private void handleMemoBtnAction(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Memories.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the u
+            MemoriesController controller = loader.getController();
+            controller.setUser(u);
+            controller.loadFavouriteImages();
+            
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+                    
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    private void handleTipsBtnAction(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Tips.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the user
+            TipsController controller = loader.getController();
+            controller.setUser(u);
+            
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

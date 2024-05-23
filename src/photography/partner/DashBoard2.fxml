@@ -25,7 +25,7 @@
             <Button fx:id="searchBtn" layoutY="202.0" mnemonicParsing="false" onAction="#handleSelectBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Search Image" AnchorPane.leftAnchor="0.0" />
             <Button fx:id="addBtn" layoutY="253.0" mnemonicParsing="false" onAction="#handleAddBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Add New Image" AnchorPane.leftAnchor="0.0" />
             <Button fx:id="planBtn" layoutY="304.0" mnemonicParsing="false" onAction="#handlePlanTripBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Plan A Trip" />
-            <Button fx:id="memoBtn" layoutY="355.0" mnemonicParsing="false" onAction="#handleMemoBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Memories" />
+            <Button fx:id="memoBtn" layoutY="355.0" mnemonicParsing="false" onAction="#handleMemoBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Favourite Images" />
             <Button fx:id="tipsBtn" layoutY="406.0" mnemonicParsing="false" onAction="#handleTipsBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Camera Tips" />
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
                <image>

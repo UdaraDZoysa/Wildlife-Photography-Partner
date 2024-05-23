@@ -122,3 +122,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-border-style: solid;
     -fx-pref-width:200;
 }
+
+.fav-text-label{
+    -fx-font-size: 24px;              
+    -fx-text-fill: #333;              
+    -fx-font-weight: bold;            
+    -fx-padding: 4;             
+    -fx-background-color: #f3f3f3;    
+    -fx-border-color: #cccccc;        
+    -fx-border-width: 0 0 1 0;        
+    -fx-border-style: solid;          
+}
+
+.fav-card-label {
+    -fx-font-size: 24px;
+    -fx-text-fill: #21381B;
+    -fx-padding: 2;
+}
+
+.fav-hyperLink{
+    -fx-font-size: 24px;
+    -fx-text-fill:  RGB(102, 116, 102);
+    -fx-underline: true;
+    -fx-font-weight:bold;
+    -fx-cursor: hand;
+}
