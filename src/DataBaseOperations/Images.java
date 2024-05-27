@@ -31,7 +31,6 @@ public class Images {
         this.otherDetails = otherDetails;
         this.techDetails = techDetails;
         this.vilibleAll = vilibleAll;
-        //this.favourite = favourite;
     }
     
     public Images(){

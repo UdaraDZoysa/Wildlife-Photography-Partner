@@ -6,11 +6,9 @@ package photography.partner;
 
 import DataBaseOperations.ImageService;
 import DataBaseOperations.User;
-import DataBaseOperations.Images;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +24,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.sql.Date;
-import java.util.ArrayList;
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -102,7 +99,7 @@ public class Select_imageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -572,8 +569,10 @@ public class Select_imageController implements Initializable {
     }
     
     private void clearFieldValues(){
-        locationField.setText(null);
-        categoryField.setText(null);
+        locationField.clear();
+        categoryField.clear();
+        locationText = null;
+        categoryText = null;
         exactPicker.setValue(null);
         fromPicker.setValue(null);
         toPicker.setValue(null);
@@ -615,6 +614,8 @@ public class Select_imageController implements Initializable {
 
     } 
     
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     @FXML
     private void handleAddBtnAction(ActionEvent event){
         try{
@@ -629,7 +630,7 @@ public class Select_imageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -647,7 +648,7 @@ public class Select_imageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -670,7 +671,7 @@ public class Select_imageController implements Initializable {
             
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -688,7 +689,7 @@ public class Select_imageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     

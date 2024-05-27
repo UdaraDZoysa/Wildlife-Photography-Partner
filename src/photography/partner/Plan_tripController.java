@@ -4,10 +4,12 @@
  */
 package photography.partner;
 
+import DataBaseOperations.TripService;
 import DataBaseOperations.User;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +18,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -29,6 +35,18 @@ import javafx.stage.Stage;
 public class Plan_tripController implements Initializable {
     
     private User u;
+    
+    @FXML
+    private DatePicker fromPicker;
+    
+    @FXML
+    private DatePicker toPicker;
+    
+    @FXML
+    private TextArea otherDetailsField;
+    
+    @FXML
+    private TextField locationField;
     
     @FXML
     private ImageView profilePicView;
@@ -45,6 +63,101 @@ public class Plan_tripController implements Initializable {
         }
     }
     
+    //select location
+    
+    @FXML
+    public void handleWilpattuBtnAction(ActionEvent event){
+        locationField.setText("Wilpattu");
+    }
+    
+    @FXML
+    public void handleHecBtnAction(ActionEvent event){
+        locationField.setText("Hurulu Eco Park");
+    }
+    
+    @FXML
+    public void handleKaudullaBtnAction(ActionEvent event){
+        locationField.setText("Kaudulla");
+    }
+    
+    @FXML
+    public void handleMinneriyaBtnAction(ActionEvent event){
+        locationField.setText("Minneriya");
+    }
+    
+    @FXML
+    public void handleWasgamuwaBtnAction(ActionEvent event){
+        locationField.setText("Wasgamuwa");
+    }
+    
+    @FXML
+    public void handleHortonPlainsBtnAction(ActionEvent event){
+        locationField.setText("Horton Plains");
+    }
+    
+    @FXML
+    public void handleGaloyaBtnAction(ActionEvent event){
+        locationField.setText("Galoya");
+    }
+    
+    @FXML
+    public void handleUdawalaweBtnAction(ActionEvent event){
+        locationField.setText("Udawalawe");
+    }
+    
+    @FXML
+    public void handleSinharajaBtnAction(ActionEvent event){
+        locationField.setText("Sinharaja");
+    }
+    
+    @FXML
+    public void handleBundalaBtnAction(ActionEvent event){
+        locationField.setText("Bundala");
+    }
+    
+    @FXML
+    public void handleYalaBtnAction(ActionEvent event){
+        locationField.setText("Yala");
+    }
+    
+    @FXML
+    public void handleKumanaBtnAction(ActionEvent event){
+        locationField.setText("Kumana");
+    }
+    
+     @FXML
+    private void handleSaveTripBtnAction(ActionEvent event){
+        
+        String location = locationField.getText();
+        Date startDate = Date.valueOf(fromPicker.getValue());
+        Date endDate = Date.valueOf(toPicker.getValue());
+        String otherDetails = otherDetailsField.getText();
+        
+        boolean success = TripService.PlanTrip(u.getUserID(), location, startDate, endDate, otherDetails);
+        
+        if(success){
+            Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Trip Plan Saved");
+            alert.setHeaderText(null);
+            alert.setContentText("Trip Plan Saved Successfully!");
+            alert.showAndWait();
+            clearDetails();
+        }else{
+            Alert alert=new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Trip Plan not Saved");
+            alert.setHeaderText(null);
+            alert.setContentText("Invalid input!");
+            alert.showAndWait();
+        }     
+    }
+    
+    public void clearDetails(){
+        locationField.clear();
+        otherDetailsField.clear();
+        fromPicker.setValue(null);
+        toPicker.setValue(null); 
+    }
+    
     @FXML
     public void handlehomeBtnAction(ActionEvent event){
         try{
@@ -59,7 +172,7 @@ public class Plan_tripController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -99,7 +212,7 @@ public class Plan_tripController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -122,7 +235,7 @@ public class Plan_tripController implements Initializable {
             
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -140,7 +253,7 @@ public class Plan_tripController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     

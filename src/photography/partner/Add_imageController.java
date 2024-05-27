@@ -140,7 +140,7 @@ public class Add_imageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -270,11 +270,11 @@ public class Add_imageController implements Initializable {
     }
     
     public void clearDetails(){
-        imgPathFiled.setText("");
-        locationField.setText("");
-        categoryField.setText("");
-        otherDetailsField.setText("");
-        techDetailsField.setText("");
+        imgPathFiled.clear();
+        locationField.clear();
+        categoryField.clear();
+        otherDetailsField.clear();
+        techDetailsField.clear();
         addImageView.setImage(null);
     }
     
@@ -319,7 +319,7 @@ public class Add_imageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -342,7 +342,7 @@ public class Add_imageController implements Initializable {
             
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -360,7 +360,7 @@ public class Add_imageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     

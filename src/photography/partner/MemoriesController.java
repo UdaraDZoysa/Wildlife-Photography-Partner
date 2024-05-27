@@ -76,7 +76,7 @@ public class MemoriesController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -213,6 +213,8 @@ public class MemoriesController implements Initializable {
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
     }
     
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     @FXML
     private void handleSelectBtnAction(ActionEvent event){
         try{
@@ -249,7 +251,7 @@ public class MemoriesController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -267,7 +269,7 @@ public class MemoriesController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -285,7 +287,7 @@ public class MemoriesController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
