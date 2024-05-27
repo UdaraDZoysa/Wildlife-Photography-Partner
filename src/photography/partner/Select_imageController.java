@@ -6,11 +6,9 @@ package photography.partner;
 
 import DataBaseOperations.ImageService;
 import DataBaseOperations.User;
-import DataBaseOperations.Images;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,15 +24,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.sql.Date;
-import java.util.ArrayList;
+import javafx.animation.ScaleTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -44,10 +45,10 @@ import javafx.scene.layout.VBox;
 public class Select_imageController implements Initializable {
     
     private User u;
-    List<Images> images = new ArrayList<>();
+    //List<Images> images = new ArrayList<>();
     
-    static String locationText;
-    static String categoryText;
+    String locationText;
+    String categoryText;
     
     private ImageService imageService = new ImageService();
     
@@ -98,7 +99,7 @@ public class Select_imageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -391,7 +392,7 @@ public class Select_imageController implements Initializable {
                     
                     Date date = Date.valueOf(exactPicker.getValue());
              
-                    images = imageService.searchImageUsingExactDate(userID, date, location, category);
+                    imageService.searchImageUsingExactDate(userID, date, location, category);
                     loadImageDynamically();
                     clearFieldValues();
                     
@@ -406,7 +407,7 @@ public class Select_imageController implements Initializable {
                     Date startDate = Date.valueOf(fromPicker.getValue());
                     Date endDate = Date.valueOf(toPicker.getValue());
             
-                    images = imageService.searchImageUsingDateRange(userID, startDate, endDate, location, category);
+                    imageService.searchImageUsingDateRange(userID, startDate, endDate, location, category);
                     loadImageDynamically();
                     clearFieldValues();
                 }else{
@@ -414,13 +415,13 @@ public class Select_imageController implements Initializable {
                 }
             }else{
                 //user not selected date
-                images = imageService.searchImageWithoutDate(userID, location, category);
+                imageService.searchImageWithoutDate(userID, location, category);
                 loadImageDynamically();
                 clearFieldValues();
                 
             }
         }
-        if(images==null || images.isEmpty()){
+        if(ImageService.images.isEmpty()){
             Alert alert=new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Image Not Found");
             alert.setHeaderText(null);
@@ -459,6 +460,43 @@ public class Select_imageController implements Initializable {
             }catch(Exception e){
                 System.out.println("Error loading image:"+e.getMessage());
             }
+        }
+    }
+    
+    //If User Edit Image Details Call That Method
+    @FXML
+    public void loadEditedImageDynamically(int index){
+        
+        for(int i=0;i<ImageService.images.size();i++){
+            if(i == index){
+                continue;
+            }else{
+                try{
+                File file = new File(ImageService.images.get(i).getImgPath());
+                    if(file.exists()){
+                        Image image = new Image(file.toURI().toString());
+                        ImageView imageView = new ImageView(image);
+                        StackPane imageWrapper = new StackPane(imageView);
+                        imageWrapper.setPrefSize(250, 250);
+                    
+                        imageView.setFitWidth(250);
+                        imageView.setFitHeight(250);
+                        imageView.setPreserveRatio(true);
+                        imageView.getStyleClass().add("Tileimage-view");
+                    
+                        VBox card = new VBox(10);
+                        card.getStyleClass().add("image-card");
+                        card.setPadding(new Insets(10));
+                    
+                        card.getChildren().addAll(imageWrapper,createImageCard(i));
+                        setupInterationsOfImages(card);
+                    
+                        imgTilePane.getChildren().add(card);   
+                    }
+                }catch(Exception e){
+                System.out.println("Error loading image:"+e.getMessage());
+                }
+            }  
         }
     }
     
@@ -505,7 +543,7 @@ public class Select_imageController implements Initializable {
             
             // Retrieve the controller associated with the FXML file and set the u
             ViewSearchedImageController controller = loader.getController();
-            controller.displayImageWithDetails(index,u);
+            controller.displayImageWithDetails(index,u,1);
         
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
@@ -515,16 +553,26 @@ public class Select_imageController implements Initializable {
             Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             
+            repositionWindow(stage);
+            
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
         
     }
     
+    private void repositionWindow(Stage stage) {
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+    }
+    
     private void clearFieldValues(){
-        locationField.setText(null);
-        categoryField.setText(null);
+        locationField.clear();
+        categoryField.clear();
+        locationText = null;
+        categoryText = null;
         exactPicker.setValue(null);
         fromPicker.setValue(null);
         toPicker.setValue(null);
@@ -544,17 +592,106 @@ public class Select_imageController implements Initializable {
     }
     
     private void setupInterationsOfImages(VBox card) {
+        // Scale transition for mouse enter
+        ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200), card);
+        scaleUp.setToX(1.1);
+        scaleUp.setToY(1.1);
+
+        // Scale transition for mouse exit
+        ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), card);
+        scaleDown.setToX(1.0);
+        scaleDown.setToY(1.0);
+
         card.setOnMouseEntered(e -> {
-        card.setScaleX(1.1);  // Scale up the wrapper
-        card.setScaleY(1.1);
-        });
-        
-        card.setOnMouseExited(e -> {
-        card.setScaleX(1.0);  // Return to normal scale
-        card.setScaleY(1.0);
+            scaleDown.stop(); // Stop the other transition if it's running
+            scaleUp.playFromStart(); // Play the scale-up transition
         });
 
-    }   
+        card.setOnMouseExited(e -> {
+            scaleUp.stop(); // Stop the other transition if it's running
+            scaleDown.playFromStart(); // Play the scale-down transition
+        });
+
+    } 
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    @FXML
+    private void handleAddBtnAction(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Add_image.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the user
+            Add_imageController controller = loader.getController();
+            controller.setUser(u);
+            
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }catch(IOException e){
+            System.out.println("Error:"+e.getMessage());
+        }
+    }
+    
+    @FXML
+    private void handlePlanTripBtnAction(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Plan_trip.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the user
+            Plan_tripController controller = loader.getController();
+            controller.setUser(u);
+            
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }catch(IOException e){
+            System.out.println("Error:"+e.getMessage());
+        }
+    }
+    
+    @FXML
+    private void handleMemoBtnAction(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Memories.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the u
+            MemoriesController controller = loader.getController();
+            controller.setUser(u);
+            controller.loadFavouriteImages();
+            
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+                    
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            
+            stage.show();
+        }catch(IOException e){
+            System.out.println("Error:"+e.getMessage());
+        }
+    }
+    
+    @FXML
+    private void handleTipsBtnAction(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Tips.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the user
+            TipsController controller = loader.getController();
+            controller.setUser(u);
+            
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }catch(IOException e){
+            System.out.println("Error:"+e.getMessage());
+        }
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

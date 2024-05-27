@@ -27,23 +27,37 @@ public class ImageService {
         
     }
     
-    public List<Images> searchImageUsingExactDate(int userID,Date date,String location,String category){
+    public Images UpdateImage(String location, String category, String otherDetails, String techDetails,boolean vilibleAll,int imgID){
+       
+        return imageRepository.UpdateImage(location, category, otherDetails, techDetails,vilibleAll,imgID);
+        
+    }
+    
+    public boolean AddToFavourite(int imgID,boolean favourite){
+        return imageRepository.SetAddFavouriteStatus(imgID, favourite);
+    }
+    
+    public boolean DeleteImage(int imgID){
+        return imageRepository.DeleteImage(imgID);
+    }
+    
+    public void searchImageUsingExactDate(int userID,Date date,String location,String category){
         
         images = imageRepository.SearchImagesUsingExactDate(userID, date, location, category);
-        
-        return images;
     }
     
-    public List<Images> searchImageUsingDateRange(int userID,Date startDate,Date endDate,String location,String category){
+    public void searchImageUsingDateRange(int userID,Date startDate,Date endDate,String location,String category){
         images = imageRepository.SearchImagesUsingDateRange(userID, startDate, endDate, location, category);
-        return images;
     }
     
-    public List<Images> searchImageWithoutDate(int userID,String location,String category){
+    public void searchImageWithoutDate(int userID,String location,String category){
         
         images = imageRepository.SearchImagesWithoutDate(userID, location, category);
+    }
+    
+    public void displayFavouriteImages(int userID){
         
-        return images;
+        images = imageRepository.DisplayFavouriteImages(userID);
     }
 
 }

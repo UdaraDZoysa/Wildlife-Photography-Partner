@@ -21,6 +21,7 @@ public class Images {
     private int imgID;
     private Date date;
     private boolean vilibleAll;
+    private boolean favourite;
 
     public Images(int userID,String imgPath, String location, String category, String otherDetails, String techDetails,boolean vilibleAll) {
         this.userID = userID;
@@ -106,5 +107,13 @@ public class Images {
     public void setVilibleAll(boolean vilibleAll) {
         this.vilibleAll = vilibleAll;
     }
-    
+
+    public boolean isFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
+    }
+     
 }

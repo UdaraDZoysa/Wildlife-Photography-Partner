@@ -27,11 +27,11 @@
                   <Image url="@../../image/camera.png" />
                </image>
             </ImageView>
-            <Button fx:id="searchBtn" layoutY="202.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Search Image" AnchorPane.leftAnchor="0.0" />
+            <Button fx:id="searchBtn" layoutY="202.0" mnemonicParsing="false" onAction="#handleSelectBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Search Image" AnchorPane.leftAnchor="0.0" />
             <Button fx:id="addBtn" layoutY="253.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="selected-button" stylesheets="@../../Styles/button_Style.css" text="        Add New Image" AnchorPane.leftAnchor="0.0" />
-            <Button fx:id="planBtn" layoutY="304.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Plan A Trip" />
-            <Button fx:id="memoBtn" layoutY="355.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Memories" />
-            <Button fx:id="tipsBtn" layoutY="406.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Camera Tips" />
+            <Button fx:id="planBtn" layoutY="304.0" mnemonicParsing="false" onAction="#handlePlanTripBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Plan A Trip" />
+            <Button fx:id="memoBtn" layoutY="355.0" mnemonicParsing="false" onAction="#handleMemoBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Favourite Images" />
+            <Button fx:id="tipsBtn" layoutY="406.0" mnemonicParsing="false" onAction="#handleTipsBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Camera Tips" />
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../image/search%20(1).png" />
@@ -182,7 +182,7 @@
                      </children>
                   </AnchorPane>
                   <Label prefHeight="46.0" prefWidth="218.0" style="-fx-text-fill: white; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Select Image:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0" />
-                  <TextField fx:id="imgPathFiled" layoutX="205.0" layoutY="20.0" prefHeight="27.0" prefWidth="256.0" promptText="Location" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="22.0" />
+                  <TextField fx:id="imgPathFiled" layoutX="205.0" layoutY="20.0" prefHeight="27.0" prefWidth="256.0" promptText="Image Path" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="22.0" />
                   <Label layoutX="205.0" layoutY="78.0" style="-fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2); -fx-font-size: 18;" text="Drag &amp; Drop or" />
                   <Hyperlink fx:id="browsImageHyperLink" layoutX="333.0" layoutY="78.0" onAction="#handleBrowsImageHyperLink" style="-fx-font-size: 15; -fx-text-fill: #21381B;" text="Brows Image:" />
                   <ToggleButton fx:id="publicToggle" layoutX="775.0" layoutY="500.0" mnemonicParsing="false" onAction="#handlePublicToggleBtnAction" stylesheets="@../../Styles/button_Style.css" text="Public Image" AnchorPane.rightAnchor="115.79999999999995" />
