@@ -447,6 +447,7 @@ public class Select_imageController implements Initializable {
                     imageView.setPreserveRatio(true);
                     imageView.getStyleClass().add("Tileimage-view");
                     
+                    //containter of Image and short details
                     VBox card = new VBox(10);
                     card.getStyleClass().add("image-card");
                     card.setPadding(new Insets(10));
@@ -483,7 +484,8 @@ public class Select_imageController implements Initializable {
                         imageView.setFitHeight(250);
                         imageView.setPreserveRatio(true);
                         imageView.getStyleClass().add("Tileimage-view");
-                    
+                        
+                        //main container of Image and few details
                         VBox card = new VBox(10);
                         card.getStyleClass().add("image-card");
                         card.setPadding(new Insets(10));
@@ -501,21 +503,26 @@ public class Select_imageController implements Initializable {
     }
     
     private Node createImageCard(int index){
+        
+        //partial container of details
         VBox detailsVbox = new VBox(5);
         detailsVbox.setPadding(new Insets(5,10,5,10));
         
+        //container of labels
         HBox dateBox = new HBox(10);
         Label dateTextLabel = new Label("Saved Date:");
         dateTextLabel.getStyleClass().add("text-label");
         Label dateLabel = new Label(ImageService.images.get(index).getDate().toString());
         dateLabel.getStyleClass().add("card-label");
         
+        //container of labels
         HBox locationBox = new HBox(10);
         Label locationTextLabel = new Label("Location:");
         locationTextLabel.getStyleClass().add("text-label");
         Label locationLabel = new Label(ImageService.images.get(index).getLocation());
         locationLabel.getStyleClass().add("card-label");
         
+        //container of labels
         HBox categoryBox = new HBox(10);
         Label categoryTextLabel = new Label("Category:");
         categoryTextLabel.getStyleClass().add("text-label"); 
@@ -527,9 +534,16 @@ public class Select_imageController implements Initializable {
         
         moreHyperLink.setOnAction(event -> displayImageWithDetails(event,index));
         
+        //add date labels to container
         dateBox.getChildren().addAll(dateTextLabel,dateLabel);
+        
+        //add location labels to container
         locationBox.getChildren().addAll(locationTextLabel,locationLabel);
+        
+        //add category labels to container
         categoryBox.getChildren().addAll(categoryTextLabel,categoryLabel);
+        
+        //add label containers to partial container
         detailsVbox.getChildren().addAll(dateBox,locationBox,categoryBox,moreHyperLink);
         
         return detailsVbox;

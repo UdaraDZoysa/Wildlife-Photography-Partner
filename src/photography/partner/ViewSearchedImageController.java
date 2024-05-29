@@ -225,6 +225,7 @@ public class ViewSearchedImageController implements Initializable {
         detailScrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         detailScrollPane.getStyleClass().add("my-custom-scrollpane");
        
+        //container of Image card and tetails
         HBox detailedView = new HBox(20);
         detailedView.setPadding(new Insets(20, 20, 20, 20));
         detailedView.getStyleClass().add("my-custom-scrollpane");

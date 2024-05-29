@@ -22,6 +22,8 @@ import java.util.Optional;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -29,8 +31,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -43,6 +53,9 @@ import javafx.util.Duration;
 public class DashBoard2Controller implements Initializable {
     
     private User u;//create new private user variable to assign retrieved details
+    
+    @FXML
+    private HBox tripHBox;
     
     @FXML
     private Label rLabel1;
@@ -149,7 +162,61 @@ public class DashBoard2Controller implements Initializable {
             
             //get recent Images
             setRecentImages();
+            
+            //get planned Trips
+            setPlannedTrips();
         }
+    }
+    
+    public void setPlannedTrips(){
+        
+        TripService.getPlannedTrips(u.getUserID()); 
+        
+        for(int i=0;i<TripService.trips.size();i++){
+            HBox card = new HBox(10);
+            card.getStyleClass().add("image-card");
+            card.setPadding(new Insets(5,10,5,10));
+        
+            //container of labels
+            HBox dateBox = new HBox(10);
+            Label dateTextLabel = new Label("Date Duration:");
+            dateTextLabel.getStyleClass().add("text-label");
+            Label cardDateLabel = new Label(TripService.trips.get(i).getStartDate().toString()+" to "+TripService.trips.get(i).getEndDate().toString());
+            cardDateLabel.getStyleClass().add("card-label"); 
+            
+            //container of labels
+            HBox locationBox = new HBox(10);
+            Label locationTextLabel = new Label("Location:");
+            locationTextLabel.getStyleClass().add("text-label");
+            Label locationLabel = new Label(TripService.trips.get(i).getLocation());
+            locationLabel.getStyleClass().add("card-label");
+            
+            VBox otherDetailsBox = new VBox(10);
+            Label OtherDetailsTextLabel = new Label("Other Details:");
+            OtherDetailsTextLabel.getStyleClass().add("detailed-card-Text");
+        
+            Text otherDetailsText = new Text(TripService.trips.get(i).getOtherDetails());
+            otherDetailsText.setFill(Color.web("#21381B")); // Set text color
+            otherDetailsText.setFont(Font.font("System", FontWeight.NORMAL, 18));
+            TextFlow otherDetailsTextFlow = new TextFlow(otherDetailsText);
+            otherDetailsTextFlow.setStyle("-fx-padding: 4; -fx-background-color:white; -fx-border-color: #21381B; -fx-border-width: 0 0 3 5; -fx-border-style: solid; -fx-pref-width:450; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0, 10);");
+            
+            //add date labels to container
+            dateBox.getChildren().addAll(dateTextLabel,cardDateLabel);
+        
+            //add location labels to container
+            locationBox.getChildren().addAll(locationTextLabel,locationLabel);
+            
+            VBox locAndDateBox = new VBox(dateBox,locationBox);
+            
+            otherDetailsBox.getChildren().addAll(OtherDetailsTextLabel,otherDetailsTextFlow);
+        
+            //add label containers to main card container
+            card.getChildren().addAll(locAndDateBox,otherDetailsBox);
+            
+            tripHBox.getChildren().add(card); 
+        }
+        
     }
     
     public void setRecentImages(){

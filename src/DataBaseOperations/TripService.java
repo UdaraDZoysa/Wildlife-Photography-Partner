@@ -5,10 +5,12 @@
 package DataBaseOperations;
 
 import java.sql.Date;
+import java.util.List;
 
 public class TripService {
     
     private static TripRepository tripRepository = new TripRepository();
+    public static List<Trip> trips; 
     
     public static boolean PlanTrip(int userID,String location,Date startDate,Date endDate,String otherDetails){
         
@@ -19,7 +21,10 @@ public class TripService {
     }
     
     public static int getTripCount(int userID){
-    
         return tripRepository.GetTripCount(userID);
+    }
+    
+    public static void getPlannedTrips(int userID){    
+        trips = tripRepository.DisplayPlannedTrips(userID);
     }
 }

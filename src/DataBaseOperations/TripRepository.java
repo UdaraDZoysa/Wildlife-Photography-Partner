@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -77,5 +79,39 @@ public class TripRepository {
         
         return count;
     }
+    
+    public List<Trip> DisplayPlannedTrips(int userID){
+        
+        List<Trip> trips = new ArrayList<>();
+        
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            
+            String sql="SELECT * FROM trip WHERE user_id = ? ORDER BY start_date";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+           
+            stmt.setInt(1,userID);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Trip trip = new Trip();
+                trip.setLocation(rs.getString("location"));
+                trip.setStartDate(rs.getDate("start_date"));
+                trip.setEndDate(rs.getDate("end_date"));
+                trip.setOtherDetails(rs.getString("other_details"));
+                trips.add(trip);
+            }
+            
+        }catch(ClassNotFoundException e){
+            System.out.println("Class Not Found:"+e.getMessage());
+        }catch(SQLException e){
+            System.out.println("SQL Exception:"+e.getMessage());
+        }
+       
+        return trips;
+    } 
     
 }
