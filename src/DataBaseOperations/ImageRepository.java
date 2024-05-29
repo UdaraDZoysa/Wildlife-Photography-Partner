@@ -402,4 +402,88 @@ public class ImageRepository {
        
         return images;
     }
+    
+    //get total image count
+    public int TotalImageCount(int userID){
+        int count = 0;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            
+            String sql="SELECT COUNT(*) AS total_imageCount FROM photos WHERE user_id = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+        
+            stmt.setInt(1, userID);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                count = rs.getInt("total_imageCount");
+            }
+                                   
+        }catch(ClassNotFoundException e){
+            System.out.println("Class Not Found:"+e.getMessage());
+        }catch(SQLException e){
+            System.out.println("SQL Exception:"+e.getMessage());
+        }
+        
+        return count;
+    }
+    
+    public int FavouriteImageCount(int userID){
+        int count = 0;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            
+            String sql="SELECT COUNT(*) AS favourite_imageCount FROM photos WHERE user_id = ? AND Favourite = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+        
+            stmt.setInt(1, userID);
+            stmt.setBoolean(2, true);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                count = rs.getInt("favourite_imageCount");
+            }
+                                   
+        }catch(ClassNotFoundException e){
+            System.out.println("Class Not Found:"+e.getMessage());
+        }catch(SQLException e){
+            System.out.println("SQL Exception:"+e.getMessage());
+        }
+        
+        return count;
+    }
+    
+    public int PublicImageCount(int userID){
+        int count = 0;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            
+            String sql="SELECT COUNT(*) AS public_imageCount FROM photos WHERE user_id = ? AND Privacy = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+        
+            stmt.setInt(1, userID);
+            stmt.setBoolean(2, true);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                count = rs.getInt("public_imageCount");
+            }
+                                   
+        }catch(ClassNotFoundException e){
+            System.out.println("Class Not Found:"+e.getMessage());
+        }catch(SQLException e){
+            System.out.println("SQL Exception:"+e.getMessage());
+        }
+        
+        return count;
+    }
 }

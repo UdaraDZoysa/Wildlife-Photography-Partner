@@ -4,6 +4,8 @@
  */
 package photography.partner;
 
+import DataBaseOperations.ImageService;
+import DataBaseOperations.TripService;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -14,6 +16,8 @@ import javafx.scene.image.ImageView;
 import DataBaseOperations.User;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +27,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -36,6 +42,24 @@ public class DashBoard2Controller implements Initializable {
     private User u;//create new private user variable to assign retrieved details
     
     @FXML
+    private Label totalImageLabel;
+    
+    @FXML
+    private Label plannedTripsLabel;
+    
+    @FXML
+    private Label favouriteLabel;
+    
+    @FXML
+    private Label publicLabel;
+    
+    @FXML
+    private Label dateLabel;
+    
+    @FXML
+    private ImageView dashBImageView;
+    
+    @FXML
     private ImageView profilePicView;
     
     @FXML
@@ -44,9 +68,25 @@ public class DashBoard2Controller implements Initializable {
     //this method use to get logged user details to this class and show them
     public void setUser(User user){
         if(user!=null){
-            uName.setText("Hello,"+user.getUserName()+"!");
+            uName.setText(user.getUserName()+" !");
             Image image =new Image(new File(user.getProfilePic()).toURI().toString());
             profilePicView.setImage(image);
+            
+            //get total image count
+            String formattedTotal = String.format("%02d", ImageService.getTotalImageCount(user.getUserID()));
+            totalImageLabel.setText(formattedTotal);
+            
+            //get favourite image count
+            String formattedFavourite = String.format("%02d", ImageService.getFavouriteImageCount(user.getUserID()));
+            favouriteLabel.setText(formattedFavourite);
+            
+            //get public image count
+            String formattedPublic = String.format("%02d", ImageService.getPublicImageCount(user.getUserID()));
+            publicLabel.setText(formattedPublic);
+            
+            //get public image count
+            String formattedTrip = String.format("%02d", TripService.getTripCount(user.getUserID()));
+            plannedTripsLabel.setText(formattedTrip);
             
             this.u=user;//assign user details to u
         }
@@ -88,7 +128,7 @@ public class DashBoard2Controller implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -106,7 +146,7 @@ public class DashBoard2Controller implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -129,7 +169,7 @@ public class DashBoard2Controller implements Initializable {
             
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -147,7 +187,7 @@ public class DashBoard2Controller implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     
@@ -196,6 +236,23 @@ public class DashBoard2Controller implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        //Create a Circle to be used as clip of profile picture
+        profilePicView.setPreserveRatio(false);
+        Circle profileClip = new Circle(profilePicView.getFitWidth() / 2, profilePicView.getFitHeight() / 2, profilePicView.getFitWidth() / 2);
+        profilePicView.setClip(profileClip);
+        
+        // Create a rectangle with rounded corners to be used as a clip
+        Rectangle clip = new Rectangle(dashBImageView.getFitWidth(), dashBImageView.getFitHeight());
+        clip.setArcWidth(40);
+        clip.setArcHeight(40);
+        dashBImageView.setClip(clip);
+        
+        //get Local Date
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String formattedDate = currentDate.format(formatter); 
+        dateLabel.setText(formattedDate);
         
     }    
     

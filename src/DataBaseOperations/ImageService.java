@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ImageService {
     
-    private ImageRepository imageRepository = new ImageRepository();
+    private static ImageRepository imageRepository = new ImageRepository();
     public static List<Images> images;
     
     //this method handle Add Image opreration
@@ -59,5 +59,19 @@ public class ImageService {
         
         images = imageRepository.DisplayFavouriteImages(userID);
     }
-
+    
+    public static int getTotalImageCount(int userID){
+    
+        return imageRepository.TotalImageCount(userID);
+    }
+    
+    public static int getFavouriteImageCount(int userID){
+    
+        return imageRepository.FavouriteImageCount(userID);
+    }
+    
+    public static int getPublicImageCount(int userID){
+    
+        return imageRepository.PublicImageCount(userID);
+    }
 }
