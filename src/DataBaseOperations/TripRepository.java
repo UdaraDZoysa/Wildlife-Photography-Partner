@@ -6,6 +6,7 @@ package DataBaseOperations;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -48,6 +49,33 @@ public class TripRepository {
         }
         
         return rtrn;
+    }
+    
+    public int GetTripCount(int userID){
+        int count = 0;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            
+            String sql="SELECT COUNT(*) AS tripCount FROM trip WHERE user_id = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+        
+            stmt.setInt(1, userID);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                count = rs.getInt("tripCount");
+            }
+                                   
+        }catch(ClassNotFoundException e){
+            System.out.println("Class Not Found:"+e.getMessage());
+        }catch(SQLException e){
+            System.out.println("SQL Exception:"+e.getMessage());
+        }
+        
+        return count;
     }
     
 }

@@ -17,4 +17,9 @@ public class TripService {
         //call planTrip method using tripRepository object and return boolean value
         return tripRepository.planTrip(trip);  
     }
+    
+    public static int getTripCount(int userID){
+    
+        return tripRepository.GetTripCount(userID);
+    }
 }
