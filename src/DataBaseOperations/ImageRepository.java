@@ -486,4 +486,36 @@ public class ImageRepository {
         
         return count;
     }
+    
+    public List<Images> DisplayRecentImages(int userID){
+        
+        List<Images> images = new ArrayList<>();
+        
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            
+            String sql="SELECT * FROM photos WHERE user_id = ? ORDER BY timestamp DESC Limit 6";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+           
+            stmt.setInt(1,userID);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Images image = new Images();
+                image.setImgPath(rs.getString("photo_url"));
+                image.setDate(rs.getDate("timestamp"));
+                images.add(image);
+            }
+            
+        }catch(ClassNotFoundException e){
+            System.out.println("Class Not Found:"+e.getMessage());
+        }catch(SQLException e){
+            System.out.println("SQL Exception:"+e.getMessage());
+        }
+       
+        return images;
+    }
 }

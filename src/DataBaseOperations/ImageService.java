@@ -74,4 +74,10 @@ public class ImageService {
     
         return imageRepository.PublicImageCount(userID);
     }
+    
+    public static void getRecentImages(int userID){
+        
+        images = imageRepository.DisplayRecentImages(userID);
+    }
+    
 }
