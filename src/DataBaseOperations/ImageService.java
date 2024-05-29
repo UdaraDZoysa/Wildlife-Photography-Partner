@@ -42,7 +42,6 @@ public class ImageService {
     }
     
     public void searchImageUsingExactDate(int userID,Date date,String location,String category){
-        
         images = imageRepository.SearchImagesUsingExactDate(userID, date, location, category);
     }
     
@@ -51,27 +50,27 @@ public class ImageService {
     }
     
     public void searchImageWithoutDate(int userID,String location,String category){
-        
         images = imageRepository.SearchImagesWithoutDate(userID, location, category);
     }
     
     public void displayFavouriteImages(int userID){
-        
         images = imageRepository.DisplayFavouriteImages(userID);
     }
     
     public static int getTotalImageCount(int userID){
-    
         return imageRepository.TotalImageCount(userID);
     }
     
     public static int getFavouriteImageCount(int userID){
-    
         return imageRepository.FavouriteImageCount(userID);
     }
     
     public static int getPublicImageCount(int userID){
-    
         return imageRepository.PublicImageCount(userID);
     }
+    
+    public static void getRecentImages(int userID){    
+        images = imageRepository.DisplayRecentImages(userID);
+    }
+    
 }

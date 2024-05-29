@@ -19,18 +19,31 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -40,6 +53,63 @@ import javafx.stage.Stage;
 public class DashBoard2Controller implements Initializable {
     
     private User u;//create new private user variable to assign retrieved details
+    
+    @FXML
+    private HBox tripHBox;
+    
+    @FXML
+    private Label rLabel1;
+    
+    @FXML
+    private Label rLabel2;
+    
+    @FXML
+    private Label rLabel3;
+    
+    @FXML
+    private Label rLabel4;
+    
+    @FXML
+    private Label rLabel5;
+    
+    @FXML
+    private Label rLabel6;
+    
+    @FXML
+    private AnchorPane rPane1;
+    
+    @FXML
+    private AnchorPane rPane2;
+    
+    @FXML
+    private AnchorPane rPane3;
+    
+    @FXML
+    private AnchorPane rPane4;
+    
+    @FXML
+    private AnchorPane rPane5;
+    
+    @FXML
+    private AnchorPane rPane6;
+    
+    @FXML
+    private ImageView recentImg1;
+    
+    @FXML
+    private ImageView recentImg2;
+    
+    @FXML
+    private ImageView recentImg3;
+    
+    @FXML
+    private ImageView recentImg4;
+    
+    @FXML
+    private ImageView recentImg5;
+    
+    @FXML
+    private ImageView recentImg6;
     
     @FXML
     private Label totalImageLabel;
@@ -89,7 +159,109 @@ public class DashBoard2Controller implements Initializable {
             plannedTripsLabel.setText(formattedTrip);
             
             this.u=user;//assign user details to u
+            
+            //get recent Images
+            setRecentImages();
+            
+            //get planned Trips
+            setPlannedTrips();
         }
+    }
+    
+    public void setPlannedTrips(){
+        
+        TripService.getPlannedTrips(u.getUserID()); 
+        
+        for(int i=0;i<TripService.trips.size();i++){
+            HBox card = new HBox(10);
+            card.getStyleClass().add("image-card");
+            card.setPadding(new Insets(5,10,5,10));
+        
+            //container of labels
+            HBox dateBox = new HBox(10);
+            Label dateTextLabel = new Label("Date Duration:");
+            dateTextLabel.getStyleClass().add("text-label");
+            Label cardDateLabel = new Label(TripService.trips.get(i).getStartDate().toString()+" to "+TripService.trips.get(i).getEndDate().toString());
+            cardDateLabel.getStyleClass().add("card-label"); 
+            
+            //container of labels
+            HBox locationBox = new HBox(10);
+            Label locationTextLabel = new Label("Location:");
+            locationTextLabel.getStyleClass().add("text-label");
+            Label locationLabel = new Label(TripService.trips.get(i).getLocation());
+            locationLabel.getStyleClass().add("card-label");
+            
+            VBox otherDetailsBox = new VBox(10);
+            Label OtherDetailsTextLabel = new Label("Other Details:");
+            OtherDetailsTextLabel.getStyleClass().add("detailed-card-Text");
+        
+            Text otherDetailsText = new Text(TripService.trips.get(i).getOtherDetails());
+            otherDetailsText.setFill(Color.web("#21381B")); // Set text color
+            otherDetailsText.setFont(Font.font("System", FontWeight.NORMAL, 18));
+            TextFlow otherDetailsTextFlow = new TextFlow(otherDetailsText);
+            otherDetailsTextFlow.setStyle("-fx-padding: 4; -fx-background-color:white; -fx-border-color: #21381B; -fx-border-width: 0 0 3 5; -fx-border-style: solid; -fx-pref-width:450; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0, 10);");
+            
+            //add date labels to container
+            dateBox.getChildren().addAll(dateTextLabel,cardDateLabel);
+        
+            //add location labels to container
+            locationBox.getChildren().addAll(locationTextLabel,locationLabel);
+            
+            VBox locAndDateBox = new VBox(dateBox,locationBox);
+            
+            otherDetailsBox.getChildren().addAll(OtherDetailsTextLabel,otherDetailsTextFlow);
+        
+            //add label containers to main card container
+            card.getChildren().addAll(locAndDateBox,otherDetailsBox);
+            
+            tripHBox.getChildren().add(card); 
+        }
+        
+    }
+    
+    public void setRecentImages(){
+        
+        ImageService.getRecentImages(u.getUserID());
+        ImageView[] recentArray = {recentImg1,recentImg2,recentImg3,recentImg4,recentImg5,recentImg6};
+        AnchorPane[] recentPaneArray = {rPane1,rPane2,rPane3,rPane4,rPane5,rPane6};
+        Label[] recentLabelArray = {rLabel1,rLabel2,rLabel3,rLabel4,rLabel5,rLabel6};
+        
+        for(int i=0;i<ImageService.images.size();i++){
+            try{
+                    File file = new File(ImageService.images.get(i).getImgPath());
+                    if(file.exists()){
+                        Image image = new Image(file.toURI().toString());
+                        recentArray[i].setImage(image);
+                        recentLabelArray[i].setText(ImageService.images.get(i).getDate().toString());
+                        setupInterationsOfImages(recentPaneArray[i]);
+                    }
+                }catch(Exception e){
+                    System.out.println("Error loading image:"+e.getMessage());
+            }
+        }
+        
+    }
+    
+    private void setupInterationsOfImages(AnchorPane card) {
+        // Scale transition for mouse enter
+        ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200), card);
+        scaleUp.setToX(1.1);
+        scaleUp.setToY(1.1);
+
+        // Scale transition for mouse exit
+        ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), card);
+        scaleDown.setToX(1.0);
+        scaleDown.setToY(1.0);
+
+        card.setOnMouseEntered(e -> {
+            scaleDown.stop(); // Stop the other transition if it's running
+            scaleUp.playFromStart(); // Play the scale-up transition
+        });
+
+        card.setOnMouseExited(e -> {
+            scaleUp.stop(); // Stop the other transition if it's running
+            scaleDown.playFromStart(); // Play the scale-down transition
+        });
     }
     
     @FXML

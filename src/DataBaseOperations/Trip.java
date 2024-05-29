@@ -22,6 +22,9 @@ public class Trip {
         this.endDate = endDate;
         this.otherDetails = otherDetails;
     }
+    
+    public Trip(){
+    }
 
     public String getOtherDetails() {
         return otherDetails;

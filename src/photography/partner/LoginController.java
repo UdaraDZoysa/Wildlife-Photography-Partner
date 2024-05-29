@@ -95,9 +95,11 @@ public class LoginController implements Initializable {
             DashBoard2Controller controller = loader.getController();
             controller.setUser(user);
             
-            // Retrieve the current stage (window) from the event source and update the scene
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+                    
             Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
             
             repositionWindow(stage);
             
