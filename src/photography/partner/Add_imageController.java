@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,6 +30,7 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -136,17 +138,28 @@ public class Add_imageController implements Initializable {
             DashBoard2Controller controller = loader.getController();
             controller.setUser(u);
             
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+                    
             Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
+            
+            repositionWindow(stage);
+            
+            // Display the updated stage
             stage.show();
         }catch(IOException e){
             System.out.println("Error:"+e.getMessage());
         }
     }
     
+    private void repositionWindow(Stage stage) {
+    Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+    stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+    stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+    }
     
     //select location
-    
     @FXML
     public void handleWilpattuBtnAction(ActionEvent event){
         locationField.setText("Wilpattu");

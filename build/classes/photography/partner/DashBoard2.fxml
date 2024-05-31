@@ -3,11 +3,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -72,55 +71,55 @@
       </ImageView>
       <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="599.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER; -fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="6.0">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1500.0" prefWidth="985.0" style="-fx-background-color: rgb(182, 196, 182);">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1200.0" prefWidth="985.0" style="-fx-background-color: rgb(182, 196, 182);">
                <children>
-                  <AnchorPane layoutX="441.0" layoutY="13.0" prefHeight="160.0" prefWidth="240.0" style="-fx-background-color: #5A6E50; -fx-border-radius: 25; -fx-background-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10); -fx-border-color: #21381B;" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="726.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane layoutX="441.0" layoutY="13.0" prefHeight="160.0" prefWidth="240.0" style="-fx-background-color: #5A6E50; -fx-border-radius: 25; -fx-background-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="726.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="14.0" text="Planned Trips" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="10.0">
+                        <Label layoutX="14.0" layoutY="14.0" text="Planned Trips" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0">
                            <font>
-                              <Font name="Comic Sans MS" size="24.0" />
+                              <Font name="Segoe UI Bold" size="22.0" />
                            </font></Label>
-                        <Label fx:id="plannedTripsLabel" layoutX="30.0" layoutY="72.0" text="02" textFill="WHITE" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="30.0">
+                        <Label fx:id="plannedTripsLabel" layoutX="30.0" layoutY="72.0" text="02" textFill="WHITE" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="34.0">
                            <font>
-                              <Font name="Comic Sans MS" size="82.0" />
+                              <Font name="Segoe UI" size="96.0" />
                            </font>
                         </Label>
                      </children></AnchorPane>
-                  <AnchorPane layoutX="481.0" layoutY="193.0" prefHeight="160.0" prefWidth="240.0" style="-fx-background-color: #748C74; -fx-background-radius: 25; -fx-border-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10); -fx-border-color: #5A6E50;" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="185.0">
+                  <AnchorPane layoutX="481.0" layoutY="193.0" prefHeight="160.0" prefWidth="240.0" style="-fx-background-color: #748C74; -fx-background-radius: 25; -fx-border-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="185.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="14.0" text="Favourite Images" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="10.0">
+                        <Label layoutX="14.0" layoutY="14.0" text="Favourite Images" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0">
                            <font>
-                              <Font name="Comic Sans MS" size="24.0" />
+                              <Font name="Segoe UI Bold" size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="favouriteLabel" prefWidth="108.0" text="12" textFill="#fffefe" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="30.0">
+                        <Label fx:id="favouriteLabel" prefWidth="108.0" text="12" textFill="#fffefe" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="34.0">
                            <font>
-                              <Font name="Comic Sans MS" size="82.0" />
+                              <Font name="Segoe UI" size="96.0" />
                            </font>
                         </Label>
                      </children></AnchorPane>
-                  <AnchorPane layoutX="460.0" prefHeight="160.0" prefWidth="240.0" style="-fx-background-color: #21381B; -fx-border-radius: 25; -fx-background-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10); -fx-border-color: #5A6E50;" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane layoutX="460.0" prefHeight="160.0" prefWidth="240.0" style="-fx-background-color: #21381B; -fx-border-radius: 25; -fx-background-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="460.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="14.0" text=" Total Images" textFill="WHITE" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="10.0">
+                        <Label layoutX="14.0" layoutY="21.0" text=" Total Images" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0">
                            <font>
-                              <Font name="Comic Sans MS" size="24.0" />
+                              <Font name="Segoe UI Bold" size="22.0" />
                            </font></Label>
-                        <Label fx:id="totalImageLabel" layoutX="14.0" layoutY="22.0" prefWidth="108.0" text="28" textFill="#fffefe" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="30.0">
+                        <Label fx:id="totalImageLabel" layoutX="14.0" layoutY="22.0" prefWidth="108.0" text="28" textFill="#fffefe" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="34.0">
                            <font>
-                              <Font name="Comic Sans MS" size="82.0" />
+                              <Font name="Segoe UI" size="96.0" />
                            </font>
                         </Label>
                      </children></AnchorPane>
-                  <AnchorPane prefHeight="160.0" prefWidth="240.0" style="-fx-background-color: #A1B4A1; -fx-background-radius: 25; -fx-border-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10); -fx-border-color: #748C74;" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="726.0" AnchorPane.topAnchor="185.0">
+                  <AnchorPane prefHeight="160.0" prefWidth="240.0" style="-fx-background-color: #A1B4A1; -fx-background-radius: 25; -fx-border-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="726.0" AnchorPane.topAnchor="185.0">
                      <children>
-                        <Label text="Public Images" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="10.0">
+                        <Label text="Public Images" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0">
                            <font>
-                              <Font name="Comic Sans MS" size="24.0" />
+                              <Font name="Segoe UI Bold" size="22.0" />
                            </font>
                         </Label>
-                        <Label fx:id="publicLabel" prefWidth="108.0" text="16" textFill="#fffefe" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="30.0">
+                        <Label fx:id="publicLabel" prefWidth="167.0" text="16" textFill="#fffefe" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="34.0">
                            <font>
-                              <Font name="Comic Sans MS" size="82.0" />
+                              <Font name="Segoe UI" size="96.0" />
                            </font>
                         </Label>
                      </children></AnchorPane>
@@ -129,35 +128,32 @@
                         <Image url="@../../image/dash2.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="26.0" layoutY="15.0" prefHeight="54.0" prefWidth="216.0" text="Welcome " textFill="WHITE" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0">
+                  <Label layoutX="26.0" layoutY="15.0" prefHeight="54.0" prefWidth="216.0" text="Welcome " textFill="#21381b" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0">
                      <font>
-                        <Font name="Lucida Bright Demibold" size="44.0" />
+                        <Font name="Segoe UI Bold" size="45.0" />
                      </font>
-                     <effect>
-                        <DropShadow blurType="GAUSSIAN" height="30.36" offsetX="2.0" offsetY="2.0" radius="14.68" width="30.36" />
-                     </effect>
                   </Label>
-                  <Label fx:id="uName" layoutX="227.0" layoutY="6.0" stylesheets="@../../Styles/region_style.css" text="Osanda" textFill="WHITE" AnchorPane.leftAnchor="227.0" AnchorPane.topAnchor="6.0">
+                  <Label fx:id="uName" layoutX="227.0" layoutY="6.0" stylesheets="@../../Styles/region_style.css" text="Osanda" textFill="#21381b" AnchorPane.leftAnchor="227.0" AnchorPane.topAnchor="6.0">
                      <font>
-                        <Font name="Lucida Bright Demibold" size="44.0" />
+                        <Font name="Segoe UI Bold" size="45.0" />
                      </font>
-                     <effect>
-                        <DropShadow offsetX="2.0" offsetY="2.0" />
-                     </effect>
                   </Label>
-                  <Label layoutX="23.0" layoutY="59.0" style="-fx-text-fill: white; -fx-font-size: 20; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="The system is ready to assist you!" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="59.0" />
-                  <AnchorPane layoutY="380.8" prefHeight="403.0" prefWidth="966.0" style="-fx-background-color: #748C74; -fx-background-radius: 35; -fx-border-radius: 35; -fx-border-color: #5A6E50; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10);" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="380.0">
+                  <Label layoutX="23.0" layoutY="59.0" style="-fx-text-fill: #384C2C; -fx-font-size: 20;" text="The system is ready to assist you!" textFill="#21381b" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="59.0">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font></Label>
+                  <AnchorPane layoutY="380.8" prefHeight="382.0" prefWidth="966.0" style="-fx-background-color: #748C74; -fx-background-radius: 40; -fx-border-radius: 40; -fx-border-color: #5A6E50; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="380.0">
                      <children>
-                        <Label prefHeight="50.0" prefWidth="313.0" text="Recent Images" textFill="WHITE" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="20.0">
+                        <Label layoutX="30.0" layoutY="14.0" prefHeight="50.0" prefWidth="486.0" text="Recently Added Images" textFill="WHITE" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="10.0">
                            <font>
-                              <Font name="Comic Sans MS" size="40.0" />
+                              <Font name="Segoe UI Bold" size="30.0" />
                            </font>
                         </Label>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="315.0" prefWidth="946.0" style="-fx-background-color: #748C74;" vbarPolicy="NEVER" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="315.0" prefWidth="946.0" style="-fx-background-color: #748C74;" vbarPolicy="NEVER" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="55.0">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="1450.0" style="-fx-background-color: #748C74;">
                                  <children>
-                                    <AnchorPane fx:id="rPane1" layoutX="14.0" layoutY="19.0" prefHeight="265.0" prefWidth="220.0" style="-fx-background-color: #ffffff; -fx-border-color: #DDDDDD; -fx-border-width: 1; -fx-border-radius: 20; -fx-background-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="17.0">
+                                    <AnchorPane fx:id="rPane1" layoutX="14.0" layoutY="19.0" prefHeight="265.0" prefWidth="220.0" style="-fx-border-color: #DDDDDD; -fx-background-color: white; -fx-border-width: 1; -fx-border-radius: 25; -fx-background-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="17.0">
                                        <children>
                                           <ImageView fx:id="recentImg1" fitHeight="175.0" fitWidth="180.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 10);" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
                                           <Label fx:id="rLabel1" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="43.0">
@@ -166,7 +162,7 @@
                                              </font></Label>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="rPane2" layoutX="320.0" layoutY="14.0" prefHeight="265.0" prefWidth="220.0" style="-fx-background-color: white; -fx-border-color: #DDDDDD; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="254.0" AnchorPane.topAnchor="17.0">
+                                    <AnchorPane fx:id="rPane2" layoutX="320.0" layoutY="14.0" prefHeight="265.0" prefWidth="220.0" style="-fx-border-color: #DDDDDD; -fx-background-radius: 25; -fx-background-color: white; -fx-border-radius: 25; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="254.0" AnchorPane.topAnchor="17.0">
                                        <children>
                                           <ImageView fx:id="recentImg2" fitHeight="175.0" fitWidth="180.0" pickOnBounds="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 10);" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
                                           <Label fx:id="rLabel2" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="43.0">
@@ -176,7 +172,7 @@
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="rPane3" layoutX="540.0" layoutY="14.0" prefHeight="265.0" prefWidth="220.0" style="-fx-background-color: white; -fx-border-color: #DDDDDD; -fx-border-width: 1; -fx-background-radius: 20; -fx-border-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="494.0" AnchorPane.topAnchor="17.0">
+                                    <AnchorPane fx:id="rPane3" layoutX="540.0" layoutY="14.0" prefHeight="265.0" prefWidth="220.0" style="-fx-border-color: #DDDDDD; -fx-background-color: white; -fx-border-width: 1; -fx-background-radius: 25; -fx-border-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="494.0" AnchorPane.topAnchor="17.0">
                                        <children>
                                           <ImageView fx:id="recentImg3" fitHeight="175.0" fitWidth="180.0" pickOnBounds="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 10);" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
                                           <Label fx:id="rLabel3" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="43.0">
@@ -186,7 +182,7 @@
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="rPane4" prefHeight="265.0" prefWidth="220.0" style="-fx-background-color: white; -fx-border-color: #DDDDDD; -fx-border-width: 1; -fx-background-radius: 20; -fx-border-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="734.0" AnchorPane.topAnchor="17.0">
+                                    <AnchorPane fx:id="rPane4" prefHeight="265.0" prefWidth="220.0" style="-fx-border-color: #DDDDDD; -fx-background-color: white; -fx-border-width: 1; -fx-background-radius: 25; -fx-border-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="734.0" AnchorPane.topAnchor="17.0">
                                        <children>
                                           <ImageView fx:id="recentImg4" fitHeight="175.0" fitWidth="180.0" pickOnBounds="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 10);" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
                                           <Label fx:id="rLabel4" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="43.0">
@@ -196,7 +192,7 @@
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="rPane5" layoutX="1063.0" layoutY="13.0" prefHeight="265.0" prefWidth="220.0" style="-fx-background-color: white; -fx-border-width: 1; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #DDDDDD; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="974.0" AnchorPane.topAnchor="17.0">
+                                    <AnchorPane fx:id="rPane5" layoutX="1063.0" layoutY="13.0" prefHeight="265.0" prefWidth="220.0" style="-fx-border-width: 1; -fx-background-color: white; -fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: #DDDDDD; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="974.0" AnchorPane.topAnchor="17.0">
                                        <children>
                                           <ImageView fx:id="recentImg5" fitHeight="175.0" fitWidth="180.0" pickOnBounds="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 10);" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
                                           <Label fx:id="rLabel5" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="43.0">
@@ -206,7 +202,7 @@
                                           </Label>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="rPane6" prefHeight="265.0" prefWidth="220.0" style="-fx-background-color: white; -fx-border-color: #DDDDDD; -fx-border-width: 1; -fx-background-radius: 20; -fx-border-radius: 20; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="1214.0" AnchorPane.topAnchor="17.0">
+                                    <AnchorPane fx:id="rPane6" prefHeight="265.0" prefWidth="220.0" style="-fx-border-color: #DDDDDD; -fx-background-color: white; -fx-border-width: 1; -fx-background-radius: 25; -fx-border-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="1214.0" AnchorPane.topAnchor="17.0">
                                        <children>
                                           <ImageView fx:id="recentImg6" fitHeight="175.0" fitWidth="180.0" pickOnBounds="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 10);" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
                                           <Label fx:id="rLabel6" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="43.0">
@@ -222,16 +218,16 @@
                         </ScrollPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="403.0" prefWidth="966.0" style="-fx-background-color: #748C74; -fx-background-radius: 35; -fx-border-radius: 35; -fx-border-color: #5A6E50; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0,10);" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="820.0">
+                  <AnchorPane prefHeight="310.0" prefWidth="966.0" style="-fx-background-color: #748C74; -fx-background-radius: 35; -fx-border-radius: 35; -fx-border-color: #5A6E50; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" AnchorPane.leftAnchor="11.0" AnchorPane.topAnchor="820.0">
                      <children>
-                        <Label prefHeight="50.0" prefWidth="313.0" text="All Planned Trips" textFill="WHITE" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="20.0">
+                        <Label layoutX="28.0" layoutY="21.6" prefHeight="50.0" prefWidth="566.0" text="All Planned Trips" textFill="WHITE" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="10.0">
                            <font>
-                              <Font name="Comic Sans MS" size="40.0" />
+                              <Font name="Segoe UI Bold" size="30.0" />
                            </font>
                         </Label>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="315.0" prefWidth="946.0" style="-fx-background-color: #748C74;" vbarPolicy="NEVER" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0">
+                        <ScrollPane fx:id="tripsScrollPane" hbarPolicy="NEVER" layoutX="16.0" layoutY="81.6" prefHeight="250.0" prefWidth="936.0" style="-fx-background-color: #748C74;" vbarPolicy="NEVER" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="55.0">
                            <content>
-                              <HBox fx:id="tripHBox" prefHeight="315.0" prefWidth="946.0" style="-fx-background-color: #748C74;" />
+                              <TilePane fx:id="tripsTilePane" prefHeight="250.0" prefWidth="946.0" style="-fx-background-color: #748C74;" />
                            </content>
                         </ScrollPane>
                      </children>

@@ -23,28 +23,25 @@ import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+import java.time.temporal.ChronoUnit;
+import javafx.scene.layout.Region;
 /**
  * FXML Controller class
  *
@@ -53,9 +50,13 @@ import javafx.util.Duration;
 public class DashBoard2Controller implements Initializable {
     
     private User u;//create new private user variable to assign retrieved details
+    LocalDate currentDate;
     
     @FXML
-    private HBox tripHBox;
+    private TilePane  tripsTilePane;
+    
+    @FXML
+    private ScrollPane tripsScrollPane;
     
     @FXML
     private Label rLabel1;
@@ -170,13 +171,71 @@ public class DashBoard2Controller implements Initializable {
     
     public void setPlannedTrips(){
         
-        TripService.getPlannedTrips(u.getUserID()); 
+        TripService.getPlannedTrips(u.getUserID());
+        HBox tripsHBox = new HBox(25);
+        tripsHBox.setPadding(new Insets(15, 25, 10, 25));
+        tripsHBox.setStyle("-fx-background-color:  #748C74;"); 
         
         for(int i=0;i<TripService.trips.size();i++){
-            HBox card = new HBox(10);
-            card.getStyleClass().add("image-card");
-            card.setPadding(new Insets(5,10,5,10));
-        
+            VBox card = new VBox(10);
+            card.getStyleClass().add("trip-card-green");
+            
+            //Create Remaining date label
+            LocalDate startDateLocal = TripService.trips.get(i).getStartDate().toLocalDate();//Convert sql Date into Local Date
+             
+            long daysBetween = ChronoUnit.DAYS.between(currentDate, startDateLocal);// Calculate the number of days between startDate and curreny date(Using Local Dates)
+            
+            String formattedDateCount = String.format("%02d",daysBetween);//convert Date count into formatted string
+            Label remainDateLabel = new Label();
+            Label RemainingTextLabel = new Label();
+            
+            //container of remaining Date label
+            HBox remainingDateBox = new HBox();
+            remainingDateBox.setAlignment(Pos.BOTTOM_LEFT);
+            remainingDateBox.setPadding(new Insets(10, 10, 10, 10));
+            remainingDateBox.setStyle("-fx-background-color: #e8f5e9; -fx-background-radius: 20;");
+            
+            // Create a spacer region
+            Region spacer = new Region();
+            Region spacer1 = new Region();
+            
+            spacer1.setPrefWidth(10); // Set the desired width for the gap
+            spacer.setPrefWidth(10);
+            
+            if(daysBetween > 0){
+                //set styles
+                remainDateLabel.setStyle("-fx-font-size: 30px; -fx-text-fill: #388e3c; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-padding: 30 10 10 10;"); 
+                RemainingTextLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #388e3c; -fx-font-family: 'Segoe UI'; -fx-padding: 30 10 10 10;");
+                remainingDateBox.setStyle("-fx-background-color: #e8f5e9; -fx-background-radius: 20;");
+                
+                ///////////////////////////////////////////////////
+                remainDateLabel.setText(formattedDateCount); 
+                RemainingTextLabel.setText("Days Left!"); 
+                remainingDateBox.getChildren().addAll(spacer1,remainDateLabel,RemainingTextLabel,spacer);
+                
+            }else if(daysBetween == 0){
+                //set styles
+                RemainingTextLabel.setStyle("-fx-font-size: 24px; -fx-text-fill: #388e3c; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-padding: 30 10 10 10;");
+                remainingDateBox.setStyle("-fx-background-color: #e8f5e9; -fx-background-radius: 20;");
+                
+                ///////////////////////////////////////////////////////////////////
+                RemainingTextLabel.setText("It's Today, Have a Nice Trip!");
+                remainingDateBox.getChildren().addAll(spacer1,RemainingTextLabel,spacer);
+            }else{
+                //set styles
+                remainDateLabel.setStyle("-fx-font-size: 30px; -fx-text-fill: #d32f2f; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-padding: 30 10 10 10;"); 
+                RemainingTextLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #d32f2f; -fx-font-family: 'Segoe UI'; -fx-padding: 30 10 10 10;");
+                card.getStyleClass().add("trip-card-red");
+                remainingDateBox.setStyle("-fx-background-color: #fdecea; -fx-background-radius: 20;");
+                
+                ///////////////////////////////////////////////////////////////////
+                daysBetween *= -1;
+                formattedDateCount = String.format("%02d",daysBetween);
+                remainDateLabel.setText(formattedDateCount);
+                RemainingTextLabel.setText("Days passed, Trip missed!");
+                remainingDateBox.getChildren().addAll(remainDateLabel,RemainingTextLabel);
+            }
+            
             //container of labels
             HBox dateBox = new HBox(10);
             Label dateTextLabel = new Label("Date Duration:");
@@ -191,7 +250,7 @@ public class DashBoard2Controller implements Initializable {
             Label locationLabel = new Label(TripService.trips.get(i).getLocation());
             locationLabel.getStyleClass().add("card-label");
             
-            VBox otherDetailsBox = new VBox(10);
+            /*VBox otherDetailsBox = new VBox(10);
             Label OtherDetailsTextLabel = new Label("Other Details:");
             OtherDetailsTextLabel.getStyleClass().add("detailed-card-Text");
         
@@ -200,23 +259,26 @@ public class DashBoard2Controller implements Initializable {
             otherDetailsText.setFont(Font.font("System", FontWeight.NORMAL, 18));
             TextFlow otherDetailsTextFlow = new TextFlow(otherDetailsText);
             otherDetailsTextFlow.setStyle("-fx-padding: 4; -fx-background-color:white; -fx-border-color: #21381B; -fx-border-width: 0 0 3 5; -fx-border-style: solid; -fx-pref-width:450; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0, 10);");
-            
+            */
             //add date labels to container
             dateBox.getChildren().addAll(dateTextLabel,cardDateLabel);
         
             //add location labels to container
             locationBox.getChildren().addAll(locationTextLabel,locationLabel);
             
-            VBox locAndDateBox = new VBox(dateBox,locationBox);
+            //VBox locAndDateBox = new VBox(dateBox,locationBox);
             
-            otherDetailsBox.getChildren().addAll(OtherDetailsTextLabel,otherDetailsTextFlow);
+            //otherDetailsBox.getChildren().addAll(OtherDetailsTextLabel,otherDetailsTextFlow);
         
             //add label containers to main card container
-            card.getChildren().addAll(locAndDateBox,otherDetailsBox);
+            spacer.setPrefWidth(20);
+            card.getChildren().addAll(remainingDateBox,spacer,dateBox,locationBox);
             
-            tripHBox.getChildren().add(card); 
+            setupInterationsOfImages(card);
+         
+            tripsHBox.getChildren().add(card); 
         }
-        
+        tripsTilePane.getChildren().add(tripsHBox);
     }
     
     public void setRecentImages(){
@@ -242,7 +304,7 @@ public class DashBoard2Controller implements Initializable {
         
     }
     
-    private void setupInterationsOfImages(AnchorPane card) {
+    private void setupInterationsOfImages(Node card) {
         // Scale transition for mouse enter
         ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200), card);
         scaleUp.setToX(1.1);
@@ -421,10 +483,12 @@ public class DashBoard2Controller implements Initializable {
         dashBImageView.setClip(clip);
         
         //get Local Date
-        LocalDate currentDate = LocalDate.now();
+        currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String formattedDate = currentDate.format(formatter); 
         dateLabel.setText(formattedDate);
+        
+        tripsTilePane.setAlignment(Pos.BASELINE_CENTER); // Ensures that the content is centered
         
     }    
     
