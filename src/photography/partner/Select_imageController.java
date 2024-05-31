@@ -95,8 +95,15 @@ public class Select_imageController implements Initializable {
             DashBoard2Controller controller = loader.getController();
             controller.setUser(u);
             
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+                    
             Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
+            
+            repositionWindow(stage);
+            
+            // Display the updated stage
             stage.show();
         }catch(IOException e){
             System.out.println("Error:"+e.getMessage());

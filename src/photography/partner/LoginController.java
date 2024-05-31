@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import DataBaseOperations.UserService;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
+import javafx.scene.text.Font;
 import javafx.stage.Screen;
 
 /**
@@ -106,7 +107,7 @@ public class LoginController implements Initializable {
             // Display the updated stage
             stage.show();
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Error:"+e.getMessage());
         }
     }
     

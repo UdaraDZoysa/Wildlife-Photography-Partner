@@ -10,11 +10,13 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,6 +27,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -128,12 +131,19 @@ public class Plan_tripController implements Initializable {
      @FXML
     private void handleSaveTripBtnAction(ActionEvent event){
         
+        boolean success = false;
         String location = locationField.getText();
-        Date startDate = Date.valueOf(fromPicker.getValue());
-        Date endDate = Date.valueOf(toPicker.getValue());
+        LocalDate startDateLocal = fromPicker.getValue();
+        LocalDate endDateLocal = toPicker.getValue();
         String otherDetails = otherDetailsField.getText();
+        LocalDate currentDate = LocalDate.now();
         
-        boolean success = TripService.PlanTrip(u.getUserID(), location, startDate, endDate, otherDetails);
+        if(startDateLocal.compareTo(endDateLocal) <= 0 && startDateLocal.compareTo(currentDate) >=0){
+            
+            Date startDate = Date.valueOf(fromPicker.getValue());
+            Date endDate = Date.valueOf(toPicker.getValue());
+            success = TripService.PlanTrip(u.getUserID(), location, startDate, endDate, otherDetails);
+        }
         
         if(success){
             Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
@@ -168,12 +178,25 @@ public class Plan_tripController implements Initializable {
             DashBoard2Controller controller = loader.getController();
             controller.setUser(u);
             
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+                    
             Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
+            
+            repositionWindow(stage);
+            
+            // Display the updated stage
             stage.show();
         }catch(IOException e){
             System.out.println("Error:"+e.getMessage());
         }
+    }
+    
+    private void repositionWindow(Stage stage) {
+    Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+    stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+    stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
     }
     
     @FXML
