@@ -10,6 +10,8 @@ import DataBaseOperations.User;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -40,6 +42,10 @@ public class EditDetailsController implements Initializable {
     private Images img;
     private ImageService imageService = new ImageService();
     static boolean toggle;
+    LocalDate currentDate;
+    
+    @FXML
+    private Label dateLabel;
     
     @FXML
     private ToggleButton publicToggle;
@@ -59,12 +65,8 @@ public class EditDetailsController implements Initializable {
     @FXML
     private ImageView profilePicView;
     
-    @FXML
-    private Label uName;
-    
     public void setUser(User user){
         if(user!=null){
-            uName.setText("Hello,"+user.getUserName()+"!");
             Image image =new Image(new File(user.getProfilePic()).toURI().toString());
             profilePicView.setImage(image);
             u=user;
@@ -260,6 +262,11 @@ public class EditDetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        //get Local Date
+        currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String formattedDate = currentDate.format(formatter); 
+        dateLabel.setText(formattedDate);
     }    
     
 }

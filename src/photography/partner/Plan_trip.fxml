@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: rgb(182, 196, 182);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photography.partner.Plan_tripController">
@@ -65,23 +66,25 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="100.0" fitWidth="1000.0" layoutX="427.0" layoutY="15.0" pickOnBounds="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 10);" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="100.0" fitWidth="1000.0" layoutX="427.0" layoutY="15.0" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../image/image-1000x100%20(4).jpg" />
+            <Image url="@../../image/cover1.png" />
          </image>
       </ImageView>
-      <Circle fill="WHITE" layoutX="1345.0" layoutY="93.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: white; -fx-stroke-width: 4; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 10);" />
+      <Circle fill="WHITE" layoutX="1345.0" layoutY="93.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: white; -fx-stroke-width: 4; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" />
       <ImageView fx:id="profilePicView" fitHeight="60.0" fitWidth="60.0" layoutX="1315.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
          <clip>
             <Circle centerX="30.0" centerY="30.0" radius="30.0" />
          </clip>
       </ImageView>
-      <Label fx:id="uName" layoutX="1115.0" layoutY="60.0" prefHeight="46.0" prefWidth="217.0" style="-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: 100; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" stylesheets="@../../Styles/region_style.css" />
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="599.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="599.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER; -fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="875.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);">
                <children>
-                  <Label layoutX="34.0" layoutY="11.2" prefHeight="46.0" prefWidth="237.0" style="-fx-text-fill: white; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Select Location:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="714.0" AnchorPane.topAnchor="11.0" />
+                  <Label layoutX="34.0" layoutY="11.2" prefHeight="46.0" prefWidth="237.0" text="Select Location:" textFill="#21381b" AnchorPane.bottomAnchor="814.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="714.0">
+                     <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                     </font></Label>
                   <TextField fx:id="locationField" layoutX="238.0" layoutY="539.0" prefHeight="30.0" prefWidth="700.0" promptText="Location" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="55.0" />
                   <ScrollPane hbarPolicy="NEVER" layoutX="370.0" layoutY="529.0" prefHeight="300.0" prefWidth="600.0" style="-fx-border-color: #21381B;" vbarPolicy="NEVER" AnchorPane.leftAnchor="174.0" AnchorPane.topAnchor="110.0">
                      <content>
@@ -108,16 +111,35 @@
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <Label layoutX="36.0" layoutY="1551.2" prefHeight="46.0" prefWidth="380.0" style="-fx-text-fill: white; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Trip Date Range:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="450.0" />
-                  <DatePicker fx:id="fromPicker" layoutX="488.0" layoutY="1360.0" prefWidth="225.0" promptText="From" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="460.0" />
-                  <DatePicker fx:id="toPicker" prefWidth="225.0" promptText="To" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="460.0" />
-                  <Label style="-fx-text-fill: white; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="-" AnchorPane.leftAnchor="510.0" AnchorPane.topAnchor="450.0" />
+                  <Label layoutX="36.0" layoutY="451.2" prefHeight="46.0" prefWidth="291.0" text="Trip Date Range:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="451.0">
+                     <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                     </font></Label>
+                  <DatePicker fx:id="fromPicker" layoutX="488.0" layoutY="1360.0" prefWidth="225.0" promptText="From" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="460.0" />
+                  <DatePicker fx:id="toPicker" prefWidth="225.0" promptText="To" AnchorPane.leftAnchor="558.0" AnchorPane.topAnchor="460.0" />
+                  <Label text="-" AnchorPane.leftAnchor="512.0" AnchorPane.topAnchor="450.0">
+                     <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                     </font></Label>
                   <Button fx:id="savePlanBtn" layoutX="490.0" layoutY="1586.0" mnemonicParsing="false" onAction="#handleSaveTripBtnAction" prefWidth="500.0" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Save Trip" AnchorPane.leftAnchor="243.0" AnchorPane.topAnchor="750.0" />
-                  <Label prefHeight="46.0" prefWidth="218.0" style="-fx-text-fill: white; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Other Details:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="540.0" />
+                  <Label prefHeight="46.0" prefWidth="218.0" text="Other Details:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="550.0">
+                     <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                     </font></Label>
                   <TextArea fx:id="otherDetailsField" prefHeight="100.0" prefWidth="940.0" promptText="Enter Text Here ..." style="-fx-border-color: #21381B; -fx-background-radius: 5; -fx-border-radius: 5;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="590.0" />
                </children>
             </AnchorPane>
          </content>
       </ScrollPane>
+      <Label prefHeight="11.0" prefWidth="74.0" text="Today" textFill="WHITE" AnchorPane.bottomAnchor="677.0" AnchorPane.leftAnchor="405.0">
+         <font>
+            <Font name="Segoe UI Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="dateLabel" layoutX="417.0" layoutY="70.0" text="19/03/2000" textFill="WHITE" AnchorPane.bottomAnchor="655.0" AnchorPane.leftAnchor="405.0">
+         <font>
+            <Font name="Segoe UI Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

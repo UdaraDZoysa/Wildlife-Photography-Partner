@@ -24,6 +24,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -51,6 +53,10 @@ public class Select_imageController implements Initializable {
     String categoryText;
     
     private ImageService imageService = new ImageService();
+    LocalDate currentDate;
+    
+    @FXML
+    private Label dateLabel;
     
     @FXML
     private TilePane imgTilePane;
@@ -73,12 +79,8 @@ public class Select_imageController implements Initializable {
     @FXML
     private ImageView profilePicView;
     
-    @FXML
-    private Label uName;
-    
     public void setUser(User user){
         if(user!=null){
-            uName.setText("Hello,"+user.getUserName()+"!");
             Image image =new Image(new File(user.getProfilePic()).toURI().toString());
             profilePicView.setImage(image);
             u=user;
@@ -719,5 +721,11 @@ public class Select_imageController implements Initializable {
         imgTilePane.setAlignment(Pos.CENTER); // Ensures that the content is centered
         imgTilePane.setHgap(35); // Horizontal gap between children
         imgTilePane.setVgap(25); // Vertical gap between children
+        
+        //get Local Date
+        currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String formattedDate = currentDate.format(formatter); 
+        dateLabel.setText(formattedDate);
     }
 }    
