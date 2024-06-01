@@ -9,6 +9,8 @@ import DataBaseOperations.User;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
@@ -43,6 +45,10 @@ public class MemoriesController implements Initializable {
 
     private User u;
     private ImageService imageService = new ImageService();
+    LocalDate currentDate;
+    
+    @FXML
+    private Label dateLabelCurrent;
     
     @FXML
     private TilePane imgTilePane;
@@ -50,12 +56,8 @@ public class MemoriesController implements Initializable {
     @FXML
     private ImageView profilePicView;
     
-    @FXML
-    private Label uName;
-    
     public void setUser(User user){
         if(user!=null){
-            uName.setText("Hello,"+user.getUserName()+"!");
             Image image =new Image(new File(user.getProfilePic()).toURI().toString());
             profilePicView.setImage(image);
             u=user;
@@ -304,6 +306,12 @@ public class MemoriesController implements Initializable {
         imgTilePane.setAlignment(Pos.CENTER); // Ensures that the content is centered
         imgTilePane.setHgap(60); // Horizontal gap between children
         imgTilePane.setVgap(25); // Vertical gap between children
+        
+        //get Local Date
+        currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String formattedDate = currentDate.format(formatter); 
+        dateLabelCurrent.setText(formattedDate);
     }    
     
 }

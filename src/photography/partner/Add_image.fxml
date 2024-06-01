@@ -11,6 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: rgb(182, 196, 182);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photography.partner.Add_imageController">
@@ -66,24 +67,26 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="100.0" fitWidth="1000.0" layoutX="427.0" layoutY="15.0" pickOnBounds="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 10);" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="100.0" fitWidth="1000.0" layoutX="427.0" layoutY="15.0" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../image/image-1000x100%20(4).jpg" />
+            <Image url="@../../image/cover1.png" />
          </image>
       </ImageView>
-      <Circle fill="WHITE" layoutX="1345.0" layoutY="93.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: white; -fx-stroke-width: 4; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 10);" />
+      <Circle fill="WHITE" layoutX="1345.0" layoutY="93.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: white; -fx-stroke-width: 4; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" />
       <ImageView fx:id="profilePicView" fitHeight="60.0" fitWidth="60.0" layoutX="1315.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
          <clip>
             <Circle centerX="30.0" centerY="30.0" radius="30.0" />
          </clip>
       </ImageView>
-      <Label fx:id="uName" layoutX="1115.0" layoutY="60.0" prefHeight="46.0" prefWidth="217.0" style="-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: 100; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" stylesheets="@../../Styles/region_style.css" />
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="408.0" layoutY="147.0" prefHeight="599.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER;" vbarPolicy="NEVER">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="408.0" layoutY="147.0" prefHeight="599.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER; -fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="3000.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);">
                <children>
-                  <Label layoutX="34.0" layoutY="530.0" prefHeight="46.0" prefWidth="218.0" style="-fx-text-fill: white; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Select Location:" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="748.0" AnchorPane.topAnchor="545.0" />
-                  <TextField fx:id="locationField" layoutX="238.0" layoutY="539.0" prefHeight="27.0" prefWidth="256.0" promptText="Location" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="236.0" AnchorPane.topAnchor="555.0" />
+                  <Label layoutX="34.0" layoutY="530.0" prefHeight="46.0" prefWidth="226.0" text="Select Location:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="739.0" AnchorPane.topAnchor="545.0">
+                     <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                     </font></Label>
+                  <TextField fx:id="locationField" layoutX="238.0" layoutY="539.0" prefHeight="27.0" prefWidth="256.0" promptText="Location" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="246.0" AnchorPane.topAnchor="555.0" />
                   <ScrollPane hbarPolicy="NEVER" layoutX="370.0" layoutY="529.0" prefHeight="350.0" prefWidth="600.0" style="-fx-border-color: #21381B;" vbarPolicy="NEVER" AnchorPane.leftAnchor="174.0" AnchorPane.topAnchor="600.0">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="890.0" prefWidth="623.0" style="-fx-background-color: rgb(182, 196, 182);">
@@ -108,8 +111,11 @@
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>
-                  <Label layoutX="71.0" layoutY="970.0" style="-fx-text-fill: white; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Choose Category:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="995.0" />
-                  <TextField fx:id="categoryField" layoutX="28.0" layoutY="1398.0" prefHeight="27.0" prefWidth="256.0" promptText="Category" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="1006.0" />
+                  <Label layoutX="71.0" layoutY="970.0" text="Choose Category:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="995.0">
+                     <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                     </font></Label>
+                  <TextField fx:id="categoryField" layoutX="28.0" layoutY="1398.0" prefHeight="27.0" prefWidth="256.0" promptText="Category" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="1001.0" />
                   <ScrollPane hbarPolicy="NEVER" layoutX="772.0" layoutY="500.0" prefHeight="300.0" prefWidth="946.0" vbarPolicy="NEVER" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="1050.0">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="1450.0" style="-fx-background-color: rgb(182, 196, 182);">
@@ -171,9 +177,15 @@
                         </AnchorPane>
                     </content>
                   </ScrollPane>
-                  <Label layoutX="66.0" layoutY="1352.0" prefHeight="46.0" prefWidth="218.0" style="-fx-text-fill: white; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Other Details:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="1362.0" />
+                  <Label layoutX="66.0" layoutY="1352.0" prefHeight="46.0" prefWidth="218.0" text="Other Details:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="1366.0">
+                     <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                     </font></Label>
                   <TextArea fx:id="otherDetailsField" layoutX="742.0" layoutY="1584.0" prefHeight="100.0" prefWidth="940.0" promptText="Enter Text Here ..." style="-fx-border-color: #21381B; -fx-background-radius: 5; -fx-border-radius: 5;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="1409.0" />
-                  <Label layoutX="36.0" layoutY="1551.2" prefHeight="46.0" prefWidth="278.0" style="-fx-text-fill: white; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Technical Details:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="1551.0" />
+                  <Label layoutX="36.0" layoutY="1551.2" prefHeight="46.0" prefWidth="278.0" text="Technical Details:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="1555.0">
+                     <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                     </font></Label>
                   <TextArea fx:id="techDetailsField" layoutX="339.0" layoutY="1527.0" prefHeight="100.0" prefWidth="940.0" promptText="Enter Text Here ..." style="-fx-border-color: #21381B; -fx-background-radius: 5; -fx-border-radius: 5;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="1598.0" />
                   <Button fx:id="saveBtn" layoutX="490.0" layoutY="1586.0" mnemonicParsing="false" onAction="#handleSaveBtnAction" prefWidth="500.0" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Save" AnchorPane.leftAnchor="243.0" AnchorPane.topAnchor="1738.0" />
                   <AnchorPane layoutX="205.0" layoutY="105.0" prefHeight="378.0" prefWidth="664.0" style="-fx-border-color: #21381B; -fx-border-width: 3; -fx-border-style: dashed; -fx-border-radius: 0;" AnchorPane.rightAnchor="115.79999999999995">
@@ -181,14 +193,33 @@
                         <ImageView fx:id="addImageView" fitHeight="300.0" fitWidth="564.0" layoutX="50.0" layoutY="39.0" onDragDropped="#handleDragDropped" onDragOver="#handleDragOver" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
-                  <Label prefHeight="46.0" prefWidth="218.0" style="-fx-text-fill: white; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="Select Image:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0" />
-                  <TextField fx:id="imgPathFiled" layoutX="205.0" layoutY="20.0" prefHeight="27.0" prefWidth="256.0" promptText="Image Path" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="22.0" />
-                  <Label layoutX="205.0" layoutY="78.0" style="-fx-text-fill: white; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2); -fx-font-size: 18;" text="Drag &amp; Drop or" />
-                  <Hyperlink fx:id="browsImageHyperLink" layoutX="333.0" layoutY="78.0" onAction="#handleBrowsImageHyperLink" style="-fx-font-size: 15; -fx-text-fill: #21381B;" text="Brows Image:" />
+                  <Label prefHeight="46.0" prefWidth="218.0" text="Select Image:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                     </font></Label>
+                  <TextField fx:id="imgPathFiled" layoutX="205.0" layoutY="20.0" prefHeight="27.0" prefWidth="256.0" promptText="Image Path" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="22.0" />
+                  <Label layoutX="205.0" layoutY="78.0" text="Drag &amp; Drop or" textFill="#21381b">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+                  <Hyperlink fx:id="browsImageHyperLink" layoutX="333.0" layoutY="78.0" onAction="#handleBrowsImageHyperLink" text="Brows Image:" textFill="#5a6e50" AnchorPane.topAnchor="77.0">
+                     <font>
+                        <Font name="Segoe UI Italic" size="17.0" />
+                     </font></Hyperlink>
                   <ToggleButton fx:id="publicToggle" layoutX="775.0" layoutY="500.0" mnemonicParsing="false" onAction="#handlePublicToggleBtnAction" stylesheets="@../../Styles/button_Style.css" text="Public Image" AnchorPane.rightAnchor="115.79999999999995" />
                </children>
             </AnchorPane>
         </content>
       </ScrollPane>
+      <Label prefHeight="11.0" prefWidth="74.0" text="Today" textFill="WHITE" AnchorPane.bottomAnchor="677.0" AnchorPane.leftAnchor="405.0">
+         <font>
+            <Font name="Segoe UI Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="dateLabel" text="19/03/2000" textFill="WHITE" AnchorPane.bottomAnchor="655.0" AnchorPane.leftAnchor="405.0">
+         <font>
+            <Font name="Segoe UI Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

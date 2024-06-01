@@ -172,8 +172,8 @@ public class DashBoard2Controller implements Initializable {
     public void setPlannedTrips(){
         
         TripService.getPlannedTrips(u.getUserID());
-        HBox tripsHBox = new HBox(25);
-        tripsHBox.setPadding(new Insets(15, 25, 10, 25));
+        HBox tripsHBox = new HBox(35);
+        tripsHBox.setPadding(new Insets(25, 25, 10, 35));
         tripsHBox.setStyle("-fx-background-color:  #748C74;"); 
         
         for(int i=0;i<TripService.trips.size();i++){
@@ -204,10 +204,10 @@ public class DashBoard2Controller implements Initializable {
             
             if(daysBetween > 0){
                 //set styles
-                remainDateLabel.setStyle("-fx-font-size: 30px; -fx-text-fill: #388e3c; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-padding: 30 10 10 10;"); 
-                RemainingTextLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #388e3c; -fx-font-family: 'Segoe UI'; -fx-padding: 30 10 10 10;");
-                remainingDateBox.setStyle("-fx-background-color: #e8f5e9; -fx-background-radius: 20;");
-                
+                remainDateLabel.setStyle("-fx-font-size: 75px; -fx-text-fill: #489651; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-padding: 10 10 10 10;"); 
+                RemainingTextLabel.setStyle("-fx-font-size: 24px; -fx-text-fill: #333; -fx-font-family: 'Segoe UI'; -fx-padding: 20 10 10 10; -fx-font-weight: bold;");
+                remainingDateBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4); -fx-background-radius: 20;");
+                //#e8f5e9  #388e3c
                 ///////////////////////////////////////////////////
                 remainDateLabel.setText(formattedDateCount); 
                 RemainingTextLabel.setText("Days Left!"); 
@@ -215,40 +215,40 @@ public class DashBoard2Controller implements Initializable {
                 
             }else if(daysBetween == 0){
                 //set styles
-                RemainingTextLabel.setStyle("-fx-font-size: 24px; -fx-text-fill: #388e3c; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-padding: 30 10 10 10;");
-                remainingDateBox.setStyle("-fx-background-color: #e8f5e9; -fx-background-radius: 20;");
-                
+                RemainingTextLabel.setStyle("-fx-font-size: 24px; -fx-text-fill: #489651; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-padding: 20 10 10 10;");
+                remainingDateBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4); -fx-background-radius: 20;");
+                //#e8f5e9  #388e3c
                 ///////////////////////////////////////////////////////////////////
                 RemainingTextLabel.setText("It's Today, Have a Nice Trip!");
                 remainingDateBox.getChildren().addAll(spacer1,RemainingTextLabel,spacer);
             }else{
                 //set styles
-                remainDateLabel.setStyle("-fx-font-size: 30px; -fx-text-fill: #d32f2f; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-padding: 30 10 10 10;"); 
-                RemainingTextLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #d32f2f; -fx-font-family: 'Segoe UI'; -fx-padding: 30 10 10 10;");
+                remainDateLabel.setStyle("-fx-font-size: 75px; -fx-text-fill: #E45C5C; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-padding: 10 10 10 10;"); 
+                RemainingTextLabel.setStyle("-fx-font-size: 24px; -fx-text-fill: #333; -fx-font-family: 'Segoe UI'; -fx-padding: 20 10 10 10; -fx-font-weight: bold;");
                 card.getStyleClass().add("trip-card-red");
-                remainingDateBox.setStyle("-fx-background-color: #fdecea; -fx-background-radius: 20;");
-                
+                remainingDateBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4); -fx-background-radius: 20;");
+                //#fdecea  #d32f2f
                 ///////////////////////////////////////////////////////////////////
                 daysBetween *= -1;
                 formattedDateCount = String.format("%02d",daysBetween);
                 remainDateLabel.setText(formattedDateCount);
-                RemainingTextLabel.setText("Days passed, Trip missed!");
+                RemainingTextLabel.setText("Days passed!");
                 remainingDateBox.getChildren().addAll(remainDateLabel,RemainingTextLabel);
             }
             
             //container of labels
             HBox dateBox = new HBox(10);
             Label dateTextLabel = new Label("Date Duration:");
-            dateTextLabel.getStyleClass().add("text-label");
+            dateTextLabel.getStyleClass().add("trip-text-label");
             Label cardDateLabel = new Label(TripService.trips.get(i).getStartDate().toString()+" to "+TripService.trips.get(i).getEndDate().toString());
-            cardDateLabel.getStyleClass().add("card-label"); 
+            cardDateLabel.getStyleClass().add("trip-card-label"); 
             
             //container of labels
             HBox locationBox = new HBox(10);
             Label locationTextLabel = new Label("Location:");
-            locationTextLabel.getStyleClass().add("text-label");
+            locationTextLabel.getStyleClass().add("trip-text-label");
             Label locationLabel = new Label(TripService.trips.get(i).getLocation());
-            locationLabel.getStyleClass().add("card-label");
+            locationLabel.getStyleClass().add("trip-card-label");
             
             /*VBox otherDetailsBox = new VBox(10);
             Label OtherDetailsTextLabel = new Label("Other Details:");

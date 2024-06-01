@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,7 +39,10 @@ import javafx.stage.Stage;
 public class Plan_tripController implements Initializable {
     
     private User u;
+    LocalDate currentDateInit;
     
+    @FXML
+    private Label dateLabel;
     @FXML
     private DatePicker fromPicker;
     
@@ -54,12 +58,8 @@ public class Plan_tripController implements Initializable {
     @FXML
     private ImageView profilePicView;
     
-    @FXML
-    private Label uName;
-    
     public void setUser(User user){
         if(user!=null){
-            uName.setText("Hello,"+user.getUserName()+"!");
             Image image =new Image(new File(user.getProfilePic()).toURI().toString());
             profilePicView.setImage(image);
             u=user;
@@ -283,6 +283,11 @@ public class Plan_tripController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+         //get Local Date
+        currentDateInit = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String formattedDate = currentDateInit.format(formatter); 
+        dateLabel.setText(formattedDate);
     }    
     
 }

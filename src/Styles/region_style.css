@@ -9,15 +9,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 /* styles.css */
 .curved-pane {
+    -fx-font-family: 'Segoe UI';
     -fx-background-color: #21381B; 
     -fx-background-radius: 0 100 0 0;
 }
 
 .text-region{
+    -fx-font-family: 'Segoe UI';
     -fx-text-fill:#ffffff
 }
 
 #CurrentDate {
+    -fx-font-family: 'Segoe UI';
     -fx-font-size: 20px; 
     -fx-text-fill: #ffffff; 
     -fx-alignment: center-left; 
@@ -25,14 +28,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .my-custom-scrollpane {
+    -fx-font-family: 'Segoe UI';
     -fx-background-color: rgb(182, 196, 182);
 }
 
 /* Style the scroll bar itself to be transparent */
 .scroll-bar {
+    -fx-font-family: 'Segoe UI';
     -fx-background-color: transparent;
 }
 .card {
+    -fx-font-family: 'Segoe UI';
     -fx-background-color: #FFFFFF; 
     -fx-border-color: #DDDDDD; 
     -fx-border-width: 1; 
@@ -42,12 +48,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .Tileimage-view {
+    -fx-font-family: 'Segoe UI';
     -fx-effect: dropshadow(three-pass-box, black, 15, 0, 0, 6);
     -fx-padding: 5;
     -fx-cursor: hand;
 }
 
 .image-card {
+    -fx-font-family: 'Segoe UI';
     -fx-background-color: #ffffff;
     -fx-border-color: #21381B;
     -fx-border-width: 1;
@@ -58,12 +66,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .card-label {
+    -fx-font-family: 'Segoe UI';
+    -fx-font-family: 'Segoe UI';
     -fx-font-size: 14px;
     -fx-text-fill: #21381B;
     -fx-padding: 2;
 }
 
 .text-label{
+    -fx-font-family: 'Segoe UI';
     -fx-font-size: 14px;              
     -fx-text-fill: #333;              
     -fx-font-weight: bold;            
@@ -75,6 +86,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .hyperLink{
+    -fx-font-family: 'Segoe UI';
     -fx-font-size: 14px;
     -fx-text-fill:  RGB(102, 116, 102);
     -fx-underline: true;
@@ -83,6 +95,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .detailed-image-card{
+    -fx-font-family: 'Segoe UI';
     -fx-background-color: #ffffff;
     -fx-border-color: #21381B;
     -fx-border-width: 1;
@@ -100,6 +113,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .detailed-card-label{
+    -fx-font-family: 'Segoe UI';
     -fx-font-size: 18px;
     -fx-text-fill: #21381B;
     -fx-padding: 4;
@@ -112,6 +126,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .detailed-card-Text{
+    -fx-font-family: 'Segoe UI';
     -fx-font-size: 18px;              
     -fx-text-fill: white;              
     -fx-font-weight: bold;            
@@ -124,6 +139,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .fav-text-label{
+    -fx-font-family: 'Segoe UI';
     -fx-font-size: 24px;              
     -fx-text-fill: #333;              
     -fx-font-weight: bold;            
@@ -135,12 +151,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .fav-card-label {
+    -fx-font-family: 'Segoe UI';
     -fx-font-size: 24px;
     -fx-text-fill: #21381B;
     -fx-padding: 2;
 }
 
 .fav-hyperLink{
+    -fx-font-family: 'Segoe UI';
     -fx-font-size: 24px;
     -fx-text-fill:  RGB(102, 116, 102);
     -fx-underline: true;
@@ -149,21 +167,45 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .trip-card-green{
-    -fx-background-color: #ffffff;
-    -fx-border-color: #388e3c;
+    -fx-font-family: 'Segoe UI';
+    -fx-background-color:  #A1B4A1;
+   /* -fx-border-color: #388e3c;*/
     -fx-border-width: 2;
     -fx-border-radius: 25;
     -fx-background-radius: 26;
     -fx-padding: 0 15 15 15;
-    -fx-effect:  dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);
+    -fx-effect:  dropshadow(gaussian, rgba(0, 0, 0, 0.25), 15, 0.0, 0,10);
 }
 
 .trip-card-red{
-    -fx-background-color: #ffffff;
-    -fx-border-color: #d32f2f;
+    -fx-font-family: 'Segoe UI';
+    -fx-background-color:  #A1B4A1;
+    /*-fx-border-color: #d32f2f;*/
     -fx-border-width: 2;
     -fx-border-radius: 25;
     -fx-background-radius: 26;
     -fx-padding: 0 15 15 15;
-    -fx-effect:  dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);
+    -fx-effect:  dropshadow(gaussian, rgba(0, 0, 0, 0.25), 15, 0.0, 0,10);
+}
+
+.trip-card-label {
+    -fx-font-family: 'Segoe UI';
+    -fx-font-size: 14px; 
+    -fx-text-fill: #21381B;
+    -fx-font-weight: bold;
+    -fx-padding: 2;
+}
+
+.trip-text-label{
+    -fx-font-family: 'Segoe UI';
+    -fx-font-size: 14px;              
+    -fx-text-fill: #333;              
+    -fx-font-weight: bold;            
+    -fx-padding: 4;             
+    -fx-background-color: rgba(255, 255, 255, 0.4); 
+    -fx-background-radius: 7;
+    -fx-border-color: rgba(255, 255, 255, 0.7); 
+    -fx-border-radius: 7;
+    -fx-border-width: 0 0 1 0;        
+    -fx-border-style: solid;          
 }

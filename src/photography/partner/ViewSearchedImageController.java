@@ -177,8 +177,8 @@ public class ViewSearchedImageController implements Initializable {
         deleteBtn.getStyleClass().add("card-button");
         deleteBtn.setOnAction(event -> handleDeleteAction(ImageService.images.get(index).getImgID(),event));
         
-        HBox buttonBox = new HBox(75);
-        buttonBox.setPadding(new Insets(30));
+        HBox buttonBox = new HBox(60);
+        buttonBox.setPadding(new Insets(40));
         
         buttonBox.getChildren().addAll(backBtn,editBtn,deleteBtn);
         GridPane.setColumnSpan(buttonBox, 2);
@@ -208,7 +208,7 @@ public class ViewSearchedImageController implements Initializable {
         gridPane.add(otherDetailsTextFlow, 1, 5);
         gridPane.add(techDetailsTextLabel, 0, 6);
         gridPane.add(techDetailsTextFlow, 1, 6);
-        gridPane.add(buttonBox, 0, 7);
+        gridPane.add(buttonBox, 0, 7,2,1);
         
         
         TilePane detailedTile = new TilePane();
@@ -325,7 +325,7 @@ public class ViewSearchedImageController implements Initializable {
         
         //Back Button
         Button backBtn = new Button("Back");
-        backBtn.getStyleClass().add("card-button");
+        backBtn.getStyleClass().add("card-button"); 
         
         if(flag == 1){
             //Here I use 1 as flag that indicate select_imageController class
@@ -345,8 +345,8 @@ public class ViewSearchedImageController implements Initializable {
         deleteBtn.getStyleClass().add("card-button");
         deleteBtn.setOnAction(event -> handleDeleteAction(img.getImgID(),event));
         
-        HBox buttonBox = new HBox(75);
-        buttonBox.setPadding(new Insets(30));
+        HBox buttonBox = new HBox(60);
+        buttonBox.setPadding(new Insets(40));
         
         buttonBox.getChildren().addAll(backBtn,editBtn,deleteBtn);
         GridPane.setColumnSpan(buttonBox, 2);
@@ -376,7 +376,7 @@ public class ViewSearchedImageController implements Initializable {
         gridPane.add(otherDetailsTextFlow, 1, 5);
         gridPane.add(techDetailsTextLabel, 0, 6);
         gridPane.add(techDetailsTextFlow, 1, 6);
-        gridPane.add(buttonBox, 0, 7);
+        gridPane.add(buttonBox, 0, 7,2,1);
         
         
         TilePane detailedTile = new TilePane();
