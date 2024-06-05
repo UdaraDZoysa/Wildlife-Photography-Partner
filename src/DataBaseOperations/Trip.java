@@ -14,6 +14,8 @@ public class Trip {
     private Date startDate;
     private Date endDate;
     private String otherDetails;
+    private boolean completed;
+    private boolean cancelled;
 
     public Trip(int userID, String location, Date startDate, Date endDate, String otherDetails) {
         this.userID = userID;
@@ -73,5 +75,20 @@ public class Trip {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-    
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
+    }  
 }

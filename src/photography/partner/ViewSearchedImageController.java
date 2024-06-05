@@ -133,7 +133,7 @@ public class ViewSearchedImageController implements Initializable {
         
         Text otherDetailsText = new Text(ImageService.images.get(index).getOtherDetails());
         otherDetailsText.setFill(Color.web("#21381B")); // Set text color
-        otherDetailsText.setFont(Font.font("System", FontWeight.NORMAL, 18));
+        otherDetailsText.setFont(Font.font("Segoe UI", FontWeight.NORMAL, 18));
         TextFlow otherDetailsTextFlow = new TextFlow(otherDetailsText);
         otherDetailsTextFlow.setStyle("-fx-padding: 4; -fx-background-color:white; -fx-border-color: #21381B; -fx-border-width: 0 0 3 5; -fx-border-style: solid; -fx-pref-width:450; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0, 10);");
         
@@ -143,7 +143,7 @@ public class ViewSearchedImageController implements Initializable {
         
         Text techDetailsText = new Text(ImageService.images.get(index).getTechDetails());
         techDetailsText.setFill(Color.web("#21381B")); // Set text color
-        techDetailsText.setFont(Font.font("System", FontWeight.NORMAL, 18));
+        techDetailsText.setFont(Font.font("Segoe UI", FontWeight.NORMAL, 18));
         TextFlow techDetailsTextFlow = new TextFlow(techDetailsText);
         techDetailsTextFlow.setStyle("-fx-padding: 4; -fx-background-color:white; -fx-border-color: #21381B; -fx-border-width: 0 0 3 5; -fx-border-style: solid; -fx-pref-width:450; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0, 10);");
         

@@ -45,7 +45,7 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1450.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);">
                <children>
-                  <Label layoutX="14.0" layoutY="52.0" prefHeight="46.0" prefWidth="237.0" text="Change Location:" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="706.0" AnchorPane.topAnchor="52.0">
+                  <Label layoutX="14.0" layoutY="52.0" prefHeight="46.0" prefWidth="237.0" text="Change Location:" textFill="#21381b" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="706.0" AnchorPane.topAnchor="52.0">
                      <font>
                         <Font name="Segoe UI Bold" size="30.0" />
                      </font></Label>
@@ -75,7 +75,7 @@
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <Label layoutX="71.0" layoutY="970.0" text="Change Category:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="500.0">
+                  <Label layoutX="71.0" layoutY="970.0" text="Change Category:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="500.0">
                      <font>
                         <Font name="Segoe UI Bold" size="30.0" />
                      </font></Label>
@@ -148,12 +148,12 @@
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <Label layoutX="66.0" layoutY="1352.0" prefHeight="46.0" prefWidth="300.0" text="Edit Other Details:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="884.0">
+                  <Label layoutX="66.0" layoutY="1352.0" prefHeight="46.0" prefWidth="300.0" text="Edit Other Details:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="884.0">
                      <font>
                         <Font name="Segoe UI Bold" size="30.0" />
                      </font></Label>
                   <TextArea fx:id="otherDetailsField" layoutX="742.0" layoutY="1584.0" prefHeight="100.0" prefWidth="940.0" promptText="Enter Text Here ..." style="-fx-border-color: #21381B; -fx-background-radius: 5; -fx-border-radius: 5;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="925.0" />
-                  <Label layoutX="36.0" layoutY="1551.2" prefHeight="46.0" prefWidth="434.0" text="Edit Technical Details:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="1108.0">
+                  <Label layoutX="36.0" layoutY="1551.2" prefHeight="46.0" prefWidth="434.0" text="Edit Technical Details:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="1108.0">
                      <font>
                         <Font name="Segoe UI Bold" size="30.0" />
                      </font></Label>

@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 import DataBaseOperations.UserService;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
-import javafx.scene.text.Font;
 import javafx.stage.Screen;
 
 /**

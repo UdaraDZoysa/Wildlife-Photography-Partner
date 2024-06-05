@@ -43,6 +43,7 @@ public class Plan_tripController implements Initializable {
     
     @FXML
     private Label dateLabel;
+    
     @FXML
     private DatePicker fromPicker;
     
@@ -128,7 +129,7 @@ public class Plan_tripController implements Initializable {
         locationField.setText("Kumana");
     }
     
-     @FXML
+    @FXML
     private void handleSaveTripBtnAction(ActionEvent event){
         
         boolean success = false;
