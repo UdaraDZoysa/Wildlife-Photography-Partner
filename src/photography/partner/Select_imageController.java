@@ -521,8 +521,8 @@ public class Select_imageController implements Initializable {
         HBox dateBox = new HBox(10);
         Label dateTextLabel = new Label("Saved Date:");
         dateTextLabel.getStyleClass().add("text-label");
-        Label dateLabel = new Label(ImageService.images.get(index).getDate().toString());
-        dateLabel.getStyleClass().add("card-label");
+        Label newdateLabel = new Label(ImageService.images.get(index).getDate().toString());
+        newdateLabel.getStyleClass().add("card-label");
         
         //container of labels
         HBox locationBox = new HBox(10);
@@ -544,7 +544,7 @@ public class Select_imageController implements Initializable {
         moreHyperLink.setOnAction(event -> displayImageWithDetails(event,index));
         
         //add date labels to container
-        dateBox.getChildren().addAll(dateTextLabel,dateLabel);
+        dateBox.getChildren().addAll(dateTextLabel,newdateLabel);
         
         //add location labels to container
         locationBox.getChildren().addAll(locationTextLabel,locationLabel);
@@ -719,8 +719,8 @@ public class Select_imageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imgTilePane.setAlignment(Pos.CENTER); // Ensures that the content is centered
-        imgTilePane.setHgap(35); // Horizontal gap between children
-        imgTilePane.setVgap(25); // Vertical gap between children
+        imgTilePane.setHgap(25); // Horizontal gap between children
+        imgTilePane.setVgap(30); // Vertical gap between children
         
         //get Local Date
         currentDate = LocalDate.now();

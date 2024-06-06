@@ -41,7 +41,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.time.temporal.ChronoUnit;
+import javafx.event.Event;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import javafx.stage.Window;
 /**
  * FXML Controller class
  *
@@ -173,7 +177,7 @@ public class DashBoard2Controller implements Initializable {
         
         TripService.getPlannedTrips(u.getUserID());
         HBox tripsHBox = new HBox(35);
-        tripsHBox.setPadding(new Insets(25, 25, 10, 35));
+        tripsHBox.setPadding(new Insets(25, 25, 0, 35));
         tripsHBox.setStyle("-fx-background-color:  #748C74;"); 
         
         for(int i=0;i<TripService.trips.size();i++){
@@ -182,10 +186,12 @@ public class DashBoard2Controller implements Initializable {
             
             //Create Remaining date label
             LocalDate startDateLocal = TripService.trips.get(i).getStartDate().toLocalDate();//Convert sql Date into Local Date
+            LocalDate endDateLocal = TripService.trips.get(i).getEndDate().toLocalDate();
              
-            long daysBetween = ChronoUnit.DAYS.between(currentDate, startDateLocal);// Calculate the number of days between startDate and curreny date(Using Local Dates)
+            long daysBetweenStart = ChronoUnit.DAYS.between(currentDate, startDateLocal);// Calculate the number of days between startDate and curreny date(Using Local Dates)
+            long daysBetweenEnd = ChronoUnit.DAYS.between(currentDate, endDateLocal);// Calculate the number of days between ednDate and curreny date(Using Local Dates)
             
-            String formattedDateCount = String.format("%02d",daysBetween);//convert Date count into formatted string
+            String formattedDateCount = String.format("%02d",daysBetweenStart);//convert Date count into formatted string
             Label remainDateLabel = new Label();
             Label RemainingTextLabel = new Label();
             
@@ -202,10 +208,10 @@ public class DashBoard2Controller implements Initializable {
             spacer1.setPrefWidth(10); // Set the desired width for the gap
             spacer.setPrefWidth(10);
             
-            if(daysBetween > 0){
+            if(daysBetweenStart > 0){
                 //set styles
                 remainDateLabel.setStyle("-fx-font-size: 75px; -fx-text-fill: #489651; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-padding: 10 10 10 10;"); 
-                RemainingTextLabel.setStyle("-fx-font-size: 24px; -fx-text-fill: #333; -fx-font-family: 'Segoe UI'; -fx-padding: 20 10 10 10; -fx-font-weight: bold;");
+                RemainingTextLabel.setStyle("-fx-font-size: 30px; -fx-text-fill: #333; -fx-font-family: 'Segoe UI'; -fx-padding: 20 10 10 10; -fx-font-weight: bold;");
                 remainingDateBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4); -fx-background-radius: 20;");
                 //#e8f5e9  #388e3c
                 ///////////////////////////////////////////////////
@@ -213,9 +219,9 @@ public class DashBoard2Controller implements Initializable {
                 RemainingTextLabel.setText("Days Left!"); 
                 remainingDateBox.getChildren().addAll(spacer1,remainDateLabel,RemainingTextLabel,spacer);
                 
-            }else if(daysBetween == 0){
+            }else if(daysBetweenStart == 0){
                 //set styles
-                RemainingTextLabel.setStyle("-fx-font-size: 24px; -fx-text-fill: #489651; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-padding: 20 10 10 10;");
+                RemainingTextLabel.setStyle("-fx-font-size: 40px; -fx-text-fill: #489651; -fx-font-family: 'Segoe UI'; -fx-font-weight: bold; -fx-padding: 20 10 10 10;");
                 remainingDateBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4); -fx-background-radius: 20;");
                 //#e8f5e9  #388e3c
                 ///////////////////////////////////////////////////////////////////
@@ -224,23 +230,44 @@ public class DashBoard2Controller implements Initializable {
             }else{
                 //set styles
                 remainDateLabel.setStyle("-fx-font-size: 75px; -fx-text-fill: #E45C5C; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-padding: 10 10 10 10;"); 
-                RemainingTextLabel.setStyle("-fx-font-size: 24px; -fx-text-fill: #333; -fx-font-family: 'Segoe UI'; -fx-padding: 20 10 10 10; -fx-font-weight: bold;");
+                RemainingTextLabel.setStyle("-fx-font-size: 30px; -fx-text-fill: #333; -fx-font-family: 'Segoe UI'; -fx-padding: 20 10 10 10; -fx-font-weight: bold;");
                 card.getStyleClass().add("trip-card-red");
                 remainingDateBox.setStyle("-fx-background-color: rgba(255, 255, 255, 0.4); -fx-background-radius: 20;");
                 //#fdecea  #d32f2f
                 ///////////////////////////////////////////////////////////////////
-                daysBetween *= -1;
-                formattedDateCount = String.format("%02d",daysBetween);
-                remainDateLabel.setText(formattedDateCount);
-                RemainingTextLabel.setText("Days passed!");
-                remainingDateBox.getChildren().addAll(remainDateLabel,RemainingTextLabel);
+                if(daysBetweenEnd > 0){
+                    daysBetweenStart *= -1;
+                    formattedDateCount = String.format("%02d",daysBetweenStart);
+                    remainDateLabel.setText(formattedDateCount);
+                    RemainingTextLabel.setText("Days passed!");
+                    remainingDateBox.getChildren().addAll(remainDateLabel,RemainingTextLabel);
+                    daysBetweenStart *= -1;
+                }else if(daysBetweenEnd == 0){
+                    RemainingTextLabel.setStyle("-fx-font-size: 40px; -fx-text-fill: #E45C5C; -fx-font-family: 'Segoe UI'; -fx-padding: 20 10 10 10; -fx-font-weight: bold;");
+                    RemainingTextLabel.setText("Today is the last Day of the trip!");
+                    remainingDateBox.getChildren().addAll(spacer1,RemainingTextLabel,spacer);
+                }else{
+                    daysBetweenEnd *= -1;
+                    Label lebel = new Label("days ago!");
+                    lebel.setStyle("-fx-font-size: 30px; -fx-text-fill: #333; -fx-font-family: 'Segoe UI'; -fx-padding: 0 10 20 10; -fx-font-weight: bold;");
+                    RemainingTextLabel.setStyle("-fx-font-size: 30px; -fx-text-fill: #333; -fx-font-family: 'Segoe UI'; -fx-padding: 0 10 20 10; -fx-font-weight: bold;");
+                    remainDateLabel.setStyle("-fx-font-size: 75px; -fx-text-fill: #E45C5C; -fx-font-weight: bold; -fx-font-family: 'Segoe UI'; -fx-padding: 10 10 10 10;"); 
+                    
+                    formattedDateCount = String.format("%02d",daysBetweenEnd);
+                    remainDateLabel.setText(formattedDateCount);
+                    RemainingTextLabel.setText("The trip ended ");
+                    remainingDateBox.getChildren().addAll(RemainingTextLabel,remainDateLabel,lebel);
+                    daysBetweenEnd *= -1;
+                }
+                
+                
             }
             
             //container of labels
             HBox dateBox = new HBox(10);
             Label dateTextLabel = new Label("Date Duration:");
             dateTextLabel.getStyleClass().add("trip-text-label");
-            Label cardDateLabel = new Label(TripService.trips.get(i).getStartDate().toString()+" to "+TripService.trips.get(i).getEndDate().toString());
+            Label cardDateLabel = new Label(TripService.trips.get(i).getStartDate().toString()+"  to  "+TripService.trips.get(i).getEndDate().toString());
             cardDateLabel.getStyleClass().add("trip-card-label"); 
             
             //container of labels
@@ -250,35 +277,49 @@ public class DashBoard2Controller implements Initializable {
             Label locationLabel = new Label(TripService.trips.get(i).getLocation());
             locationLabel.getStyleClass().add("trip-card-label");
             
-            /*VBox otherDetailsBox = new VBox(10);
-            Label OtherDetailsTextLabel = new Label("Other Details:");
-            OtherDetailsTextLabel.getStyleClass().add("detailed-card-Text");
+            final int index = i;
+            final long startDaysBetween = daysBetweenStart;
+            final long endDaysBetween = daysBetweenEnd;
+            
+            Hyperlink moreHyperLink = new Hyperlink("more...");
+            moreHyperLink.getStyleClass().add("hyperLink");
         
-            Text otherDetailsText = new Text(TripService.trips.get(i).getOtherDetails());
-            otherDetailsText.setFill(Color.web("#21381B")); // Set text color
-            otherDetailsText.setFont(Font.font("System", FontWeight.NORMAL, 18));
-            TextFlow otherDetailsTextFlow = new TextFlow(otherDetailsText);
-            otherDetailsTextFlow.setStyle("-fx-padding: 4; -fx-background-color:white; -fx-border-color: #21381B; -fx-border-width: 0 0 3 5; -fx-border-style: solid; -fx-pref-width:450; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.42), 15, 0.0, 0, 10);");
-            */
+            moreHyperLink.setOnAction(event -> displayTripDetails(event,index,startDaysBetween,endDaysBetween));
+
             //add date labels to container
             dateBox.getChildren().addAll(dateTextLabel,cardDateLabel);
         
             //add location labels to container
             locationBox.getChildren().addAll(locationTextLabel,locationLabel);
-            
-            //VBox locAndDateBox = new VBox(dateBox,locationBox);
-            
-            //otherDetailsBox.getChildren().addAll(OtherDetailsTextLabel,otherDetailsTextFlow);
         
             //add label containers to main card container
             spacer.setPrefWidth(20);
-            card.getChildren().addAll(remainingDateBox,spacer,dateBox,locationBox);
+            card.getChildren().addAll(remainingDateBox,spacer,dateBox,locationBox,moreHyperLink);
             
-            setupInterationsOfImages(card);
-         
+            setupInterationsOfTrips(card);
+            
             tripsHBox.getChildren().add(card); 
         }
         tripsTilePane.getChildren().add(tripsHBox);
+    }
+    
+    public void displayTripDetails(ActionEvent event, int index, long daysBetweenStart, long daysBetweenEnd) {
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewTripDetails.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the user
+            ViewTripDetailsController controller = loader.getController();
+            controller.setTripDetails(daysBetweenStart, daysBetweenEnd, index); 
+            controller.setUser(u);
+            
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error loading FXML: " + e.getMessage());
+        }
     }
     
     public void setRecentImages(){
@@ -304,6 +345,29 @@ public class DashBoard2Controller implements Initializable {
         
     }
     
+    private void setupInterationsOfTrips(Node card) {
+        // Scale transition for mouse enter
+        ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200), card);
+        scaleUp.setToX(1.1);
+        scaleUp.setToY(1.1);
+
+        // Scale transition for mouse exit
+        ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), card);
+        scaleDown.setToX(1.0);
+        scaleDown.setToY(1.0);
+
+        card.setOnMouseEntered(e -> {
+            scaleDown.stop(); // Stop the other transition if it's running
+            scaleUp.playFromStart(); // Play the scale-up transition
+        });
+
+        card.setOnMouseExited(e -> {
+            scaleUp.stop(); // Stop the other transition if it's running
+            scaleDown.playFromStart(); // Play the scale-down transition
+        });
+        
+    }
+    
     private void setupInterationsOfImages(Node card) {
         // Scale transition for mouse enter
         ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200), card);
@@ -321,6 +385,11 @@ public class DashBoard2Controller implements Initializable {
         });
 
         card.setOnMouseExited(e -> {
+            scaleUp.stop(); // Stop the other transition if it's running
+            scaleDown.playFromStart(); // Play the scale-down transition
+        });
+        
+        card.setOnMouseClicked(e -> {
             scaleUp.stop(); // Stop the other transition if it's running
             scaleDown.playFromStart(); // Play the scale-down transition
         });

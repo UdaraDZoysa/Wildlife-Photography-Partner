@@ -27,4 +27,28 @@ public class TripService {
     public static void getPlannedTrips(int userID){    
         trips = tripRepository.DisplayPlannedTrips(userID);
     }
+    
+    public static boolean setAsCompleted(int tripID){
+        return tripRepository.SetStatusAsCompleted(tripID);
+    }
+    
+    public static boolean setAsCancelled(int tripID){
+        return tripRepository.SetStatusAsCancelled(tripID);
+    }
+    
+    public static boolean RemoveTrip(int tripID){
+        return tripRepository.RemoveTrip(tripID);
+    }
+    
+    public static boolean UpdateTripDetails(String otherDetails, String Location, Date startDate, Date endDate,int tripID){ 
+        return tripRepository.UpdateTripDetails(otherDetails, Location, startDate, endDate, tripID);
+    }
+    
+    public static void getCompletedTrips(int userID){
+        trips = tripRepository.DisplayCompletedTrips(userID);
+    }
+    
+    public static void getCancelledTrips(int userID){
+        trips = tripRepository.DisplayCancelledTrips(userID);
+    }
 }

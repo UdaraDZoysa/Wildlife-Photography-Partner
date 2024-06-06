@@ -110,7 +110,7 @@ public class MemoriesController implements Initializable {
                         imageView.getStyleClass().add("Tileimage-view");
                     
                         HBox card = new HBox(10);
-                        card.getStyleClass().add("image-card");
+                        card.getStyleClass().add("fav-image-card");
                         card.setPadding(new Insets(10));
                     
                         card.getChildren().addAll(imageWrapper,createImageCard(i));
@@ -197,8 +197,8 @@ public class MemoriesController implements Initializable {
     private void setupInterationsOfImages(HBox card) {
         // Scale transition for mouse enter
         ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200), card);
-        scaleUp.setToX(1.1);
-        scaleUp.setToY(1.1);
+        scaleUp.setToX(1.075);
+        scaleUp.setToY(1.075);
 
         // Scale transition for mouse exit
         ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), card);
@@ -305,7 +305,7 @@ public class MemoriesController implements Initializable {
         // TODO
         imgTilePane.setAlignment(Pos.CENTER); // Ensures that the content is centered
         imgTilePane.setHgap(60); // Horizontal gap between children
-        imgTilePane.setVgap(25); // Vertical gap between children
+        imgTilePane.setVgap(35); // Vertical gap between children
         
         //get Local Date
         currentDate = LocalDate.now();
