@@ -15,8 +15,8 @@
                   <Image url="@../../image/Wildlife%20Photography%20Rookie%20Partner.png" />
                </image>
             </ImageView>
-            <Button fx:id="userBtn" layoutX="370.0" layoutY="495.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="172.0" styleClass="home-btn" stylesheets="@../../Styles/button_Style.css" text="User" onAction="#handleUserButtonAction" />
-            <Button layoutX="582.0" layoutY="495.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="182.0" styleClass="home-btn" stylesheets="@../../Styles/button_Style.css" text="Guest" />
+            <Button fx:id="userBtn" layoutX="370.0" layoutY="495.0" mnemonicParsing="false" onAction="#handleUserButtonAction" prefHeight="75.0" prefWidth="172.0" styleClass="home-btn" stylesheets="@../../Styles/button_Style.css" text="User" />
+            <Button fx:id="guestBtn" layoutX="582.0" layoutY="495.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="182.0" styleClass="home-btn" stylesheets="@../../Styles/button_Style.css" text="Guest" onAction="#handleGuestBtnAction" />
          </children>
       </AnchorPane>
    </children>

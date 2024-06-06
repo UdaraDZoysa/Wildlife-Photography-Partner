@@ -78,9 +78,9 @@
             <Circle centerX="30.0" centerY="30.0" radius="30.0" />
          </clip>
       </ImageView>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="408.0" layoutY="147.0" prefHeight="599.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER; -fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="408.0" layoutY="147.0" prefHeight="605.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER; -fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="3000.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1850.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);">
                <children>
                   <Label layoutX="34.0" layoutY="530.0" prefHeight="46.0" prefWidth="226.0" text="Select Location:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="739.0" AnchorPane.topAnchor="545.0">
                      <font>
@@ -116,7 +116,7 @@
                         <Font name="Segoe UI Bold" size="30.0" />
                      </font></Label>
                   <TextField fx:id="categoryField" layoutX="28.0" layoutY="1398.0" prefHeight="27.0" prefWidth="256.0" promptText="Category" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="270.0" AnchorPane.topAnchor="1001.0" />
-                  <ScrollPane hbarPolicy="NEVER" layoutX="772.0" layoutY="500.0" prefHeight="300.0" prefWidth="946.0" vbarPolicy="NEVER" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="1050.0">
+                  <ScrollPane hbarPolicy="NEVER" layoutX="772.0" layoutY="500.0" prefHeight="300.0" prefWidth="946.0" style="-fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="1050.0">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="1450.0" style="-fx-background-color: rgb(182, 196, 182);">
                            <children>

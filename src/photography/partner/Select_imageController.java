@@ -36,6 +36,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.util.Duration;
 
@@ -718,6 +719,12 @@ public class Select_imageController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        //Create a Circle to be used as clip of profile picture
+        profilePicView.setPreserveRatio(false);
+        Circle profileClip = new Circle(profilePicView.getFitWidth() / 2, profilePicView.getFitHeight() / 2, profilePicView.getFitWidth() / 2);
+        profilePicView.setClip(profileClip);
+        
         imgTilePane.setAlignment(Pos.CENTER); // Ensures that the content is centered
         imgTilePane.setHgap(25); // Horizontal gap between children
         imgTilePane.setVgap(30); // Vertical gap between children

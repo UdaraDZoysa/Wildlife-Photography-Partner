@@ -41,11 +41,9 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.time.temporal.ChronoUnit;
-import javafx.event.Event;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
-import javafx.stage.Window;
+import javafx.scene.text.TextAlignment;
 /**
  * FXML Controller class
  *
@@ -58,9 +56,6 @@ public class DashBoard2Controller implements Initializable {
     
     @FXML
     private TilePane  tripsTilePane;
-    
-    @FXML
-    private ScrollPane tripsScrollPane;
     
     @FXML
     private Label rLabel1;
@@ -177,7 +172,6 @@ public class DashBoard2Controller implements Initializable {
         
         TripService.getPlannedTrips(u.getUserID());
         HBox tripsHBox = new HBox(35);
-        tripsHBox.setPadding(new Insets(25, 25, 0, 35));
         tripsHBox.setStyle("-fx-background-color:  #748C74;"); 
         
         for(int i=0;i<TripService.trips.size();i++){
@@ -300,7 +294,39 @@ public class DashBoard2Controller implements Initializable {
             
             tripsHBox.getChildren().add(card); 
         }
-        tripsTilePane.getChildren().add(tripsHBox);
+        //Container HBox of All HBoxes and Link Cards
+        HBox finalHBox = new HBox(35);
+        finalHBox.setPadding(new Insets(25, 25, 25, 35));
+        
+        //hyper link to completed Trips
+        Hyperlink completedHyperLink = new Hyperlink("View All Completed Trips...");
+        completedHyperLink.setMaxWidth(150); // Set the maximum width to an appropriate value
+        completedHyperLink.setWrapText(true); // Enable text wrapping
+        completedHyperLink.setTextAlignment(TextAlignment.CENTER); // Optional: Center the text alignment
+        completedHyperLink.getStyleClass().add("trip-linkBox-hyperLink");
+        completedHyperLink.setOnAction(event -> handleCompletedHyperLinkAction(event)); 
+        
+        VBox completedLinkCard = new VBox(completedHyperLink);
+        completedLinkCard.setAlignment(Pos.CENTER); // Optional: Center the hyperlink within the container
+        completedLinkCard.getStyleClass().add("trip-link-card");
+        setupInterationsOfTrips(completedLinkCard);
+        
+        //hyper link to cancelled trips
+        Hyperlink cancelledHyperLink = new Hyperlink("View All Cancelled Trips...");
+        cancelledHyperLink.setMaxWidth(150); // Set the maximum width to an appropriate value
+        cancelledHyperLink.setWrapText(true); // Enable text wrapping
+        cancelledHyperLink.setTextAlignment(TextAlignment.CENTER); // Optional: Center the text alignment
+        cancelledHyperLink.getStyleClass().add("trip-linkBox-hyperLink");
+        cancelledHyperLink.setOnAction(event -> handleCancelledHyperLinkAction(event));
+        
+        VBox cancelledLinkCard = new VBox(cancelledHyperLink);
+        cancelledLinkCard.setAlignment(Pos.CENTER); // Optional: Center the hyperlink within the container
+        cancelledLinkCard.getStyleClass().add("trip-link-card");
+        setupInterationsOfTrips(cancelledLinkCard);
+        
+        finalHBox.getChildren().addAll(tripsHBox,completedLinkCard,cancelledLinkCard);
+        
+        tripsTilePane.getChildren().addAll(finalHBox);
     }
     
     public void displayTripDetails(ActionEvent event, int index, long daysBetweenStart, long daysBetweenEnd) {
@@ -317,8 +343,58 @@ public class DashBoard2Controller implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         }catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Error loading FXML: " + e.getMessage());
+        }
+    }
+
+    public void handleCompletedHyperLinkAction(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CompletedTrips.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the u
+            CompletedTripsController controller = loader.getController();
+            controller.setUser(u);
+            controller.setCompletedTrips();
+            
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+                    
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            
+            repositionWindow(stage);
+            
+            // Display the updated stage
+            stage.show();
+        }catch(IOException e){
+            System.out.println("Error:"+e.getMessage());
+        }
+    }
+    
+    public void handleCancelledHyperLinkAction(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CancelledTrips.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the u
+            CancelledTripsController controller = loader.getController();
+            controller.setUser(u);
+            controller.setCancelledTrips();
+            
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/Styles/button_Style.css").toExternalForm());
+            
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            
+            repositionWindow(stage);
+            
+            // Display the updated stage
+            stage.show();
+        }catch(IOException e){
+            System.out.println("Error:"+e.getMessage());
         }
     }
     

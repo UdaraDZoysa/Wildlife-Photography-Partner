@@ -8,7 +8,7 @@ import javafx.scene.control.Alert;
 
 public class UserService {
     
-    private UserRepository userRepository = new UserRepository();//create userRepository object
+    private static UserRepository userRepository = new UserRepository();//create userRepository object
     
     //this method handle the user authentication process when user try to login
     //this will return retrived user details 
@@ -45,5 +45,9 @@ public class UserService {
         alert.setHeaderText(null);
         alert.setContentText("Welcome, " + username + "!");
         alert.showAndWait();
+    }
+    
+    public static String getUserName(int userID){
+        return userRepository.getUserName(userID).getUserName();
     }
 }

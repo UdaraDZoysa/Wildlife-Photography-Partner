@@ -69,9 +69,9 @@
             <Circle centerX="30.0" centerY="30.0" radius="30.0" />
          </clip>
       </ImageView>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="599.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER; -fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="6.0">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="605.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER; -fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="6.0">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1300.0" prefWidth="985.0" style="-fx-background-color: rgb(182, 196, 182);">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1250.0" prefWidth="985.0" style="-fx-background-color: rgb(182, 196, 182);">
                <children>
                   <AnchorPane layoutX="441.0" layoutY="13.0" prefHeight="160.0" prefWidth="240.0" style="-fx-background-color: #5A6E50; -fx-border-radius: 25; -fx-background-radius: 25; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="726.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -123,7 +123,7 @@
                            </font>
                         </Label>
                      </children></AnchorPane>
-                  <ImageView fx:id="dashBImageView" fitHeight="331.0" fitWidth="408.0" layoutX="27.0" layoutY="90.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" AnchorPane.bottomAnchor="881.0">
+                  <ImageView fx:id="dashBImageView" fitHeight="325.0" fitWidth="408.0" layoutX="27.0" layoutY="90.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" AnchorPane.bottomAnchor="831.0">
                      <image>
                         <Image url="@../../image/bambooleaves2.png" />
                      </image>
