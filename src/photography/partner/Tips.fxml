@@ -54,7 +54,7 @@
                </image>
             </ImageView>
             <Text fill="WHITE" layoutX="171.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold; -fx-font-size: 20; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="WPRP" />
-            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handlehomeBtnAction" prefHeight="47.0" prefWidth="115.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="       Home" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handlehomeBtnAction" prefHeight="47.0" prefWidth="128.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="       Home" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="22.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="22.0">
                <image>
                   <Image url="@../../image/home%20(1).png" />
@@ -82,6 +82,16 @@
       <Label fx:id="dateLabel" text="19/03/2000" textFill="WHITE" AnchorPane.bottomAnchor="655.0" AnchorPane.leftAnchor="405.0">
          <font>
             <Font name="Segoe UI Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="479.0" layoutY="362.0" text="(This feature is currently under development because we need &#10;expert opinions. It will be available once we gather insights from &#10;photography experts.)">
+         <font>
+            <Font name="Segoe UI Italic" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="479.0" layoutY="311.0" text="Coming Soon: Expert Tips for Rookie Photographers." textFill="#21381b">
+         <font>
+            <Font name="Segoe UI Bold" size="35.0" />
          </font>
       </Label>
    </children>

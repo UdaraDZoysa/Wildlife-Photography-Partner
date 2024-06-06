@@ -259,6 +259,43 @@ public class TripRepository {
         return rtrn;
     }
     
+    public boolean SetStatusAsNotCancelled(String otherDetails, String Location, Date startDate, Date endDate,int tripID){
+        
+        boolean rtrn = false;//initial return state
+        
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            conn.setAutoCommit(false);//auto commit off
+            
+            String sql="UPDATE trip SET other_details = ?, Location = ?, start_date = ?, end_date = ?,cancelled = FALSE  WHERE trip_id = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            
+            stmt.setString(1, otherDetails);
+            stmt.setString(2, Location);
+            stmt.setDate(3, startDate);
+            stmt.setDate(4, endDate);
+            stmt.setInt(5, tripID);
+                                   
+            int effectedRowCount=stmt.executeUpdate();//get number of effected rows in DB
+            
+            if(effectedRowCount>0){
+                conn.commit();
+                rtrn = true;
+            }
+            else{
+                conn.rollback();
+            }
+        }catch(ClassNotFoundException e){
+            System.out.println("Class Not Found:"+e.getMessage());
+        }catch(SQLException e){
+            System.out.println("SQL Exception:"+e.getMessage());
+        }
+        
+        return rtrn;
+    }
+    
     public boolean RemoveTrip(int tripID){
         
         boolean rtrn = false;

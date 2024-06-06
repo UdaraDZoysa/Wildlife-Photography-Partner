@@ -36,6 +36,10 @@ public class TripService {
         return tripRepository.SetStatusAsCancelled(tripID);
     }
     
+    public static boolean setAsNotCancelled(String otherDetails, String Location, Date startDate, Date endDate,int tripID){ 
+        return tripRepository.SetStatusAsNotCancelled(otherDetails, Location, startDate, endDate, tripID);
+    }
+    
     public static boolean RemoveTrip(int tripID){
         return tripRepository.RemoveTrip(tripID);
     }

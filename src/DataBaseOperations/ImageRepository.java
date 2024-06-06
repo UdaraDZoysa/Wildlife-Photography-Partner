@@ -26,7 +26,7 @@ public class ImageRepository {
             Connection conn = CreateConnection.getConnection();
             conn.setAutoCommit(false);//auto commit off
             
-            String sql="INSERT INTO photos(user_id, photo_url, OtherDetails, TechDetails, categories, Location,Privacy) VALUES  (?, ?, ?, ?,?,?,?)";
+            String sql="INSERT INTO photos(user_id, photo_url, OtherDetails, TechDetails, categories, Location,Public) VALUES  (?, ?, ?, ?,?,?,?)";
             
             PreparedStatement stmt = conn.prepareCall(sql);
             stmt.setInt(1, img.getUserID());
@@ -65,7 +65,7 @@ public class ImageRepository {
             Connection conn = CreateConnection.getConnection();
             conn.setAutoCommit(false);//auto commit off
             
-            String sql="UPDATE photos SET OtherDetails = ?, TechDetails = ?, categories = ?, Location = ?,Privacy = ? WHERE photo_id = ?";
+            String sql="UPDATE photos SET OtherDetails = ?, TechDetails = ?, categories = ?, Location = ?,Public = ? WHERE photo_id = ?";
             
             PreparedStatement stmt = conn.prepareStatement(sql);
             
@@ -100,7 +100,7 @@ public class ImageRepository {
                     image.setOtherDetails(rs.getString("OtherDetails"));
                     image.setTechDetails(rs.getString("TechDetails"));
                     image.setDate(rs.getDate("timestamp"));
-                    image.setVilibleAll(rs.getBoolean("Privacy"));
+                    image.setVilibleAll(rs.getBoolean("Public"));
                     image.setFavourite(rs.getBoolean("Favourite"));
                 } 
                 
@@ -231,7 +231,7 @@ public class ImageRepository {
                 image.setOtherDetails(rs.getString("OtherDetails"));
                 image.setTechDetails(rs.getString("TechDetails"));
                 image.setDate(rs.getDate("timestamp"));
-                image.setVilibleAll(rs.getBoolean("Privacy"));
+                image.setVilibleAll(rs.getBoolean("Public"));
                 image.setFavourite(rs.getBoolean("Favourite"));
                 images.add(image);
             }
@@ -290,7 +290,7 @@ public class ImageRepository {
                 image.setOtherDetails(rs.getString("OtherDetails"));
                 image.setTechDetails(rs.getString("TechDetails"));
                 image.setDate(rs.getDate("timestamp"));
-                image.setVilibleAll(rs.getBoolean("Privacy"));
+                image.setVilibleAll(rs.getBoolean("Public"));
                 image.setFavourite(rs.getBoolean("Favourite"));
                 images.add(image);
             }
@@ -347,7 +347,7 @@ public class ImageRepository {
                 image.setOtherDetails(rs.getString("OtherDetails"));
                 image.setTechDetails(rs.getString("TechDetails"));
                 image.setDate(rs.getDate("timestamp"));
-                image.setVilibleAll(rs.getBoolean("Privacy"));
+                image.setVilibleAll(rs.getBoolean("Public"));
                 image.setFavourite(rs.getBoolean("Favourite"));
                 images.add(image);
             }
@@ -389,7 +389,7 @@ public class ImageRepository {
                 image.setOtherDetails(rs.getString("OtherDetails"));
                 image.setTechDetails(rs.getString("TechDetails"));
                 image.setDate(rs.getDate("timestamp"));
-                image.setVilibleAll(rs.getBoolean("Privacy"));
+                image.setVilibleAll(rs.getBoolean("Public"));
                 image.setFavourite(rs.getBoolean("Favourite"));
                 images.add(image);
             }
@@ -465,7 +465,7 @@ public class ImageRepository {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = CreateConnection.getConnection();
             
-            String sql="SELECT COUNT(*) AS public_imageCount FROM photos WHERE user_id = ? AND Privacy = ?";
+            String sql="SELECT COUNT(*) AS public_imageCount FROM photos WHERE user_id = ? AND Public = ?";
             
             PreparedStatement stmt = conn.prepareStatement(sql);
         
@@ -505,6 +505,38 @@ public class ImageRepository {
             
             while(rs.next()){
                 Images image = new Images();
+                image.setImgPath(rs.getString("photo_url"));
+                image.setDate(rs.getDate("timestamp"));
+                images.add(image);
+            }
+            
+        }catch(ClassNotFoundException e){
+            System.out.println("Class Not Found:"+e.getMessage());
+        }catch(SQLException e){
+            System.out.println("SQL Exception:"+e.getMessage());
+        }
+       
+        return images;
+    }
+    
+    public List<Images> DisplayPublicImages(){
+        
+        List<Images> images = new ArrayList<>();
+        
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            
+            String sql="SELECT * FROM photos WHERE Public = TRUE";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Images image = new Images();
+
+                image.setUserID(rs.getInt("user_id"));
                 image.setImgPath(rs.getString("photo_url"));
                 image.setDate(rs.getDate("timestamp"));
                 images.add(image);

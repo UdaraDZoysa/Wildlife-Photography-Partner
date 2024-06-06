@@ -73,4 +73,7 @@ public class ImageService {
         images = imageRepository.DisplayRecentImages(userID);
     }
     
+    public static void getPublicImages(){
+        images = imageRepository.DisplayPublicImages();
+    }
 }

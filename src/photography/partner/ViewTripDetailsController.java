@@ -27,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -167,7 +168,7 @@ public class ViewTripDetailsController implements Initializable {
             
             // Retrieve the controller associated with the FXML file and set the u
             EditTripDetailsController controller = loader.getController();
-            controller.setUser(u,i);
+            controller.setUser(u,i,1);//pass 1 to indicate that call coming from ViewTripDetailsController
             
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
@@ -198,6 +199,33 @@ public class ViewTripDetailsController implements Initializable {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
                     
+            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            
+            repositionWindow(stage);
+            
+            // Display the updated stage
+            stage.show();
+        }catch(IOException e){
+            System.out.println("Error:"+e.getMessage());
+        }
+    }
+    
+    @FXML
+    public void handleCancelledTripsBtnAction(ActionEvent event){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CancelledTrips.fxml"));
+            Parent root =loader.load();
+            
+            // Retrieve the controller associated with the FXML file and set the u
+            CancelledTripsController controller = loader.getController();
+            controller.setUser(u);
+            controller.setCancelledTrips();
+            
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/Styles/button_Style.css").toExternalForm());
+            
             Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             
@@ -244,6 +272,12 @@ public class ViewTripDetailsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        //Create a Circle to be used as clip of profile picture
+        profilePicView.setPreserveRatio(false);
+        Circle profileClip = new Circle(profilePicView.getFitWidth() / 2, profilePicView.getFitHeight() / 2, profilePicView.getFitWidth() / 2);
+        profilePicView.setClip(profileClip);
+        
         //get Local Date
         currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");

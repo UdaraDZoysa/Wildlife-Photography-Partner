@@ -85,4 +85,35 @@ public class UserRepository {
         return rtrn;
     }
     
+    public User getUserName(int userID){
+        
+        User user=null;
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = CreateConnection.getConnection();
+            
+            String sql= "select username from users where user_id = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql); 
+            stmt.setInt(1, userID);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                String username = rs.getString("username");
+                user = new User();  // Assuming you have a default constructor
+                user.setUserName(username); 
+            }
+            
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class Not Found:"+e.getMessage()); 
+        
+        }catch (SQLException e) {
+            System.err.println("SQLException: " + e.getMessage());
+        }
+        
+        return user;
+    }
+
 }
