@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -262,6 +263,17 @@ public class ImageRepository {
             String sql="SELECT * FROM photos WHERE user_id = ? AND timestamp BETWEEN ? AND ? AND Categories IN (" + inClauseCat + ") AND Location IN (" + inClause + ")";
             
             PreparedStatement stmt = conn.prepareStatement(sql);
+
+            /*Calendar calStart = Calendar.getInstance();
+            Calendar calEnd = Calendar.getInstance();
+            
+            calStart.setTime(startDate);
+            calStart.add(Calendar.DAY_OF_MONTH, -1);
+            Date dayBeforeStartDate = new Date(calStart.getTimeInMillis());
+            
+            calEnd.setTime(endDate);
+            calEnd.add(Calendar.DAY_OF_MONTH, 1);
+            Date dayAfterEndDate = new Date(calEnd.getTimeInMillis());*/
            
             stmt.setInt(1,userID);
             stmt.setDate(2, startDate);

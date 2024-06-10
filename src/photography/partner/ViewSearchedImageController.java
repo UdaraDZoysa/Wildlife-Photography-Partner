@@ -10,6 +10,9 @@ import DataBaseOperations.User;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -43,6 +46,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -181,7 +185,16 @@ public class ViewSearchedImageController implements Initializable {
         buttonBox.setPadding(new Insets(40));
         
         buttonBox.getChildren().addAll(backBtn,editBtn,deleteBtn);
+        
+        //get Image Button
+        Button getImgBtn = new Button("Get Image");
+        getImgBtn.getStyleClass().add("get-img-button");
+        getImgBtn.setOnAction(event->saveImageToFavoriteLocation(event, ImageService.images.get(index).getImgPath()));
+        GridPane.setValignment(getImgBtn,VPos.TOP );
+        GridPane.setHalignment(getImgBtn,HPos.CENTER );
+        
         GridPane.setColumnSpan(buttonBox, 2);
+        GridPane.setColumnIndex(getImgBtn, 2);
             
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(5, 10, 5, 10));
@@ -209,6 +222,7 @@ public class ViewSearchedImageController implements Initializable {
         gridPane.add(techDetailsTextLabel, 0, 6);
         gridPane.add(techDetailsTextFlow, 1, 6);
         gridPane.add(buttonBox, 0, 7,2,1);
+        gridPane.add(getImgBtn, 0, 8,2,1);
         
         
         TilePane detailedTile = new TilePane();
@@ -349,7 +363,16 @@ public class ViewSearchedImageController implements Initializable {
         buttonBox.setPadding(new Insets(40));
         
         buttonBox.getChildren().addAll(backBtn,editBtn,deleteBtn);
+        
+        //get Image Button
+        Button getImgBtn = new Button("Get Image");
+        getImgBtn.getStyleClass().add("get-img-button");
+        getImgBtn.setOnAction(event->saveImageToFavoriteLocation(event, ImageService.images.get(i).getImgPath()));
+        GridPane.setValignment(getImgBtn,VPos.TOP );
+        GridPane.setHalignment(getImgBtn,HPos.CENTER );
+        
         GridPane.setColumnSpan(buttonBox, 2);
+        GridPane.setColumnIndex(getImgBtn, 2);
             
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new Insets(5, 10, 5, 10));
@@ -377,6 +400,7 @@ public class ViewSearchedImageController implements Initializable {
         gridPane.add(techDetailsTextLabel, 0, 6);
         gridPane.add(techDetailsTextFlow, 1, 6);
         gridPane.add(buttonBox, 0, 7,2,1);
+        gridPane.add(getImgBtn, 0, 8,2,1);
         
         
         TilePane detailedTile = new TilePane();
@@ -573,6 +597,30 @@ public class ViewSearchedImageController implements Initializable {
             System.out.println("Error:"+e.getMessage());
         }
     }
+    
+    @FXML
+    private void saveImageToFavoriteLocation(ActionEvent event, String imagePath) {
+        FileChooser fileChooser = new FileChooser();// Create a new FileChooser object to select file location
+        fileChooser.setTitle("Save Image As");
+        
+        // Set up a filter to only show image files (.png, .jpg, .jpeg) in the file chooser.
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Images (*.png, *.jpg, *.jpeg)", "*.png", "*.jpg", "*.jpeg");
+        fileChooser.getExtensionFilters().add(extFilter);
+        
+        // Open the save dialog and get the selected file location.
+        File file = fileChooser.showSaveDialog(((Node) event.getSource()).getScene().getWindow());
+
+        if (file != null) {
+            try {
+                Files.copy(Paths.get(imagePath), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                System.out.println("Error:"+e.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to save image.");
+                alert.show();
+            }
+        }
+    }
+
     
     public void handleAddFavouriteBtnAction(){
         toggle = !toggle;
