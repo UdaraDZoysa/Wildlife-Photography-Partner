@@ -209,3 +209,16 @@
     -fx-opacity: 0.8;
 }
 
+.get-img-button {
+    -fx-font-family: 'Segoe UI';
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(to bottom, #2D4F2B 0%, #21381B 100%);
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-cursor: hand;
+    -fx-border-color: #1A3017;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 2);
+    -fx-pref-width: 300;
+    -fx-pref-height: -1; 
+}

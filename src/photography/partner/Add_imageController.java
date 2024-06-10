@@ -45,7 +45,7 @@ public class Add_imageController implements Initializable {
     
     private User u;
     private ImageService imageService = new ImageService();
-    static boolean toggle;
+    static boolean toggle = false;
     LocalDate currentDate;
     
     @FXML
