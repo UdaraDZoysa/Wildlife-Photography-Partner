@@ -516,7 +516,7 @@ public class Select_imageController implements Initializable {
         
         //partial container of details
         VBox detailsVbox = new VBox(5);
-        detailsVbox.setPadding(new Insets(5,10,5,10));
+        detailsVbox.setPadding(new Insets(5,5,5,10));
         
         //container of labels
         HBox dateBox = new HBox(10);
@@ -727,7 +727,7 @@ public class Select_imageController implements Initializable {
         
         imgTilePane.setAlignment(Pos.CENTER); // Ensures that the content is centered
         imgTilePane.setHgap(25); // Horizontal gap between children
-        imgTilePane.setVgap(30); // Vertical gap between children
+        imgTilePane.setVgap(35); // Vertical gap between children
         
         //get Local Date
         currentDate = LocalDate.now();
