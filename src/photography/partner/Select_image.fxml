@@ -206,7 +206,7 @@
                         <Font name="Segoe UI Bold" size="30.0" />
                      </font></Label>
                  <Button fx:id="searchBtn" layoutX="490.0" layoutY="1586.0" mnemonicParsing="false" onAction="#handleSearchBtnAction" prefWidth="500.0" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Search" AnchorPane.leftAnchor="243.0" AnchorPane.topAnchor="1050.0" />
-                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="-2.0" layoutY="1200.0" prefHeight="600.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="1200.0">
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="-2.0" layoutY="1200.0" prefHeight="600.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="1200.0">
                      <content>
                         <TilePane fx:id="imgTilePane" prefHeight="600.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182); -fx-padding: 25;" />
                      </content>
