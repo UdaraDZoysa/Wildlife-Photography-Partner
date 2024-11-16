@@ -9,6 +9,7 @@ package photography.partner;
  * @author Harsha
  */
 public class UserDraft {
+
     private static String userName;
     private static String password;
     private static String email;
@@ -44,5 +45,5 @@ public class UserDraft {
 
     public static void setProfilePicPath(String aProfilePicPath) {
         profilePicPath = aProfilePicPath;
-    }  
+    }
 }

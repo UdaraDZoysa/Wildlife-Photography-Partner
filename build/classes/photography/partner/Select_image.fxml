@@ -13,217 +13,241 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: rgb(182, 196, 182);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photography.partner.Select_imageController">
-   <children>
-      <AnchorPane prefHeight="750.0" prefWidth="400.0" style="-fx-background-color: #21381B;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <ImageView fitHeight="752.0" fitWidth="400.0" layoutX="5.0" layoutY="310.0" pickOnBounds="true" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <image>
-                  <Image url="@../../image/OME8011.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="108.0" fitWidth="128.0" layoutX="146.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../image/camera.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="menuSearchBtn" layoutY="202.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="selected-button" stylesheets="@../../Styles/button_Style.css" text="        Search Image" AnchorPane.leftAnchor="0.0" />
-            <Button fx:id="addBtn" layoutY="253.0" mnemonicParsing="false" onAction="#handleAddBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Add New Image" AnchorPane.leftAnchor="0.0" />
-            <Button fx:id="planBtn" layoutY="304.0" mnemonicParsing="false" onAction="#handlePlanTripBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Plan A Trip" />
-            <Button fx:id="memoBtn" layoutY="355.0" mnemonicParsing="false" onAction="#handleMemoBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Favourite Images" />
-            <Button fx:id="tipsBtn" layoutY="406.0" mnemonicParsing="false" onAction="#handleTipsBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Camera Tips" />
-            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../image/search%20(1).png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../image/add-image%20(1).png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../image/location%20(1).png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../image/photo-rating.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../image/idea.png" />
-               </image>
-            </ImageView>
-            <Text fill="WHITE" layoutX="171.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold; -fx-font-size: 20; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="WPRP" />
-            <Button fx:id="homeBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handlehomeBtnAction" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="      Home" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="30.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="22.0">
-               <image>
-                    <Image url="@../../image/home%20(1).png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <ImageView fitHeight="100.0" fitWidth="1000.0" layoutX="427.0" layoutY="15.0" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../../image/cover1.png" />
-         </image>
-      </ImageView>
-      <Circle fill="WHITE" layoutX="1345.0" layoutY="93.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: white; -fx-stroke-width: 4; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" />
-      <ImageView fx:id="profilePicView" fitHeight="60.0" fitWidth="60.0" layoutX="1315.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
-         <clip>
-            <Circle centerX="30.0" centerY="30.0" radius="30.0" />
-         </clip>
-      </ImageView>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="542.0" layoutY="278.0" prefHeight="599.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER; -fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="408.0">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1850.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);">
-               <children>
-                  <Label layoutX="34.0" layoutY="11.2" prefHeight="46.0" prefWidth="237.0" text="Select Location:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="714.0" AnchorPane.topAnchor="14.0">
-                     <font>
-                        <Font name="Segoe UI Bold" size="30.0" />
-                     </font></Label>
-                  <TextField fx:id="locationField" layoutX="238.0" layoutY="539.0" prefHeight="30.0" prefWidth="700.0" promptText="Location" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="55.0" />
-                  <ScrollPane hbarPolicy="NEVER" layoutX="370.0" layoutY="529.0" prefHeight="300.0" prefWidth="600.0" style="-fx-border-color: #21381B;" vbarPolicy="NEVER" AnchorPane.leftAnchor="174.0" AnchorPane.topAnchor="110.0">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="890.0" prefWidth="623.0" style="-fx-background-color: rgb(182, 196, 182);">
-                           <children>
-                              <ImageView fitHeight="890.0" fitWidth="623.0" layoutX="-1.0" pickOnBounds="true" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="0.0">
-                                 <image>
-                                    <Image url="@../../image/map3.png" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="wilpattuBtn" layoutX="195.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleWilpattuBtnAction" prefWidth="70.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="349.0" />
-                              <Button fx:id="hecBtn" layoutX="263.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleHecBtnAction" prefWidth="125.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="183.0" AnchorPane.topAnchor="393.0" />
-                              <Button fx:id="kaudullaBtn" layoutX="181.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleKaudullaBtnAction" prefWidth="70.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="411.0" AnchorPane.topAnchor="354.0" />
-                              <Button fx:id="minneriyaBtn" layoutX="286.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleMinneriyaBtnAction" prefWidth="80.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="385.0" AnchorPane.topAnchor="394.0" />
-                              <Button fx:id="wasgamuwaBtn" layoutX="195.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleWasgamuwaBtnAction" prefWidth="102.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="331.0" AnchorPane.topAnchor="476.0" />
-                              <Button fx:id="hortonBtn" layoutX="220.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleHortonPlainsBtnAction" prefWidth="105.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="238.0" AnchorPane.topAnchor="565.5" />
-                              <Button fx:id="galoya" layoutX="164.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleGaloyaBtnAction" prefWidth="58.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="416.0" AnchorPane.topAnchor="604.0" />
-                              <Button fx:id="udawalawaBtn" layoutX="181.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleUdawalaweBtnAction" prefWidth="95.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="308.0" AnchorPane.topAnchor="685.0" />
-                              <Button fx:id="kumanaBtn" layoutX="282.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleKumanaBtnAction" prefWidth="65.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="527.0" AnchorPane.topAnchor="680.0" />
-                              <Button fx:id="yalaBtn" layoutX="282.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleYalaBtnAction" prefWidth="35.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="494.0" AnchorPane.topAnchor="737.0" />
-                              <Button fx:id="sinharajaBtn" layoutX="357.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleSinharajaBtnAction" prefWidth="76.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="237.0" AnchorPane.topAnchor="753.0" />
-                              <Button fx:id="bundalaBtn" layoutX="399.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleBundalaBtnAction" prefWidth="65.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="438.0" AnchorPane.topAnchor="782.0" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-                  <Label layoutX="71.0" layoutY="970.0" text="Choose Category:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="458.0">
-                     <font>
-                        <Font name="Segoe UI Bold" size="30.0" />
-                     </font></Label>
-                  <TextField fx:id="categoryField" layoutX="28.0" layoutY="1398.0" prefHeight="30.0" prefWidth="700.0" promptText="Category" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="500.0" />
-                  <ScrollPane hbarPolicy="NEVER" layoutX="772.0" layoutY="500.0" prefHeight="300.0" prefWidth="946.0" style="-fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="540.0">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="1450.0" style="-fx-background-color: rgb(182, 196, 182);">
-                           <children>
-                              <AnchorPane layoutX="14.0" layoutY="19.0" prefHeight="250.0" prefWidth="220.0" styleClass="card" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="10.0">
-                                 <children>
-                                    <ImageView fitHeight="175.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <image>
-                                          <Image url="@../../image/mammals2.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Button fx:id="mammalsBtn" layoutX="67.0" layoutY="201.0" mnemonicParsing="false" onAction="#handleMammalsBtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Mammals" AnchorPane.bottomAnchor="15.0" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutX="320.0" layoutY="14.0" prefHeight="250.0" prefWidth="220.0" styleClass="card" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="254.0" AnchorPane.topAnchor="10.0">
-                                 <children>
-                                    <ImageView fitHeight="175.0" fitWidth="200.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <image>
-                                          <Image url="@../../image/birds2.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Button fx:id="birdsBtn" layoutX="82.0" layoutY="201.0" mnemonicParsing="false" onAction="#handleBirdsBtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Birds" AnchorPane.bottomAnchor="15.0" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutX="540.0" layoutY="14.0" prefHeight="250.0" prefWidth="220.0" styleClass="card" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="494.0" AnchorPane.topAnchor="10.0">
-                                 <children>
-                                    <ImageView fitHeight="175.0" fitWidth="200.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
-                                       <image>
-                                          <Image url="@../../image/reptilia.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Button fx:id="raaBtn" layoutX="58.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleRAABtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Reptiles and&#10;Amphibians" AnchorPane.bottomAnchor="15.0" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="250.0" prefWidth="220.0" styleClass="card" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="734.0" AnchorPane.topAnchor="10.0">
-                                 <children>
-                                    <ImageView fitHeight="175.0" fitWidth="200.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <image>
-                                          <Image url="@../../image/insects.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Button fx:id="iaaBtn" layoutX="27.0" layoutY="201.0" mnemonicParsing="false" onAction="#handleIAABtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Insects and Arachnids" AnchorPane.bottomAnchor="15.0" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutX="1063.0" layoutY="13.0" prefHeight="250.0" prefWidth="220.0" styleClass="card" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="974.0" AnchorPane.topAnchor="13.0">
-                                 <children>
-                                    <ImageView fitHeight="175.0" fitWidth="200.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <image>
-                                          <Image url="@../../image/fish.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Button fx:id="aquaticBtn" layoutX="51.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleAquaticBtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Aquatic Life" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="56.0" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="250.0" prefWidth="220.0" styleClass="card" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="1214.0" AnchorPane.topAnchor="10.0">
-                                 <children>
-                                    <ImageView fitHeight="175.0" fitWidth="200.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                       <image>
-                                          <Image url="@../../image/other.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Button fx:id="otherBtn" layoutX="53.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleOtherBtnAction" prefWidth="90.0" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Other" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="61.0" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-                  <Label layoutX="36.0" layoutY="1551.2" prefHeight="46.0" prefWidth="380.0" text="Select Saved Date:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="870.0">
-                     <font>
-                        <Font name="Segoe UI Bold" size="30.0" />
-                     </font></Label>
-                  <Button fx:id="selectAllLocationBtn" layoutX="744.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleSelectAllLocationBtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Select All" AnchorPane.leftAnchor="740.0" />
-                  <Button fx:id="selectAllCategoriesBtn" layoutX="782.0" layoutY="483.0" mnemonicParsing="false" onAction="#handleSelectAllCategoriesBtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Select All" AnchorPane.leftAnchor="740.0" AnchorPane.topAnchor="496.0" />
-                  <DatePicker fx:id="fromPicker" layoutX="488.0" layoutY="1360.0" prefWidth="225.0" promptText="From" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="910.0" />
-                  <Label layoutX="479.0" layoutY="1338.0" text="Date Range: " textFill="#21381b" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="872.0">
-                     <font>
-                        <Font name="Segoe UI Bold" size="30.0" />
-                     </font></Label>
-                  <DatePicker fx:id="exactPicker" layoutX="401.0" layoutY="1587.0" prefWidth="225.0" promptText="Exact Date" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="910.0" />
-                  <DatePicker fx:id="toPicker" prefWidth="225.0" promptText="To" AnchorPane.leftAnchor="685.0" AnchorPane.topAnchor="910.0" />
-                  <Label text="-" textFill="#21381b" AnchorPane.leftAnchor="645.0" AnchorPane.topAnchor="900.0">
-                     <font>
-                        <Font name="Segoe UI Bold" size="30.0" />
-                     </font></Label>
-                  <Label text="Or" textFill="#21381b" AnchorPane.leftAnchor="310.0" AnchorPane.topAnchor="897.0">
-                     <font>
-                        <Font name="Segoe UI Bold" size="30.0" />
-                     </font></Label>
-                 <Button fx:id="searchBtn" layoutX="490.0" layoutY="1586.0" mnemonicParsing="false" onAction="#handleSearchBtnAction" prefWidth="500.0" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Search" AnchorPane.leftAnchor="243.0" AnchorPane.topAnchor="1050.0" />
-                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="-2.0" layoutY="1200.0" prefHeight="600.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="1200.0">
-                     <content>
-                        <TilePane fx:id="imgTilePane" prefHeight="600.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182); -fx-padding: 25;" />
-                     </content>
-                  </ScrollPane>
-               </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
-      <Label prefHeight="11.0" prefWidth="74.0" text="Today" textFill="WHITE" AnchorPane.bottomAnchor="677.0" AnchorPane.leftAnchor="405.0">
-         <font>
-            <Font name="Segoe UI Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="dateLabel" text="19/03/2000" textFill="WHITE" AnchorPane.bottomAnchor="655.0" AnchorPane.leftAnchor="405.0">
-         <font>
-            <Font name="Segoe UI Bold" size="20.0" />
-         </font>
-      </Label>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: rgb(182, 196, 182);" xmlns="http://javafx.com/javafx/21" fx:controller="photography.partner.Select_imageController">
+    <children>
+        <AnchorPane prefHeight="750.0" prefWidth="400.0" style="-fx-background-color: #21381B;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fitHeight="752.0" fitWidth="400.0" layoutX="5.0" layoutY="310.0" pickOnBounds="true" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <image>
+                        <Image url="@../../image/OME8011.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="108.0" fitWidth="128.0" layoutX="146.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../image/camera.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="menuSearchBtn" layoutY="202.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="selected-button" stylesheets="@../../Styles/button_Style.css" text="  Search Image" AnchorPane.leftAnchor="0.0" >
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../image/search%20(1).png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="addBtn" layoutY="253.0" mnemonicParsing="false" onAction="#handleAddBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="  Add New Image" AnchorPane.leftAnchor="0.0" >
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../image/add-image%20(1).png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="planBtn" layoutY="304.0" mnemonicParsing="false" onAction="#handlePlanTripBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="  Plan A Trip" >
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../image/location%20(1).png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="memoBtn" layoutY="355.0" mnemonicParsing="false" onAction="#handleMemoBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="  Favourite Images" >
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../image/photo-rating.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="tipsBtn" layoutY="406.0" mnemonicParsing="false" onAction="#handleTipsBtnAction" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="  Camera Tips" >
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../image/idea.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Text fill="WHITE" layoutX="171.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold; -fx-font-size: 20; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="WPRP" />
+                <Button fx:id="homeBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handlehomeBtnAction" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="  Home" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" >
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="30.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="22.0">
+                            <image>
+                                <Image url="@../../image/home%20(1).png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>    
+            </children>
+        </AnchorPane>
+        <ImageView fitHeight="100.0" fitWidth="1000.0" layoutX="427.0" layoutY="15.0" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../../image/cover1.png" />
+            </image>
+        </ImageView>
+        <Circle fill="WHITE" layoutX="1345.0" layoutY="93.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: white; -fx-stroke-width: 4; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" />
+        <ImageView fx:id="profilePicView" fitHeight="60.0" fitWidth="60.0" layoutX="1315.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+            <clip>
+                <Circle centerX="30.0" centerY="30.0" radius="30.0" />
+            </clip>
+        </ImageView>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="542.0" layoutY="278.0" prefHeight="599.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER; -fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="408.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1850.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);">
+                    <children>
+                        <Label layoutX="34.0" layoutY="11.2" prefHeight="46.0" prefWidth="237.0" text="Select Location:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="714.0" AnchorPane.topAnchor="14.0">
+                            <font>
+                                <Font name="Segoe UI Bold" size="30.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="locationField" layoutX="238.0" layoutY="539.0" prefHeight="30.0" prefWidth="700.0" promptText="Location" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="55.0" />
+                        <ScrollPane hbarPolicy="NEVER" layoutX="370.0" layoutY="529.0" prefHeight="300.0" prefWidth="600.0" style="-fx-border-color: #21381B;" vbarPolicy="NEVER" AnchorPane.leftAnchor="174.0" AnchorPane.topAnchor="110.0">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="890.0" prefWidth="623.0" style="-fx-background-color: rgb(182, 196, 182);">
+                                    <children>
+                                        <ImageView fitHeight="890.0" fitWidth="623.0" layoutX="-1.0" pickOnBounds="true" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                                            <image>
+                                                <Image url="@../../image/map3.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="wilpattuBtn" layoutX="195.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleWilpattuBtnAction" prefWidth="70.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="349.0" />
+                                        <Button fx:id="hecBtn" layoutX="263.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleHecBtnAction" prefWidth="125.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="183.0" AnchorPane.topAnchor="393.0" />
+                                        <Button fx:id="kaudullaBtn" layoutX="181.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleKaudullaBtnAction" prefWidth="70.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="411.0" AnchorPane.topAnchor="354.0" />
+                                        <Button fx:id="minneriyaBtn" layoutX="286.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleMinneriyaBtnAction" prefWidth="80.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="385.0" AnchorPane.topAnchor="394.0" />
+                                        <Button fx:id="wasgamuwaBtn" layoutX="195.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleWasgamuwaBtnAction" prefWidth="102.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="331.0" AnchorPane.topAnchor="476.0" />
+                                        <Button fx:id="hortonBtn" layoutX="220.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleHortonPlainsBtnAction" prefWidth="105.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="238.0" AnchorPane.topAnchor="565.5" />
+                                        <Button fx:id="galoya" layoutX="164.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleGaloyaBtnAction" prefWidth="58.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="416.0" AnchorPane.topAnchor="604.0" />
+                                        <Button fx:id="udawalawaBtn" layoutX="181.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleUdawalaweBtnAction" prefWidth="95.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="308.0" AnchorPane.topAnchor="685.0" />
+                                        <Button fx:id="kumanaBtn" layoutX="282.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleKumanaBtnAction" prefWidth="65.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="527.0" AnchorPane.topAnchor="680.0" />
+                                        <Button fx:id="yalaBtn" layoutX="282.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleYalaBtnAction" prefWidth="35.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="494.0" AnchorPane.topAnchor="737.0" />
+                                        <Button fx:id="sinharajaBtn" layoutX="357.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleSinharajaBtnAction" prefWidth="76.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="237.0" AnchorPane.topAnchor="753.0" />
+                                        <Button fx:id="bundalaBtn" layoutX="399.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleBundalaBtnAction" prefWidth="65.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="438.0" AnchorPane.topAnchor="782.0" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </ScrollPane>
+                        <Label layoutX="71.0" layoutY="970.0" text="Choose Category:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="458.0">
+                            <font>
+                                <Font name="Segoe UI Bold" size="30.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="categoryField" layoutX="28.0" layoutY="1398.0" prefHeight="30.0" prefWidth="700.0" promptText="Category" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="500.0" />
+                        <ScrollPane hbarPolicy="NEVER" layoutX="772.0" layoutY="500.0" prefHeight="300.0" prefWidth="946.0" style="-fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="540.0">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="1450.0" style="-fx-background-color: rgb(182, 196, 182);">
+                                    <children>
+                                        <AnchorPane layoutX="14.0" layoutY="19.0" prefHeight="250.0" prefWidth="220.0" styleClass="card" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="10.0">
+                                            <children>
+                                                <ImageView fitHeight="175.0" fitWidth="200.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                    <image>
+                                                        <Image url="@../../image/mammals2.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Button fx:id="mammalsBtn" layoutX="67.0" layoutY="201.0" mnemonicParsing="false" onAction="#handleMammalsBtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Mammals" AnchorPane.bottomAnchor="15.0" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutX="320.0" layoutY="14.0" prefHeight="250.0" prefWidth="220.0" styleClass="card" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="254.0" AnchorPane.topAnchor="10.0">
+                                            <children>
+                                                <ImageView fitHeight="175.0" fitWidth="200.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                    <image>
+                                                        <Image url="@../../image/birds2.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Button fx:id="birdsBtn" layoutX="82.0" layoutY="201.0" mnemonicParsing="false" onAction="#handleBirdsBtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Birds" AnchorPane.bottomAnchor="15.0" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutX="540.0" layoutY="14.0" prefHeight="250.0" prefWidth="220.0" styleClass="card" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="494.0" AnchorPane.topAnchor="10.0">
+                                            <children>
+                                                <ImageView fitHeight="175.0" fitWidth="200.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                                    <image>
+                                                        <Image url="@../../image/reptilia.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Button fx:id="raaBtn" layoutX="58.0" layoutY="180.0" mnemonicParsing="false" onAction="#handleRAABtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Reptiles and&#10;Amphibians" AnchorPane.bottomAnchor="15.0" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane prefHeight="250.0" prefWidth="220.0" styleClass="card" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="734.0" AnchorPane.topAnchor="10.0">
+                                            <children>
+                                                <ImageView fitHeight="175.0" fitWidth="200.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                    <image>
+                                                        <Image url="@../../image/insects.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Button fx:id="iaaBtn" layoutX="27.0" layoutY="201.0" mnemonicParsing="false" onAction="#handleIAABtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Insects and Arachnids" AnchorPane.bottomAnchor="15.0" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane layoutX="1063.0" layoutY="13.0" prefHeight="250.0" prefWidth="220.0" styleClass="card" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="974.0" AnchorPane.topAnchor="13.0">
+                                            <children>
+                                                <ImageView fitHeight="175.0" fitWidth="200.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                    <image>
+                                                        <Image url="@../../image/fish.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Button fx:id="aquaticBtn" layoutX="51.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleAquaticBtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Aquatic Life" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="56.0" />
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane prefHeight="250.0" prefWidth="220.0" styleClass="card" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="1214.0" AnchorPane.topAnchor="10.0">
+                                            <children>
+                                                <ImageView fitHeight="175.0" fitWidth="200.0" pickOnBounds="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                    <image>
+                                                        <Image url="@../../image/other.png" />
+                                                    </image>
+                                                </ImageView>
+                                                <Button fx:id="otherBtn" layoutX="53.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleOtherBtnAction" prefWidth="90.0" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Other" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="61.0" />
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </ScrollPane>
+                        <Label layoutX="36.0" layoutY="1551.2" prefHeight="46.0" prefWidth="380.0" text="Select Saved Date:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="870.0">
+                            <font>
+                                <Font name="Segoe UI Bold" size="30.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="selectAllLocationBtn" layoutX="744.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleSelectAllLocationBtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Select All" AnchorPane.leftAnchor="740.0" />
+                        <Button fx:id="selectAllCategoriesBtn" layoutX="782.0" layoutY="483.0" mnemonicParsing="false" onAction="#handleSelectAllCategoriesBtnAction" styleClass="card-button" stylesheets="@../../Styles/button_Style.css" text="Select All" AnchorPane.leftAnchor="740.0" AnchorPane.topAnchor="496.0" />
+                        <DatePicker fx:id="fromPicker" layoutX="488.0" layoutY="1360.0" prefWidth="225.0" promptText="From" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="910.0" />
+                        <Label layoutX="479.0" layoutY="1338.0" text="Date Range: " textFill="#21381b" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="872.0">
+                            <font>
+                                <Font name="Segoe UI Bold" size="30.0" />
+                            </font>
+                        </Label>
+                        <DatePicker fx:id="exactPicker" layoutX="401.0" layoutY="1587.0" prefWidth="225.0" promptText="Exact Date" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="910.0" />
+                        <DatePicker fx:id="toPicker" prefWidth="225.0" promptText="To" AnchorPane.leftAnchor="685.0" AnchorPane.topAnchor="910.0" />
+                        <Label text="-" textFill="#21381b" AnchorPane.leftAnchor="645.0" AnchorPane.topAnchor="900.0">
+                            <font>
+                                <Font name="Segoe UI Bold" size="30.0" />
+                            </font>
+                        </Label>
+                        <Label text="Or" textFill="#21381b" AnchorPane.leftAnchor="310.0" AnchorPane.topAnchor="897.0">
+                            <font>
+                                <Font name="Segoe UI Bold" size="30.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="searchBtn" layoutX="490.0" layoutY="1586.0" mnemonicParsing="false" onAction="#handleSearchBtnAction" prefWidth="500.0" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Search" AnchorPane.leftAnchor="243.0" AnchorPane.topAnchor="1050.0" />
+                        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="-2.0" layoutY="1200.0" prefHeight="600.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);" stylesheets="@../../Styles/region_style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="1200.0">
+                            <content>
+                                <TilePane fx:id="imgTilePane" prefHeight="600.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182); -fx-padding: 25;" />
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <Label prefHeight="11.0" prefWidth="74.0" text="Today" textFill="WHITE" AnchorPane.bottomAnchor="677.0" AnchorPane.leftAnchor="405.0">
+            <font>
+                <Font name="Segoe UI Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="dateLabel" text="19/03/2000" textFill="WHITE" AnchorPane.bottomAnchor="655.0" AnchorPane.leftAnchor="405.0">
+            <font>
+                <Font name="Segoe UI Bold" size="20.0" />
+            </font>
+        </Label>
+    </children>
 </AnchorPane>

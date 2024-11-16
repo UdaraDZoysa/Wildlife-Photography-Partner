@@ -12,102 +12,111 @@
 <?import javafx.scene.text.TextFlow?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: rgb(182, 196, 182);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photography.partner.ViewTripDetailsController">
-   <children>
-      <AnchorPane prefHeight="750.0" prefWidth="400.0" style="-fx-background-color: #21381B;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <ImageView fitHeight="752.0" fitWidth="400.0" layoutX="5.0" layoutY="310.0" pickOnBounds="true" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <image>
-                  <Image url="@../../image/OME8011.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="219.0" fitWidth="222.0" layoutX="91.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="86.0">
-               <image>
-                  <Image url="@../../image/camera.png" />
-               </image>
-            </ImageView>
-            <Text fill="WHITE" layoutX="156.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="WPRP" wrappingWidth="88.65789794921875" AnchorPane.topAnchor="284.626953125" />
-            <Button fx:id="completedTripsBtn" layoutY="348.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Completed Trips" onAction="#handlecompletedTripsBtnAction" />
-            <Button fx:id="cancelledTripsBtn" layoutY="399.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="        Cancelled Trips" onAction="#handleCancelledTripsBtnAction" />
-            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../image/progress-complete%20(1).png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../image/ban.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-      <ImageView fitHeight="100.0" fitWidth="1000.0" layoutX="427.0" layoutY="15.0" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../../image/cover1.png" />
-         </image>
-      </ImageView>
-      <Circle fill="WHITE" layoutX="1345.0" layoutY="93.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: white; -fx-stroke-width: 4; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" />
-      <ImageView fx:id="profilePicView" fitHeight="60.0" fitWidth="60.0" layoutX="1315.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
-         <clip>
-            <Circle centerX="30.0" centerY="30.0" radius="30.0" />
-         </clip>
-      </ImageView>
-      <Label prefHeight="11.0" prefWidth="74.0" text="Today" textFill="WHITE" AnchorPane.bottomAnchor="677.0" AnchorPane.leftAnchor="405.0">
-         <font>
-            <Font name="Segoe UI Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="dateLabelCurrent" text="19/03/2000" textFill="WHITE" AnchorPane.bottomAnchor="655.0" AnchorPane.leftAnchor="405.0">
-         <font>
-            <Font name="Segoe UI Bold" size="20.0" />
-         </font>
-      </Label>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);" AnchorPane.bottomAnchor="3.7999999999999545" AnchorPane.rightAnchor="5.600000000000023">
-         <children>
-            <Label layoutX="14.0" layoutY="52.0" prefHeight="50.0" prefWidth="225.0" style="-fx-background-color: rgba(255, 255, 255, 0.4); -fx-padding: 7; -fx-background-radius: 10; -fx-border-color: rgba(255, 255, 255, 0.7); -fx-border-radius: 10; -fx-border-width: 0 0 1 0;" text="Trip Location:" textFill="#333333" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="100.0">
-               <font>
-                  <Font name="Segoe UI Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="71.0" layoutY="970.0" maxHeight="50.0" maxWidth="225.0" style="-fx-background-color: rgba(255, 255, 255, 0.4); -fx-background-radius: 10; -fx-padding: 7; -fx-border-color: rgba(255, 255, 255, 0.7); -fx-border-radius: 10; -fx-border-width: 0 0 1 0;" text="Date Duration:" textFill="#333333" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="190.0">
-               <font>
-                  <Font name="Segoe UI Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label layoutX="66.0" layoutY="351.2" prefHeight="50.0" prefWidth="225.0" style="-fx-background-color: rgba(255, 255, 255, 0.4); -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: rgba(255, 255, 255, 0.7); -fx-border-width: 0 0 1 0; -fx-padding: 7;" text="Other Details:" textFill="#333333" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="280.0">
-               <font>
-                  <Font name="Segoe UI Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label fx:id="locationLabel" layoutX="250.0" layoutY="147.0" textFill="#21381b" AnchorPane.topAnchor="110.0">
-               <font>
-                  <Font name="Segoe UI Bold" size="30.0" />
-               </font>
-            </Label>
-            <Label fx:id="headingText" layoutX="24.0" layoutY="34.0" textFill="#d43131" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="10.0">
-               <font>
-                  <Font name="Segoe UI Bold" size="40.0" />
-               </font>
-            </Label>
-            <Label fx:id="dateDurationLabel" layoutX="250.0" layoutY="258.0" textFill="#21381b" AnchorPane.topAnchor="200.0">
-               <font>
-                  <Font name="Segoe UI Bold" size="30.0" />
-               </font>
-            </Label>
-            <Button fx:id="cancelTripBtn" layoutX="657.0" layoutY="637.0" mnemonicParsing="false" onAction="#handlecancelTripBtnAction" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Cancel Trip" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="520.0" />
-            <Button fx:id="completedBtn" layoutX="77.0" layoutY="629.0" mnemonicParsing="false" onAction="#handlecompletedBtnAction" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Trip Completed" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="520.0" />
-            <Button fx:id="editTripBtn" layoutX="440.0" layoutY="530.0" mnemonicParsing="false" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Edit Trip" AnchorPane.topAnchor="520.0" onAction="#handleEditBtnAction" />
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="250.0" layoutY="280.0" prefHeight="219.0" prefWidth="722.0" style="-fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER">
-               <content>
-                  <TextFlow fx:id="otherDetailsTextFlow" prefHeight="217.0" prefWidth="721.0" style="-fx-background-color: rgb(182, 196, 182);" />
-               </content>
-            </ScrollPane>
-         </children>
-      </AnchorPane>
-      <Button fx:id="homeBtn" mnemonicParsing="false" onAction="#handlehomeBtnAction" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="      Home" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-      <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../image/home%20(1).png" />
-         </image>
-      </ImageView>
-   </children>
+    <children>
+        <AnchorPane prefHeight="750.0" prefWidth="400.0" style="-fx-background-color: #21381B;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fitHeight="752.0" fitWidth="400.0" layoutX="5.0" layoutY="310.0" pickOnBounds="true" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <image>
+                        <Image url="@../../image/OME8011.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="219.0" fitWidth="222.0" layoutX="91.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="86.0">
+                    <image>
+                        <Image url="@../../image/camera.png" />
+                    </image>
+                </ImageView>
+                <Text fill="WHITE" layoutX="156.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold; -fx-font-size: 30; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="WPRP" wrappingWidth="88.65789794921875" AnchorPane.topAnchor="284.626953125" />
+                <Button fx:id="completedTripsBtn" layoutY="348.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="  Completed Trips" onAction="#handlecompletedTripsBtnAction" >
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../image/progress-complete%20(1).png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="cancelledTripsBtn" layoutY="399.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="400.0" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="  Cancelled Trips" onAction="#handleCancelledTripsBtnAction" >
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../image/ban.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </AnchorPane>
+        <ImageView fitHeight="100.0" fitWidth="1000.0" layoutX="427.0" layoutY="15.0" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../../image/cover1.png" />
+            </image>
+        </ImageView>
+        <Circle fill="WHITE" layoutX="1345.0" layoutY="93.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: white; -fx-stroke-width: 4; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" />
+        <ImageView fx:id="profilePicView" fitHeight="60.0" fitWidth="60.0" layoutX="1315.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+            <clip>
+                <Circle centerX="30.0" centerY="30.0" radius="30.0" />
+            </clip>
+        </ImageView>
+        <Label prefHeight="11.0" prefWidth="74.0" text="Today" textFill="WHITE" AnchorPane.bottomAnchor="677.0" AnchorPane.leftAnchor="405.0">
+            <font>
+                <Font name="Segoe UI Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="dateLabelCurrent" text="19/03/2000" textFill="WHITE" AnchorPane.bottomAnchor="655.0" AnchorPane.leftAnchor="405.0">
+            <font>
+                <Font name="Segoe UI Bold" size="20.0" />
+            </font>
+        </Label>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);" AnchorPane.bottomAnchor="3.7999999999999545" AnchorPane.rightAnchor="5.600000000000023">
+            <children>
+                <Label layoutX="14.0" layoutY="52.0" prefHeight="50.0" prefWidth="225.0" style="-fx-background-color: rgba(255, 255, 255, 0.4); -fx-padding: 7; -fx-background-radius: 10; -fx-border-color: rgba(255, 255, 255, 0.7); -fx-border-radius: 10; -fx-border-width: 0 0 1 0;" text="Trip Location:" textFill="#333333" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="100.0">
+                    <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                    </font>
+                </Label>
+                <Label layoutX="71.0" layoutY="970.0" maxHeight="50.0" maxWidth="225.0" style="-fx-background-color: rgba(255, 255, 255, 0.4); -fx-background-radius: 10; -fx-padding: 7; -fx-border-color: rgba(255, 255, 255, 0.7); -fx-border-radius: 10; -fx-border-width: 0 0 1 0;" text="Date Duration:" textFill="#333333" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="190.0">
+                    <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                    </font>
+                </Label>
+                <Label layoutX="66.0" layoutY="351.2" prefHeight="50.0" prefWidth="225.0" style="-fx-background-color: rgba(255, 255, 255, 0.4); -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: rgba(255, 255, 255, 0.7); -fx-border-width: 0 0 1 0; -fx-padding: 7;" text="Other Details:" textFill="#333333" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="280.0">
+                    <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                    </font>
+                </Label>
+                <Label fx:id="locationLabel" layoutX="250.0" layoutY="147.0" textFill="#21381b" AnchorPane.topAnchor="110.0">
+                    <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                    </font>
+                </Label>
+                <Label fx:id="headingText" layoutX="24.0" layoutY="34.0" textFill="#d43131" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="10.0">
+                    <font>
+                        <Font name="Segoe UI Bold" size="40.0" />
+                    </font>
+                </Label>
+                <Label fx:id="dateDurationLabel" layoutX="250.0" layoutY="258.0" textFill="#21381b" AnchorPane.topAnchor="200.0">
+                    <font>
+                        <Font name="Segoe UI Bold" size="30.0" />
+                    </font>
+                </Label>
+                <Button fx:id="cancelTripBtn" layoutX="657.0" layoutY="637.0" mnemonicParsing="false" onAction="#handlecancelTripBtnAction" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Cancel Trip" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="520.0" />
+                <Button fx:id="completedBtn" layoutX="77.0" layoutY="629.0" mnemonicParsing="false" onAction="#handlecompletedBtnAction" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Trip Completed" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="520.0" />
+                <Button fx:id="editTripBtn" layoutX="440.0" layoutY="530.0" mnemonicParsing="false" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Edit Trip" AnchorPane.topAnchor="520.0" onAction="#handleEditBtnAction" />
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="250.0" layoutY="280.0" prefHeight="219.0" prefWidth="722.0" style="-fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER">
+                    <content>
+                        <TextFlow fx:id="otherDetailsTextFlow" prefHeight="217.0" prefWidth="721.0" style="-fx-background-color: rgb(182, 196, 182);" />
+                    </content>
+                </ScrollPane>
+            </children>
+        </AnchorPane>
+        <Button fx:id="homeBtn" mnemonicParsing="false" onAction="#handlehomeBtnAction" styleClass="dashBoard-button" stylesheets="@../../Styles/button_Style.css" text="  Home" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" >
+            <graphic>
+                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="25.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../image/home%20(1).png" />
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+    </children>
 </AnchorPane>

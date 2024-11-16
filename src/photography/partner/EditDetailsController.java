@@ -44,236 +44,232 @@ public class EditDetailsController implements Initializable {
     private ImageService imageService = new ImageService();
     static boolean toggle;
     LocalDate currentDate;
-    
+
     @FXML
     private Label dateLabel;
-    
+
     @FXML
     private ToggleButton publicToggle;
-    
+
     @FXML
     private TextField locationField;
-    
+
     @FXML
     private TextField categoryField;
-    
+
     @FXML
     private TextArea otherDetailsField;
-    
+
     @FXML
     private TextArea techDetailsField;
-    
+
     @FXML
     private ImageView profilePicView;
-    
-    public void setUser(User user){
-        if(user!=null){
-            Image image =new Image(new File(user.getProfilePic()).toURI().toString());
+
+    public void setUser(User user) {
+        if (user != null) {
+            Image image = new Image(new File(user.getProfilePic()).toURI().toString());
             profilePicView.setImage(image);
-            u=user;
+            u = user;
         }
     }
-    
+
     @FXML
-    public void setImage(Images image){
-        
+    public void setImage(Images image) {
+
         locationField.setText(image.getLocation());
         categoryField.setText(image.getCategory());
         otherDetailsField.setText(image.getOtherDetails());
-        techDetailsField.setText(image.getTechDetails()); 
+        techDetailsField.setText(image.getTechDetails());
         publicToggle.setSelected(image.isVilibleAll());
-        
+
         toggle = image.isVilibleAll();
         img = image;
     }
-    
+
     //select location
-    
     @FXML
-    public void handleWilpattuBtnAction(ActionEvent event){
+    public void handleWilpattuBtnAction(ActionEvent event) {
         locationField.setText("Wilpattu");
     }
-    
+
     @FXML
-    public void handleHecBtnAction(ActionEvent event){
+    public void handleHecBtnAction(ActionEvent event) {
         locationField.setText("Hurulu Eco Park");
     }
-    
+
     @FXML
-    public void handleKaudullaBtnAction(ActionEvent event){
+    public void handleKaudullaBtnAction(ActionEvent event) {
         locationField.setText("Kaudulla");
     }
-    
+
     @FXML
-    public void handleMinneriyaBtnAction(ActionEvent event){
+    public void handleMinneriyaBtnAction(ActionEvent event) {
         locationField.setText("Minneriya");
     }
-    
+
     @FXML
-    public void handleWasgamuwaBtnAction(ActionEvent event){
+    public void handleWasgamuwaBtnAction(ActionEvent event) {
         locationField.setText("Wasgamuwa");
     }
-    
+
     @FXML
-    public void handleHortonPlainsBtnAction(ActionEvent event){
+    public void handleHortonPlainsBtnAction(ActionEvent event) {
         locationField.setText("Horton Plains");
     }
-    
+
     @FXML
-    public void handleGaloyaBtnAction(ActionEvent event){
+    public void handleGaloyaBtnAction(ActionEvent event) {
         locationField.setText("Galoya");
     }
-    
+
     @FXML
-    public void handleUdawalaweBtnAction(ActionEvent event){
+    public void handleUdawalaweBtnAction(ActionEvent event) {
         locationField.setText("Udawalawe");
     }
-    
+
     @FXML
-    public void handleSinharajaBtnAction(ActionEvent event){
+    public void handleSinharajaBtnAction(ActionEvent event) {
         locationField.setText("Sinharaja");
     }
-    
+
     @FXML
-    public void handleBundalaBtnAction(ActionEvent event){
+    public void handleBundalaBtnAction(ActionEvent event) {
         locationField.setText("Bundala");
     }
-    
+
     @FXML
-    public void handleYalaBtnAction(ActionEvent event){
+    public void handleYalaBtnAction(ActionEvent event) {
         locationField.setText("Yala");
     }
-    
+
     @FXML
-    public void handleKumanaBtnAction(ActionEvent event){
+    public void handleKumanaBtnAction(ActionEvent event) {
         locationField.setText("Kumana");
     }
-    
-    
+
     //choose category
-    
     @FXML
-    private void handleMammalsBtnAction(ActionEvent event){
+    private void handleMammalsBtnAction(ActionEvent event) {
         categoryField.setText("Mammals");
     }
-    
+
     @FXML
-    private void handleBirdsBtnAction(ActionEvent event){
+    private void handleBirdsBtnAction(ActionEvent event) {
         categoryField.setText("Birds");
     }
-    
+
     @FXML
-    private void handleRAABtnAction(ActionEvent event){
+    private void handleRAABtnAction(ActionEvent event) {
         categoryField.setText("Reptils and Amphibians");
     }
-    
+
     @FXML
-    private void handleIAABtnAction(ActionEvent event){
+    private void handleIAABtnAction(ActionEvent event) {
         categoryField.setText("Insects and Arachnids");
     }
-    
+
     @FXML
-    private void handleAquaticBtnAction(ActionEvent event){
+    private void handleAquaticBtnAction(ActionEvent event) {
         categoryField.setText("Aquatic Life");
     }
-    
+
     @FXML
-    private void handleOtherBtnAction(ActionEvent event){
+    private void handleOtherBtnAction(ActionEvent event) {
         categoryField.setText("Other");
     }
-    
+
     @FXML
-    private void handleSaveBtnAction(ActionEvent event){
-        
+    private void handleSaveBtnAction(ActionEvent event) {
+
         String location = locationField.getText();
         String category = categoryField.getText();
         String otherDetails = otherDetailsField.getText();
         String techDetails = techDetailsField.getText();
         int userID = u.getUserID();
-        
-        Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Edits");
         alert.setHeaderText(null);
         alert.setContentText("Are you sure you want to save the changes?");
-            
+
         Optional<ButtonType> result = alert.showAndWait();
-        
+
         if (result.isPresent() && result.get() == ButtonType.OK) {
             // If user click ok, Update details
             //Get Image with edited details
             Images editedImage = imageService.UpdateImage(location, category, otherDetails, techDetails, toggle, img.getImgID());
-            
-            if(editedImage != null){
-                Alert successAlert=new Alert(Alert.AlertType.CONFIRMATION);
+
+            if (editedImage != null) {
+                Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 successAlert.setTitle("Details Updated");
                 successAlert.setHeaderText(null);
                 successAlert.setContentText("Details Updated Successfully!");
                 successAlert.showAndWait();
-                
-                displayEditedImageWithDetails(editedImage,event);//Again Display Image With Edited Details
-                
-                
-            }else{
-                Alert failedAlert=new Alert(Alert.AlertType.ERROR);
+
+                displayEditedImageWithDetails(editedImage, event);//Again Display Image With Edited Details
+
+            } else {
+                Alert failedAlert = new Alert(Alert.AlertType.ERROR);
                 failedAlert.setTitle("Details not Updated");
                 failedAlert.setHeaderText(null);
                 failedAlert.setContentText("Invalid input!");
                 failedAlert.showAndWait();
             }
-            
-        }else{
+
+        } else {
             //else set details as exist
             locationField.setText(img.getLocation());
             categoryField.setText(img.getCategory());
             otherDetailsField.setText(img.getOtherDetails());
-            techDetailsField.setText(img.getTechDetails()); 
+            techDetailsField.setText(img.getTechDetails());
             publicToggle.setSelected(img.isVilibleAll());
         }
     }
-    
-    public void displayEditedImageWithDetails(Images img,ActionEvent event){
-        
-        try{
+
+    public void displayEditedImageWithDetails(Images img, ActionEvent event) {
+
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewSearchedImage.fxml"));
-            Parent root =loader.load();
-            
+            Parent root = loader.load();
+
             // Retrieve the controller associated with the FXML file and set the u
             ViewSearchedImageController controller = loader.getController();
             controller.displayEditedImageWithDetails(img, u);
-        
+
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
             scene.getStylesheets().add(getClass().getResource("/Styles/button_Style.css").toExternalForm());
-            
-            
-            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            
+
             stage.show();
-        }catch(IOException e){
-            System.out.println("Error:"+e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error:" + e.getMessage());
         }
-        
+
     }
-    
+
     @FXML
-    public void handlePublicToggleBtnAction(ActionEvent event){
+    public void handlePublicToggleBtnAction(ActionEvent event) {
         toggle = !toggle; // Toggle the boolean value when it click
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
         //Create a Circle to be used as clip of profile picture
         profilePicView.setPreserveRatio(false);
         Circle profileClip = new Circle(profilePicView.getFitWidth() / 2, profilePicView.getFitHeight() / 2, profilePicView.getFitWidth() / 2);
         profilePicView.setClip(profileClip);
-        
+
         //get Local Date
         currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String formattedDate = currentDate.format(formatter); 
+        String formattedDate = currentDate.format(formatter);
         dateLabel.setText(formattedDate);
-    }    
-    
+    }
+
 }

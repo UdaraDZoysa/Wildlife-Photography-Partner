@@ -16,10 +16,10 @@ import javafx.stage.Stage;
  * @author Harsha
  */
 public class FXMain1 extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root=FXMLLoader.load(getClass().getResource("Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
         primaryStage.setResizable(false);
         primaryStage.setTitle("View");
         primaryStage.setScene(new Scene(root));
@@ -32,5 +32,5 @@ public class FXMain1 extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

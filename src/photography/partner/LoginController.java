@@ -29,96 +29,95 @@ import javafx.stage.Screen;
  * @author Harsha
  */
 public class LoginController implements Initializable {
-    
+
     @FXML
     private TextField LogUname;
-    
+
     @FXML
     private PasswordField LogPwd;
-    
+
     private UserService userService = new UserService();//create UserService object
-    
+
     @FXML
-    private void handleLoginButtonAction(ActionEvent event){
-        
+    private void handleLoginButtonAction(ActionEvent event) {
+
         //get user name and password from text fields
         String userName = LogUname.getText();
         String password = LogPwd.getText();
-        
+
         //call authenticateUser using object and assign resulted user details to new variable
         //if username and passwod not match with entry in DB it will return null
-        User user = userService.authenticateUser(userName,password);
-        
-        if(user !=null){
+        User user = userService.authenticateUser(userName, password);
+
+        if (user != null) {
             loadDashBoardView(user, event);
-        }
-        else{
-            Alert alert=new Alert(Alert.AlertType.ERROR);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Login Error");
             alert.setHeaderText(null);
             alert.setContentText("Username or password is incorrect.");
             alert.showAndWait();
         }
     }
-    
+
     @FXML
-    private void handleBackButtonAction(ActionEvent event){
-        loadView("Home.fxml",event);
+    private void handleBackButtonAction(ActionEvent event) {
+        loadView("Home.fxml", event);
     }
-    
+
     @FXML
-    private void handleCreateAccountHyperlinkAction(ActionEvent event){ 
-        loadView("CreateAccount.fxml",event);
+    private void handleCreateAccountHyperlinkAction(ActionEvent event) {
+        loadView("CreateAccount.fxml", event);
     }
-    
-    private void loadView(String fxmlFile, ActionEvent event){
-        
+
+    private void loadView(String fxmlFile, ActionEvent event) {
+
         try {
             Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
             Scene scene = new Scene(parent);
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(scene);
-            
+
             window.show();
         } catch (IOException e) {
         }
-    
+
     }
-    
-    private void loadDashBoardView(User user, ActionEvent event){
-        try{
+
+    private void loadDashBoardView(User user, ActionEvent event) {
+        try {
             // Load the FXML file for the dashboard and initialize its root node
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DashBoard2.fxml"));
-            Parent root =loader.load();
-            
+            Parent root = loader.load();
+
             // Retrieve the controller associated with the FXML file and set the user
             DashBoard2Controller controller = loader.getController();
             controller.setUser(user);
-            
+
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
-                    
-            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            
+
             repositionWindow(stage);
-            
+
             // Display the updated stage
             stage.show();
-        }catch(IOException e){
-            System.out.println("Error:"+e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error:" + e.getMessage());
         }
     }
-    
+
     private void repositionWindow(Stage stage) {
-    Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-    stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
-    stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
-}
-    
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }

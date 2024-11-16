@@ -14,100 +14,100 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1400.0" style="-fx-background-color: rgb(182, 196, 182);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photography.partner.EditTripDetailsController">
-   <children>
-      <AnchorPane prefHeight="750.0" prefWidth="400.0" style="-fx-background-color: #21381B;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <ImageView fitHeight="752.0" fitWidth="400.0" layoutX="5.0" layoutY="310.0" pickOnBounds="true" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <image>
-                  <Image url="@../../image/OME8011.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="194.0" fitWidth="207.0" layoutX="95.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../image/camera.png" />
-               </image>
-            </ImageView>
-            <Text fill="WHITE" layoutX="141.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold; -fx-font-size: 35; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="WPRP" />
-         </children>
-      </AnchorPane>
-      <ImageView fitHeight="100.0" fitWidth="1000.0" layoutX="427.0" layoutY="15.0" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../../image/cover1.png" />
-         </image>
-      </ImageView>
-      <Circle fill="WHITE" layoutX="1345.0" layoutY="93.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: white; -fx-stroke-width: 4; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" />
-      <ImageView fx:id="profilePicView" fitHeight="60.0" fitWidth="60.0" layoutX="1315.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
-         <clip>
-            <Circle centerX="30.0" centerY="30.0" radius="30.0" />
-         </clip>
-      </ImageView>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="599.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER; -fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="875.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);">
-               <children>
-                  <Label layoutX="34.0" layoutY="11.2" prefHeight="46.0" prefWidth="237.0" text="Select Location:" textFill="#21381b" AnchorPane.bottomAnchor="814.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="714.0">
-                     <font>
-                        <Font name="Segoe UI Bold" size="30.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="locationField" layoutX="238.0" layoutY="539.0" prefHeight="30.0" prefWidth="700.0" promptText="Location" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="55.0" />
-                  <ScrollPane hbarPolicy="NEVER" layoutX="370.0" layoutY="529.0" prefHeight="300.0" prefWidth="600.0" style="-fx-border-color: #21381B;" vbarPolicy="NEVER" AnchorPane.leftAnchor="174.0" AnchorPane.topAnchor="110.0">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="890.0" prefWidth="623.0" style="-fx-background-color: rgb(182, 196, 182);">
-                           <children>
-                              <ImageView fitHeight="890.0" fitWidth="623.0" layoutX="-1.0" pickOnBounds="true" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="0.0">
-                                 <image>
-                                    <Image url="@../../image/map3.png" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="wilpattuBtn" layoutX="195.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleWilpattuBtnAction" prefWidth="70.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="349.0" />
-                              <Button fx:id="hecBtn" layoutX="263.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleHecBtnAction" prefWidth="125.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="183.0" AnchorPane.topAnchor="393.0" />
-                              <Button fx:id="kaudullaBtn" layoutX="181.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleKaudullaBtnAction" prefWidth="70.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="411.0" AnchorPane.topAnchor="354.0" />
-                              <Button fx:id="minneriyaBtn" layoutX="286.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleMinneriyaBtnAction" prefWidth="80.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="385.0" AnchorPane.topAnchor="394.0" />
-                              <Button fx:id="wasgamuwaBtn" layoutX="195.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleWasgamuwaBtnAction" prefWidth="102.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="331.0" AnchorPane.topAnchor="476.0" />
-                              <Button fx:id="hortonBtn" layoutX="220.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleHortonPlainsBtnAction" prefWidth="105.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="238.0" AnchorPane.topAnchor="565.5" />
-                              <Button fx:id="galoya" layoutX="164.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleGaloyaBtnAction" prefWidth="58.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="416.0" AnchorPane.topAnchor="604.0" />
-                              <Button fx:id="udawalawaBtn" layoutX="181.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleUdawalaweBtnAction" prefWidth="95.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="308.0" AnchorPane.topAnchor="685.0" />
-                              <Button fx:id="kumanaBtn" layoutX="282.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleKumanaBtnAction" prefWidth="65.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="527.0" AnchorPane.topAnchor="680.0" />
-                              <Button fx:id="yalaBtn" layoutX="282.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleYalaBtnAction" prefWidth="35.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="494.0" AnchorPane.topAnchor="737.0" />
-                              <Button fx:id="sinharajaBtn" layoutX="357.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleSinharajaBtnAction" prefWidth="76.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="237.0" AnchorPane.topAnchor="753.0" />
-                              <Button fx:id="bundalaBtn" layoutX="399.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleBundalaBtnAction" prefWidth="65.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="438.0" AnchorPane.topAnchor="782.0" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-                  <Label layoutX="36.0" layoutY="451.2" prefHeight="46.0" prefWidth="291.0" text="Trip Date Range:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="451.0">
-                     <font>
-                        <Font name="Segoe UI Bold" size="30.0" />
-                     </font>
-                  </Label>
-                  <DatePicker fx:id="fromPicker" layoutX="488.0" layoutY="1360.0" prefWidth="225.0" promptText="From" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="460.0" />
-                  <DatePicker fx:id="toPicker" prefWidth="225.0" promptText="To" AnchorPane.leftAnchor="558.0" AnchorPane.topAnchor="460.0" />
-                  <Label text="-" AnchorPane.leftAnchor="512.0" AnchorPane.topAnchor="450.0">
-                     <font>
-                        <Font name="Segoe UI Bold" size="30.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="savePlanBtn" layoutX="490.0" layoutY="1586.0" mnemonicParsing="false" onAction="#handleSaveBtnAction" prefWidth="500.0" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Save Edits" AnchorPane.leftAnchor="243.0" AnchorPane.topAnchor="750.0" />
-                  <Label prefHeight="46.0" prefWidth="218.0" text="Other Details:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="550.0">
-                     <font>
-                        <Font name="Segoe UI Bold" size="30.0" />
-                     </font>
-                  </Label>
-                  <TextArea fx:id="otherDetailsField" prefHeight="100.0" prefWidth="940.0" promptText="Enter Text Here ..." style="-fx-border-color: #21381B; -fx-background-radius: 5; -fx-border-radius: 5;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="590.0" />
-               </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
-      <Label prefHeight="11.0" prefWidth="74.0" text="Today" textFill="WHITE" AnchorPane.bottomAnchor="677.0" AnchorPane.leftAnchor="405.0">
-         <font>
-            <Font name="Segoe UI Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="dateLabel" layoutX="417.0" layoutY="70.0" text="19/03/2000" textFill="WHITE" AnchorPane.bottomAnchor="655.0" AnchorPane.leftAnchor="405.0">
-         <font>
-            <Font name="Segoe UI Bold" size="20.0" />
-         </font>
-      </Label>
-   </children>
+    <children>
+        <AnchorPane prefHeight="750.0" prefWidth="400.0" style="-fx-background-color: #21381B;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fitHeight="752.0" fitWidth="400.0" layoutX="5.0" layoutY="310.0" pickOnBounds="true" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <image>
+                        <Image url="@../../image/OME8011.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="194.0" fitWidth="207.0" layoutX="95.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../image/camera.png" />
+                    </image>
+                </ImageView>
+                <Text fill="WHITE" layoutX="141.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: Bold; -fx-font-size: 35; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 3, 0, 2, 2);" text="WPRP" />
+            </children>
+        </AnchorPane>
+        <ImageView fitHeight="100.0" fitWidth="1000.0" layoutX="427.0" layoutY="15.0" pickOnBounds="true" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../../image/cover1.png" />
+            </image>
+        </ImageView>
+        <Circle fill="WHITE" layoutX="1345.0" layoutY="93.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: white; -fx-stroke-width: 4; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.0, 0,10);" />
+        <ImageView fx:id="profilePicView" fitHeight="60.0" fitWidth="60.0" layoutX="1315.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+            <clip>
+                <Circle centerX="30.0" centerY="30.0" radius="30.0" />
+            </clip>
+        </ImageView>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="599.0" prefWidth="986.0" style="-fx-hbar-policy: NEVER; -fx-background-color: rgb(182, 196, 182);" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="875.0" prefWidth="986.0" style="-fx-background-color: rgb(182, 196, 182);">
+                    <children>
+                        <Label layoutX="34.0" layoutY="11.2" prefHeight="46.0" prefWidth="237.0" text="Select Location:" textFill="#21381b" AnchorPane.bottomAnchor="814.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="714.0">
+                            <font>
+                                <Font name="Segoe UI Bold" size="30.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="locationField" layoutX="238.0" layoutY="539.0" prefHeight="30.0" prefWidth="700.0" promptText="Location" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #21381B;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="55.0" />
+                        <ScrollPane hbarPolicy="NEVER" layoutX="370.0" layoutY="529.0" prefHeight="300.0" prefWidth="600.0" style="-fx-border-color: #21381B;" vbarPolicy="NEVER" AnchorPane.leftAnchor="174.0" AnchorPane.topAnchor="110.0">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="890.0" prefWidth="623.0" style="-fx-background-color: rgb(182, 196, 182);">
+                                    <children>
+                                        <ImageView fitHeight="890.0" fitWidth="623.0" layoutX="-1.0" pickOnBounds="true" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                                            <image>
+                                                <Image url="@../../image/map3.png" />
+                                            </image>
+                                        </ImageView>
+                                        <Button fx:id="wilpattuBtn" layoutX="195.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleWilpattuBtnAction" prefWidth="70.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="349.0" />
+                                        <Button fx:id="hecBtn" layoutX="263.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleHecBtnAction" prefWidth="125.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="183.0" AnchorPane.topAnchor="393.0" />
+                                        <Button fx:id="kaudullaBtn" layoutX="181.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleKaudullaBtnAction" prefWidth="70.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="411.0" AnchorPane.topAnchor="354.0" />
+                                        <Button fx:id="minneriyaBtn" layoutX="286.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleMinneriyaBtnAction" prefWidth="80.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="385.0" AnchorPane.topAnchor="394.0" />
+                                        <Button fx:id="wasgamuwaBtn" layoutX="195.0" layoutY="97.0" mnemonicParsing="false" onAction="#handleWasgamuwaBtnAction" prefWidth="102.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="331.0" AnchorPane.topAnchor="476.0" />
+                                        <Button fx:id="hortonBtn" layoutX="220.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleHortonPlainsBtnAction" prefWidth="105.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="238.0" AnchorPane.topAnchor="565.5" />
+                                        <Button fx:id="galoya" layoutX="164.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleGaloyaBtnAction" prefWidth="58.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="416.0" AnchorPane.topAnchor="604.0" />
+                                        <Button fx:id="udawalawaBtn" layoutX="181.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleUdawalaweBtnAction" prefWidth="95.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="308.0" AnchorPane.topAnchor="685.0" />
+                                        <Button fx:id="kumanaBtn" layoutX="282.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleKumanaBtnAction" prefWidth="65.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="527.0" AnchorPane.topAnchor="680.0" />
+                                        <Button fx:id="yalaBtn" layoutX="282.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleYalaBtnAction" prefWidth="35.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="494.0" AnchorPane.topAnchor="737.0" />
+                                        <Button fx:id="sinharajaBtn" layoutX="357.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleSinharajaBtnAction" prefWidth="76.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="237.0" AnchorPane.topAnchor="753.0" />
+                                        <Button fx:id="bundalaBtn" layoutX="399.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleBundalaBtnAction" prefWidth="65.0" styleClass="button-transparent" stylesheets="@../../Styles/button_Style.css" text="Button" AnchorPane.leftAnchor="438.0" AnchorPane.topAnchor="782.0" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </ScrollPane>
+                        <Label layoutX="36.0" layoutY="451.2" prefHeight="46.0" prefWidth="291.0" text="Trip Date Range:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="451.0">
+                            <font>
+                                <Font name="Segoe UI Bold" size="30.0" />
+                            </font>
+                        </Label>
+                        <DatePicker fx:id="fromPicker" layoutX="488.0" layoutY="1360.0" prefWidth="225.0" promptText="From" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="460.0" />
+                        <DatePicker fx:id="toPicker" prefWidth="225.0" promptText="To" AnchorPane.leftAnchor="558.0" AnchorPane.topAnchor="460.0" />
+                        <Label text="-" AnchorPane.leftAnchor="512.0" AnchorPane.topAnchor="450.0">
+                            <font>
+                                <Font name="Segoe UI Bold" size="30.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="savePlanBtn" layoutX="490.0" layoutY="1586.0" mnemonicParsing="false" onAction="#handleSaveBtnAction" prefWidth="500.0" styleClass="custom-button" stylesheets="@../../Styles/button_Style.css" text="Save Edits" AnchorPane.leftAnchor="243.0" AnchorPane.topAnchor="750.0" />
+                        <Label prefHeight="46.0" prefWidth="218.0" text="Other Details:" textFill="#21381b" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="550.0">
+                            <font>
+                                <Font name="Segoe UI Bold" size="30.0" />
+                            </font>
+                        </Label>
+                        <TextArea fx:id="otherDetailsField" prefHeight="100.0" prefWidth="940.0" promptText="Enter Text Here ..." style="-fx-border-color: #21381B; -fx-background-radius: 5; -fx-border-radius: 5;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="590.0" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <Label prefHeight="11.0" prefWidth="74.0" text="Today" textFill="WHITE" AnchorPane.bottomAnchor="677.0" AnchorPane.leftAnchor="405.0">
+            <font>
+                <Font name="Segoe UI Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label fx:id="dateLabel" layoutX="417.0" layoutY="70.0" text="19/03/2000" textFill="WHITE" AnchorPane.bottomAnchor="655.0" AnchorPane.leftAnchor="405.0">
+            <font>
+                <Font name="Segoe UI Bold" size="20.0" />
+            </font>
+        </Label>
+    </children>
 </AnchorPane>

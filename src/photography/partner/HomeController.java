@@ -22,29 +22,29 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private void handleGuestBtnAction(ActionEvent event){
-        try{
+    private void handleGuestBtnAction(ActionEvent event) {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GuestView.fxml"));
-            Parent root =loader.load();
-            
+            Parent root = loader.load();
+
             // Retrieve the controller associated with the FXML file and set the u
             GuestViewController controller = loader.getController();
             controller.loadImageDynamically();
-            
+
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
-                    
-            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            
+
             repositionWindow(stage);
-            
+
             stage.show();
-        }catch(IOException e){
-            System.out.println("Error:"+e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error:" + e.getMessage());
         }
     }
-    
+
     private void repositionWindow(Stage stage) {
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
@@ -56,8 +56,8 @@ public class HomeController implements Initializable {
             // Load the FXML file and create a new scene
             Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
             Scene scene = new Scene(parent);
-            
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();// Get the current window (stage) from the event source
+
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();// Get the current window (stage) from the event source
             window.setScene(scene); // Set the new scene to the window
             window.show();// Display the updated window
         } catch (IOException e) {
@@ -67,5 +67,5 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Any initialization logic here
-    }    
+    }
 }

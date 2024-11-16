@@ -40,214 +40,215 @@ import javafx.stage.Stage;
  * @author Harsha
  */
 public class EditTripDetailsController implements Initializable {
-    
+
     private User u;
     static int index;
     int flag;//Use to indicate this ui load from where(1 --> ViewTripDetailsController , 2 --> CancelledTripsController)
     LocalDate currentDate;
-    
+
     @FXML
     private Label dateLabel;
-    
+
     @FXML
     private DatePicker fromPicker;
-    
+
     @FXML
     private DatePicker toPicker;
-    
+
     @FXML
     private TextArea otherDetailsField;
-    
+
     @FXML
     private TextField locationField;
-    
+
     @FXML
     private ImageView profilePicView;
-    
-    public void setUser(User user, int i,int fromFlag){
-        if(user!=null){
-            Image image =new Image(new File(user.getProfilePic()).toURI().toString());
+
+    public void setUser(User user, int i, int fromFlag) {
+        if (user != null) {
+            Image image = new Image(new File(user.getProfilePic()).toURI().toString());
             profilePicView.setImage(image);
-            u=user;
+            u = user;
             index = i;
             flag = fromFlag;
             setFields();
         }
     }
-    
+
     @FXML
-    public void setFields(){
+    public void setFields() {
         locationField.setText(TripService.trips.get(index).getLocation());
         fromPicker.setValue(TripService.trips.get(index).getStartDate().toLocalDate());
         toPicker.setValue(TripService.trips.get(index).getEndDate().toLocalDate());
         otherDetailsField.setText(TripService.trips.get(index).getOtherDetails());
     }
-    
+
     @FXML
-    public void handleSaveBtnAction(ActionEvent event){
-        
+    public void handleSaveBtnAction(ActionEvent event) {
+
         boolean success = false;
         String location = locationField.getText();
         LocalDate startDateLocal = fromPicker.getValue();
         LocalDate endDateLocal = toPicker.getValue();
         String otherDetails = otherDetailsField.getText();
-        
-        Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm Edit");
         alert.setHeaderText(null);
         alert.setContentText("Are you sure you want to Edit the Trip Details?");
-            
+
         Optional<ButtonType> result = alert.showAndWait();
-        
+
         if (result.isPresent() && result.get() == ButtonType.OK) {
             // If user click ok, Update details
             //Update Trip Details
-            if(startDateLocal.compareTo(endDateLocal) <= 0 && startDateLocal.compareTo(currentDate) >=0){
-            
+            if (startDateLocal.compareTo(endDateLocal) <= 0 && startDateLocal.compareTo(currentDate) >= 0) {
+
                 Date startDate = Date.valueOf(fromPicker.getValue());
                 Date endDate = Date.valueOf(toPicker.getValue());
-                
-                if(flag == 1){
-                    success = TripService.UpdateTripDetails( otherDetails, location, startDate, endDate, TripService.trips.get(index).getTripID()); 
-                }else{
+
+                if (flag == 1) {
+                    success = TripService.UpdateTripDetails(otherDetails, location, startDate, endDate, TripService.trips.get(index).getTripID());
+                } else {
                     success = TripService.setAsNotCancelled(otherDetails, location, startDate, endDate, TripService.trips.get(index).getTripID());
                 }
-            }else{System.out.println("Invalid Date Range!");}
-            
-            if(success){
-                Alert successAlert=new Alert(Alert.AlertType.CONFIRMATION);
+            } else {
+                System.out.println("Invalid Date Range!");
+            }
+
+            if (success) {
+                Alert successAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 successAlert.setTitle("Details Updated");
                 successAlert.setHeaderText(null);
                 successAlert.setContentText("Trip Details Updated Successfully!");
                 successAlert.showAndWait();
-                
-                handlehomeBtnAction(event);    
-            }else{
-                Alert failedAlert=new Alert(Alert.AlertType.ERROR);
+
+                handlehomeBtnAction(event);
+            } else {
+                Alert failedAlert = new Alert(Alert.AlertType.ERROR);
                 failedAlert.setTitle("Details Not Updated");
                 failedAlert.setHeaderText(null);
                 failedAlert.setContentText("Something was Wrong!");
-                failedAlert.showAndWait(); 
+                failedAlert.showAndWait();
                 setFields();
             }
-        }else{
-            Alert failedAlert=new Alert(Alert.AlertType.ERROR);
+        } else {
+            Alert failedAlert = new Alert(Alert.AlertType.ERROR);
             failedAlert.setTitle("Details Not Updated");
             failedAlert.setHeaderText(null);
             failedAlert.setContentText("Trip Details not Updated!");
-            failedAlert.showAndWait(); 
+            failedAlert.showAndWait();
             setFields();
         }
-    
+
     }
-    
+
     @FXML
-    public void handlehomeBtnAction(ActionEvent event){
-        try{
+    public void handlehomeBtnAction(ActionEvent event) {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DashBoard2.fxml"));
-            Parent root =loader.load();
-            
+            Parent root = loader.load();
+
             // Retrieve the controller associated with the FXML file and set the u
             DashBoard2Controller controller = loader.getController();
             controller.setUser(u);
-            
+
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/Styles/region_style.css").toExternalForm());
-                    
-            Stage stage =(Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            
+
             repositionWindow(stage);
-            
+
             // Display the updated stage
             stage.show();
-        }catch(IOException e){
-            System.out.println("Error:"+e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error:" + e.getMessage());
         }
     }
-    
+
     private void repositionWindow(Stage stage) {
-    Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-    stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
-    stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
     }
-    
-    
+
     //select location
     @FXML
-    public void handleWilpattuBtnAction(ActionEvent event){
+    public void handleWilpattuBtnAction(ActionEvent event) {
         locationField.setText("Wilpattu");
     }
-    
+
     @FXML
-    public void handleHecBtnAction(ActionEvent event){
+    public void handleHecBtnAction(ActionEvent event) {
         locationField.setText("Hurulu Eco Park");
     }
-    
+
     @FXML
-    public void handleKaudullaBtnAction(ActionEvent event){
+    public void handleKaudullaBtnAction(ActionEvent event) {
         locationField.setText("Kaudulla");
     }
-    
+
     @FXML
-    public void handleMinneriyaBtnAction(ActionEvent event){
+    public void handleMinneriyaBtnAction(ActionEvent event) {
         locationField.setText("Minneriya");
     }
-    
+
     @FXML
-    public void handleWasgamuwaBtnAction(ActionEvent event){
+    public void handleWasgamuwaBtnAction(ActionEvent event) {
         locationField.setText("Wasgamuwa");
     }
-    
+
     @FXML
-    public void handleHortonPlainsBtnAction(ActionEvent event){
+    public void handleHortonPlainsBtnAction(ActionEvent event) {
         locationField.setText("Horton Plains");
     }
-    
+
     @FXML
-    public void handleGaloyaBtnAction(ActionEvent event){
+    public void handleGaloyaBtnAction(ActionEvent event) {
         locationField.setText("Galoya");
     }
-    
+
     @FXML
-    public void handleUdawalaweBtnAction(ActionEvent event){
+    public void handleUdawalaweBtnAction(ActionEvent event) {
         locationField.setText("Udawalawe");
     }
-    
+
     @FXML
-    public void handleSinharajaBtnAction(ActionEvent event){
+    public void handleSinharajaBtnAction(ActionEvent event) {
         locationField.setText("Sinharaja");
     }
-    
+
     @FXML
-    public void handleBundalaBtnAction(ActionEvent event){
+    public void handleBundalaBtnAction(ActionEvent event) {
         locationField.setText("Bundala");
     }
-    
+
     @FXML
-    public void handleYalaBtnAction(ActionEvent event){
+    public void handleYalaBtnAction(ActionEvent event) {
         locationField.setText("Yala");
     }
-    
+
     @FXML
-    public void handleKumanaBtnAction(ActionEvent event){
+    public void handleKumanaBtnAction(ActionEvent event) {
         locationField.setText("Kumana");
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
         //Create a Circle to be used as clip of profile picture
         profilePicView.setPreserveRatio(false);
         Circle profileClip = new Circle(profilePicView.getFitWidth() / 2, profilePicView.getFitHeight() / 2, profilePicView.getFitWidth() / 2);
         profilePicView.setClip(profileClip);
-        
+
         //get Local Date
         currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String formattedDate = currentDate.format(formatter); 
+        String formattedDate = currentDate.format(formatter);
         dateLabel.setText(formattedDate);
-    }    
-    
+    }
+
 }

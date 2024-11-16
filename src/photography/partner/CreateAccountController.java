@@ -7,6 +7,7 @@ package photography.partner;
 import DataBaseOperations.UserService;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,95 +27,110 @@ import javafx.stage.Stage;
  * @author Harsha
  */
 public class CreateAccountController implements Initializable {
-    
+
     @FXML
     private TextField CreUname;
-    
+
     @FXML
     private PasswordField CrePwd;
-    
+
     @FXML
     private TextField CreEmail;
-    
+
     @FXML
     private TextField profilePath;
-    
+
     //Save draft as user details using UserDraft class
-    private void saveDraft(){
+    private void saveDraft() {
         UserDraft.setUserName(CreUname.getText());
         UserDraft.setPassword(CrePwd.getText());
         UserDraft.setEmail(CreEmail.getText());
     }
-    
+
     @FXML
     private void handleSelectButtonAction(ActionEvent event) {
         saveDraft();//Save draft details calling saveDraft when user try to select the profile picture
         loadView("profil_picUpload.fxml", event);
     }
-    
+
     //user back again to create account ui load draft details
-    private void loadDraft(){
+    private void loadDraft() {
         CreUname.setText(UserDraft.getUserName());
         CrePwd.setText(UserDraft.getPassword());
         CreEmail.setText(UserDraft.getEmail());
         profilePath.setText(UserDraft.getProfilePicPath());
-        
+
         UserDraft.setPassword(null);//Set password in UserDraft class becouse of security reasons
     }
-    
-    private final UserService userservice= new UserService();//create UserService object
-    
+
+    private final UserService userservice = new UserService();//create UserService object
+
     @FXML
-    private void handleCreateButtonAction(ActionEvent event){
-        
-        //get values from text fields
-        String userName=CreUname.getText();
-        String password=CrePwd.getText();
-        String email=CreEmail.getText();
-        String profilePicPath=profilePath.getText();
-        
-        //call createAccount method using object and assign result to success boolean variable
-        //if process done correctly method will return true
-        boolean successs=userservice.createAccount(userName, password, email, profilePicPath);
-        
-        if(successs){
-            Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Account Created");
+    private void handleCreateButtonAction(ActionEvent event) {
+
+        if (validateFields()) {
+            //get values from text fields
+            String userName = CreUname.getText();
+            String password = CrePwd.getText();
+            String email = CreEmail.getText();
+            String profilePicPath = profilePath.getText();
+
+            //call createAccount method using object and assign result to success boolean variable
+            //if process done correctly method will return true
+            boolean successs = userservice.createAccount(userName, password, email, profilePicPath);
+
+            if (successs) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Account Created");
+                alert.setHeaderText(null);
+                alert.setContentText("Account Created Successfully!");
+                alert.showAndWait();
+                loadView("Login.fxml", event);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Account Not Created");
+                alert.setHeaderText(null);
+                alert.setContentText("User name or email already Used!");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Missing Information");
             alert.setHeaderText(null);
-            alert.setContentText("Account Created Successfully!");
-            alert.showAndWait();
-            loadView("Login.fxml", event);
-        }else{
-            Alert alert=new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Account Not Created");
-            alert.setHeaderText(null);
-            alert.setContentText("Invalid user name or missing required field!");
+            alert.setContentText("Missing required field!");
             alert.showAndWait();
         }
-    
+
     }
 
     @FXML
-    private void handleBacktLgnHyperlinkAction(ActionEvent event){
-        loadView("Login.fxml",event);
+    private void handleBacktLgnHyperlinkAction(ActionEvent event) {
+        loadView("Login.fxml", event);
     }
-    
-    private void loadView(String fxmlFile, ActionEvent event){
-        
+
+    private void loadView(String fxmlFile, ActionEvent event) {
+
         try {
             Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
             Scene scene = new Scene(parent);
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(scene);
             window.show();
         } catch (IOException e) {
+            System.out.println("Error:" + e.getMessage());
         }
-    
+
     }
-    
+
+    private boolean validateFields() {
+        return !Optional.ofNullable(CreUname.getText()).orElse("").trim().isEmpty() &&
+               !Optional.ofNullable(CrePwd.getText()).orElse("").trim().isEmpty() &&
+               !Optional.ofNullable(CreEmail.getText()).orElse("").trim().isEmpty();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadDraft();//when controller initialize that will call
-    }    
-    
+    }
+
 }

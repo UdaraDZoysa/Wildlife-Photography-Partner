@@ -30,79 +30,78 @@ import javafx.stage.Stage;
  * @author Harsha
  */
 public class Profil_picUploadController implements Initializable {
-    
+
     @FXML
     private ImageView profileImageView;
-    
+
     @FXML
     private Button selectPathBtn;
-    
+
     private void processFile(File file) {
         UserDraft.setProfilePicPath(file.getAbsolutePath());
         Image image = new Image(file.toURI().toString());
         profileImageView.setImage(image);
     }
-    
+
     @FXML
-    private void handleDragOver(DragEvent event){
-        if(event.getDragboard().hasFiles()){
+    private void handleDragOver(DragEvent event) {
+        if (event.getDragboard().hasFiles()) {
             event.acceptTransferModes(TransferMode.COPY);
         }
         event.consume();
     }
-    
+
     @FXML
-    private void handleDragDropped(DragEvent event){
+    private void handleDragDropped(DragEvent event) {
         Dragboard db = event.getDragboard();
-        boolean success =false;
-        if(db.hasFiles()){
+        boolean success = false;
+        if (db.hasFiles()) {
             File file = db.getFiles().get(0);
-            
-            if(file.getName().toLowerCase().matches(".*\\.(jpg|jpeg|png)")){
+
+            if (file.getName().toLowerCase().matches(".*\\.(jpg|jpeg|png)")) {
                 processFile(file);
-                success=true;
+                success = true;
             }
         }
         event.setDropCompleted(success);
         event.consume();
     }
-    
+
     @FXML
-    private void handleselectPathBtn(){
+    private void handleselectPathBtn() {
         FileChooser fileChooser = new FileChooser();
-        
-        FileChooser.ExtensionFilter extFilter= new FileChooser.ExtensionFilter("Image files (*.png, *.jpg, *.jpeg)", "*.png", "*.jpg", "*.jpeg");
+
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image files (*.png, *.jpg, *.jpeg)", "*.png", "*.jpg", "*.jpeg");
         fileChooser.getExtensionFilters().add(extFilter);
-        
+
         File file = fileChooser.showOpenDialog(selectPathBtn.getScene().getWindow());
-        
-        if(file!=null){
+
+        if (file != null) {
             processFile(file);
         }
     }
-            
-    
+
     @FXML
-    private void handleuploadBackBtnAction(ActionEvent event){
-        loadView("CreateAccount.fxml",event);
+    private void handleuploadBackBtnAction(ActionEvent event) {
+        loadView("CreateAccount.fxml", event);
     }
-    
-    private void loadView(String fxmlFile, ActionEvent event){
-        
+
+    private void loadView(String fxmlFile, ActionEvent event) {
+
         try {
             Parent parent = FXMLLoader.load(getClass().getResource(fxmlFile));
             Scene scene = new Scene(parent);
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(scene);
             window.show();
         } catch (IOException e) {
         }
-    
+
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }
